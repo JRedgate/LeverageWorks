@@ -17,6 +17,7 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
     const [isScrolled, setIsScrolled] = useState(false);
+    const [isMobileOpen, setIsMobileOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -24,12 +25,30 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // Close mobile menu on resize to desktop
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 768) setIsMobileOpen(false);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     const navItems: NavigationItem[] = [
         { label: 'Firm Thesis', href: '#firm' },
         { label: 'Capabilities', href: '#capabilities' },
         { label: 'Impact', href: '#scenarios' },
-        { label: 'Strategist', href: '#divide' }, // AI Tool
+        { label: 'Strategist', href: '#divide' },
     ];
+
+    const handleMobileNavClick = (href: string) => {
+        setIsMobileOpen(false);
+        const id = href.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     return (
         <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-white/95 border-b border-gray-200 py-4 backdrop-blur-sm shadow-sm' : 'bg-transparent py-6'}`}>
@@ -41,6 +60,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
                     </span>
                 </a>
 
+                {/* Desktop Navigation */}
                 <div className="hidden md:flex items-center gap-8">
                     {navItems.map((item) => (
                         <a key={item.label} href={item.href} className="text-sm font-medium text-brand-slate hover:text-brand-navy transition-colors relative group">
@@ -67,6 +87,54 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
                     >
                         Contact
                     </button>
+                </div>
+
+                {/* Mobile Hamburger Button */}
+                <button
+                    className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5"
+                    onClick={() => setIsMobileOpen(!isMobileOpen)}
+                    aria-label={isMobileOpen ? 'Close menu' : 'Open menu'}
+                    aria-expanded={isMobileOpen}
+                >
+                    <span className={`block w-6 h-0.5 bg-brand-navy transition-all duration-300 ${isMobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
+                    <span className={`block w-6 h-0.5 bg-brand-navy transition-all duration-300 ${isMobileOpen ? 'opacity-0' : ''}`} />
+                    <span className={`block w-6 h-0.5 bg-brand-navy transition-all duration-300 ${isMobileOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+                </button>
+            </div>
+
+            {/* Mobile Menu Panel */}
+            <div
+                className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMobileOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'}`}
+            >
+                <div className="bg-white border-t border-gray-100 shadow-lg px-6 py-6 flex flex-col gap-4">
+                    {navItems.map((item) => (
+                        <button
+                            key={item.label}
+                            onClick={() => handleMobileNavClick(item.href)}
+                            className="text-left text-base font-medium text-brand-slate hover:text-brand-navy transition-colors py-2 border-b border-gray-50"
+                        >
+                            {item.label}
+                        </button>
+                    ))}
+
+                    <div className="flex items-center gap-4 pt-2">
+                        <a
+                            href="https://www.linkedin.com/company/lvrgwrks/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-brand-slate hover:text-brand-navy transition-all"
+                            aria-label="LinkedIn Profile"
+                        >
+                            <LinkedInIcon className="w-5 h-5" />
+                        </a>
+
+                        <button
+                            onClick={() => { setIsMobileOpen(false); onContactClick(); }}
+                            className="bg-brand-navy text-white px-5 py-2.5 rounded-md text-xs font-bold uppercase tracking-wide hover:bg-brand-slate transition-all shadow-md"
+                        >
+                            Contact
+                        </button>
+                    </div>
                 </div>
             </div>
         </nav>
