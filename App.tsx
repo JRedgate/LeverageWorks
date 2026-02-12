@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect } from 'react';
-import { gemini } from './services/geminiService';
 import { Navbar } from './src/components/Navbar';
 import { Hero } from './src/components/Hero';
 
@@ -30,25 +29,21 @@ const scrollToSection = (id: string) => {
 };
 
 const App: React.FC = () => {
-  const [aiMessage, setAiMessage] = useState('');
   const [userInput, setUserInput] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
   const [loading, setLoading] = useState(true);
   const [briefingOpen, setBriefingOpen] = useState(false);
+  const [briefingMessage, setBriefingMessage] = useState('');
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1200);
     return () => clearTimeout(timer);
   }, []);
 
-  const handleAiConsult = async (e: React.FormEvent) => {
+  const handleConsult = (e: React.FormEvent) => {
     e.preventDefault();
     if (!userInput.trim()) return;
-
-    setIsTyping(true);
-    const result = await gemini.getExecutionStrategy(userInput);
-    setAiMessage(result);
-    setIsTyping(false);
+    setBriefingMessage(userInput);
+    setBriefingOpen(true);
     setUserInput('');
   };
 
@@ -223,38 +218,30 @@ const App: React.FC = () => {
                     <LwSymbol className="w-32 h-32" color="#FFFFFF" />
                   </div>
 
-                  <div className="min-h-[200px] mb-12 relative z-10">
-                    {isTyping ? (
-                      <div className="flex gap-2 items-center h-full">
-                        <div className="w-2 h-2 rounded-full bg-brand-gold animate-bounce"></div>
-                        <div className="w-2 h-2 rounded-full bg-brand-gold animate-bounce delay-100"></div>
-                        <div className="w-2 h-2 rounded-full bg-brand-gold animate-bounce delay-200"></div>
-                      </div>
-                    ) : aiMessage ? (
-                      <div className="animate-fade-in font-display text-xl leading-relaxed text-gray-200">
-                        "{aiMessage}"
-                      </div>
-                    ) : (
-                      <div className="text-gray-500 font-display italic text-2xl flex items-center gap-4">
-                        <span className="text-5xl opacity-20">"</span>
-                        Awaiting inquiry... Specify your organizational gap.
-                      </div>
-                    )}
+                  <div className="mb-10 relative z-10">
+                    <div className="text-gray-400 font-display text-xl leading-relaxed mb-2">
+                      Tell us what you are working through. We will open a direct line to a LeverageWorks strategist.
+                    </div>
+                    <div className="text-gray-600 text-sm">
+                      Your challenge will be pre-filled into the briefing request.
+                    </div>
                   </div>
-                  <form onSubmit={handleAiConsult} className="relative z-10">
-                    <input
-                      type="text"
+                  <form onSubmit={handleConsult} className="relative z-10">
+                    <textarea
                       value={userInput}
                       onChange={(e) => setUserInput(e.target.value)}
                       placeholder="e.g., 'Our AI pilot lacks an integration roadmap...'"
-                      className="w-full bg-black/20 border border-white/20 rounded-lg px-6 py-5 focus:outline-none focus:border-brand-gold text-white placeholder:text-gray-600 transition-all font-sans"
+                      rows={3}
+                      className="w-full bg-black/20 border border-white/20 rounded-lg px-6 py-5 focus:outline-none focus:border-brand-gold text-white placeholder:text-gray-600 transition-all font-sans resize-none"
                     />
-                    <button
-                      type="submit"
-                      className="absolute right-3 top-3 bg-brand-gold text-brand-navy px-6 py-2 rounded-md font-bold text-xs uppercase tracking-widest hover:bg-white transition-all shadow-lg"
-                    >
-                      Consult
-                    </button>
+                    <div className="flex justify-end mt-4">
+                      <button
+                        type="submit"
+                        className="bg-brand-gold text-brand-navy px-8 py-3 rounded-md font-bold text-xs uppercase tracking-widest hover:bg-white transition-all shadow-lg"
+                      >
+                        Start the Conversation
+                      </button>
+                    </div>
                   </form>
                 </div>
               </div>
@@ -289,7 +276,7 @@ const App: React.FC = () => {
 
       <Footer />
 
-      <BriefingModal isOpen={briefingOpen} onClose={() => setBriefingOpen(false)} />
+      <BriefingModal isOpen={briefingOpen} onClose={() => { setBriefingOpen(false); setBriefingMessage(''); }} initialMessage={briefingMessage} />
     </div>
   );
 };
