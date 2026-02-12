@@ -5,7 +5,7 @@ interface BriefingModalProps {
   onClose: () => void;
 }
 
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xpwrrwzj';
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xgvjrrod';
 
 export const BriefingModal: React.FC<BriefingModalProps> = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
