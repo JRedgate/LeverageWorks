@@ -37,7 +37,7 @@ const App: React.FC = () => {
   const [briefingOpen, setBriefingOpen] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000); // reduced loading time
+    const timer = setTimeout(() => setLoading(false), 1200);
     return () => clearTimeout(timer);
   }, []);
 
@@ -54,9 +54,9 @@ const App: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="fixed inset-0 z-[100] bg-brand-navy flex flex-col items-center justify-center animate-fade-in p-6">
+      <div className="fixed inset-0 z-[100] bg-brand-navy flex flex-col items-center justify-center p-6">
         <LwSymbol color="#FFFFFF" className="w-16 h-16 mb-8 animate-pulse" />
-        <h2 className="text-white text-[11px] font-medium tracking-[0.5em] uppercase mb-12 opacity-90 animate-fade-in text-center" style={{ animationDelay: '0.3s' }}>
+        <h2 className="text-white text-[11px] font-medium tracking-[0.5em] uppercase mb-12 opacity-90 text-center">
           Architecting Intelligence
         </h2>
         <div className="w-40 h-[1px] bg-white/10 relative overflow-hidden">
