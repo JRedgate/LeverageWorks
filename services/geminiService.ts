@@ -1,15 +1,18 @@
-
 import { GoogleGenAI } from "@google/genai";
 
 export class GeminiService {
   private ai: GoogleGenAI | null = null;
 
   constructor() {
-    const apiKey = process.env.API_KEY;
-    if (apiKey) {
-      this.ai = new GoogleGenAI({ apiKey });
-    } else {
-      console.warn("Gemini API Key is missing. AI features will use fallback responses.");
+    try {
+      const apiKey = process.env.API_KEY;
+      if (apiKey) {
+        this.ai = new GoogleGenAI({ apiKey });
+      } else {
+        console.warn("Gemini API Key is missing. AI features will use fallback responses.");
+      }
+    } catch (e) {
+      console.warn("Failed to initialize Gemini SDK:", e);
     }
   }
 
