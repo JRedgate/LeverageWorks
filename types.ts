@@ -12,6 +12,17 @@ export interface NavigationItem {
   href: string;
 }
 
+export interface UseCaseProps {
+  id: string;
+  industry: string;
+  title: string;
+  context: string;
+  findings: string[];
+  results: string[];
+  roi: string;
+  expandedStory: string;
+}
+
 export enum Theme {
   LIGHT = 'light',
   DARK = 'dark'
