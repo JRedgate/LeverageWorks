@@ -8,6 +8,7 @@ import { ServiceCard } from './src/components/ServiceCard';
 import { UseCaseCard } from './src/components/UseCaseCard';
 import { Footer } from './src/components/Footer';
 import { LwSymbol } from './src/components/Logo';
+import { BriefingModal } from './src/components/BriefingModal';
 
 // --- Icons used in App.tsx (moved here or can be in separate files) ---
 const ChartIcon = () => (
@@ -33,6 +34,7 @@ const App: React.FC = () => {
   const [userInput, setUserInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [briefingOpen, setBriefingOpen] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000); // reduced loading time
@@ -269,7 +271,7 @@ const App: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-6 items-center">
               <button
-                onClick={() => scrollToSection('divide')}
+                onClick={() => setBriefingOpen(true)}
                 className="bg-brand-navy text-white px-12 py-5 rounded-lg font-bold text-sm uppercase tracking-widest hover:bg-brand-gold transition-all shadow-xl hover:shadow-brand-gold/20"
               >
                 Request Briefing
@@ -286,6 +288,8 @@ const App: React.FC = () => {
       </main>
 
       <Footer />
+
+      <BriefingModal isOpen={briefingOpen} onClose={() => setBriefingOpen(false)} />
     </div>
   );
 };
