@@ -1,14 +1,16 @@
+const CTA_CLOSING = "\n\nReady to go deeper? Connect with LVRGWRKS to start the conversation — we'd welcome the opportunity to explore what's possible for your organization.";
+
 const FALLBACK_RESPONSES: Record<string, string> = {
   default:
-    "LeverageWorks specializes in bridging the gap between AI capability and organizational execution. Our methodology, rooted in the Haskayne EMBA, focuses on rebuilding the decision pathways that power your firm. Contact us to discuss your specific organizational challenges.",
+    "LeverageWorks specializes in bridging the gap between AI capability and organizational execution. Our methodology, rooted in the Haskayne EMBA, focuses on rebuilding the decision pathways that power your firm." + CTA_CLOSING,
   integration:
-    "Integration roadmaps require a synthesis layer between your existing systems and AI capabilities. LeverageWorks builds custom intelligence pipelines that transform fragmented data into executable leadership directives. We typically see 7-8x ROI on integration architecture engagements.",
+    "Integration roadmaps require a synthesis layer between your existing systems and AI capabilities. LeverageWorks builds custom intelligence pipelines that transform fragmented data into executable leadership directives. We typically see 7-8x ROI on integration architecture engagements." + CTA_CLOSING,
   ai:
-    "AI readiness is not a technology problem — it is an operating model problem. LeverageWorks audits organizational workflows to identify where intelligence can be natively embedded, reducing cognitive friction while maintaining human judgment as the primary lever.",
+    "AI readiness is not a technology problem — it is an operating model problem. LeverageWorks audits organizational workflows to identify where intelligence can be natively embedded, reducing cognitive friction while maintaining human judgment as the primary lever." + CTA_CLOSING,
   leadership:
-    "The divide between AI potential and realized value is found in the operating model. We equip enterprise leaders with the synthesis layer required to govern AI agents, turning theoretical capability into deployed, governed, and revenue-generating infrastructure.",
+    "The divide between AI potential and realized value is found in the operating model. We equip enterprise leaders with the synthesis layer required to govern AI agents, turning theoretical capability into deployed, governed, and revenue-generating infrastructure." + CTA_CLOSING,
   strategy:
-    "Strategic readiness begins with architectural precision. We redesign standard operating procedures for an AI-augmented workforce, ensuring that digital transformation results in measurable EBITDA uplift — not just new software.",
+    "Strategic readiness begins with architectural precision. We redesign standard operating procedures for an AI-augmented workforce, ensuring that digital transformation results in measurable EBITDA uplift — not just new software." + CTA_CLOSING,
 };
 
 function getFallbackResponse(prompt: string): string {
@@ -29,7 +31,8 @@ Rules:
 1. Be punchy and benefit-driven.
 2. Focus on architecture, leadership, and execution.
 3. Avoid stock clichés or decorative language.
-4. Max 120 words.`;
+4. Max 120 words.
+5. Always end with a friendly, warm closing that invites the reader to connect with LVRGWRKS to start the conversation. Keep the closing natural and not salesy.`;
 
 export class GeminiService {
   private apiKey: string;
