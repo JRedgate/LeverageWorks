@@ -225,8 +225,8 @@ const App: React.FC = () => {
                     {isTyping ? (
                       <div className="flex gap-2 items-center h-full">
                         <div className="w-2 h-2 rounded-full bg-brand-gold animate-bounce"></div>
-                        <div className="w-2 h-2 rounded-full bg-brand-gold animate-bounce delay-100"></div>
-                        <div className="w-2 h-2 rounded-full bg-brand-gold animate-bounce delay-200"></div>
+                        <div className="w-2 h-2 rounded-full bg-brand-gold animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                        <div className="w-2 h-2 rounded-full bg-brand-gold animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                       </div>
                     ) : aiMessage ? (
                       <div className="animate-fade-in font-display text-xl leading-relaxed text-gray-200">
