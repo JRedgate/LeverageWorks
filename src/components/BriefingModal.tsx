@@ -3,11 +3,12 @@ import React, { useState, useEffect } from 'react';
 interface BriefingModalProps {
   isOpen: boolean;
   onClose: () => void;
+  initialMessage?: string;
 }
 
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xgvjrrod';
 
-export const BriefingModal: React.FC<BriefingModalProps> = ({ isOpen, onClose }) => {
+export const BriefingModal: React.FC<BriefingModalProps> = ({ isOpen, onClose, initialMessage }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -16,6 +17,12 @@ export const BriefingModal: React.FC<BriefingModalProps> = ({ isOpen, onClose })
     message: '',
   });
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  useEffect(() => {
+    if (isOpen && initialMessage) {
+      setFormData(prev => ({ ...prev, message: initialMessage }));
+    }
+  }, [isOpen, initialMessage]);
 
   useEffect(() => {
     if (isOpen) {
