@@ -25,7 +25,7 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick, onSecondCtaClick }) => (
                 </h1>
 
                 <p className="text-brand-slate text-xl leading-relaxed mb-10 max-w-2xl font-light">
-                    Your fractional CTO and AI operations partner. LVRGWRKS (LeverageWorks) helps North American executive teams move AI from experimentation into disciplined operating systems at a fraction of the cost of a full-time hire.
+                    Your fractional CTO and AI operations partner. LVRGWRKS (LeverageWorks) helps founders, owners, and COOs of mid-market companies (20-250 employees, $5M-$150M revenue) across Alberta and Western Canada move AI from experimentation into disciplined operating systems.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -46,13 +46,12 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick, onSecondCtaClick }) => (
 
                 {/* Trust Signals */}
                 <div className="mt-16 flex flex-col md:flex-row md:items-center gap-4 md:gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-                    <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest">Trusted By Leaders In:</p>
+                    <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest">Serving:</p>
                     <div className="flex flex-wrap gap-4 md:gap-6 text-sm font-bold text-gray-400">
-                        <span>ENERGY</span>
-                        <span>FINANCE</span>
-                        <span>MANUFACTURING</span>
-                        <span>CONSTRUCTION</span>
                         <span>PROPERTY MANAGEMENT</span>
+                        <span>CONSTRUCTION</span>
+                        <span>MANUFACTURING</span>
+                        <span>ENERGY SERVICES</span>
                     </div>
                 </div>
             </div>

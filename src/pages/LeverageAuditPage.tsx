@@ -48,21 +48,21 @@ export const LeverageAuditPage: React.FC = () => {
         <div className="container mx-auto px-6 md:px-16">
           <div className="max-w-4xl mx-auto text-center mb-16">
             <span className="text-brand-gold font-bold tracking-widest text-[11px] uppercase mb-4 block">What You Get</span>
-            <h2 className="font-display font-bold text-4xl text-brand-navy mb-6">Five Deliverables in 60 Minutes</h2>
+            <h2 className="font-display font-bold text-4xl text-brand-navy mb-6">Three Deliverables in 60 Minutes</h2>
             <p className="text-brand-slate text-lg leading-relaxed">
-              The Leverage Audit is not a sales call. It is a working session designed to give you immediate clarity on where AI and operating model improvements can create measurable value.
+              The Leverage Audit is not a sales call. It is a working session designed to give you immediate clarity on where automation and AI can create measurable value.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
             {/* Output 1 */}
             <div className="bg-white p-8 rounded-xl border border-gray-100 hover:shadow-lg transition-shadow">
               <div className="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-6">
                 <span className="text-brand-gold font-display font-bold text-xl">01</span>
               </div>
-              <h3 className="font-display font-bold text-xl text-brand-navy mb-4">Friction Map</h3>
+              <h3 className="font-display font-bold text-xl text-brand-navy mb-4">Workflow Mapping</h3>
               <p className="text-brand-slate leading-relaxed text-sm">
-                We identify the specific operational friction points where manual processes, disconnected systems, or decision bottlenecks are costing you time and money.
+                We map your current workflows across all platforms, identifying where your team is manually moving data and where systems are not talking to each other.
               </p>
             </div>
 
@@ -82,44 +82,25 @@ export const LeverageAuditPage: React.FC = () => {
               <div className="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-6">
                 <span className="text-brand-gold font-display font-bold text-xl">03</span>
               </div>
-              <h3 className="font-display font-bold text-xl text-brand-navy mb-4">Quick Win Identification</h3>
+              <h3 className="font-display font-bold text-xl text-brand-navy mb-4">Automation Architecture</h3>
               <p className="text-brand-slate leading-relaxed text-sm">
-                We pinpoint one or two high-impact, low-effort improvements that can deliver results within 30 days, regardless of whether you engage us further.
+                We outline what an automation architecture could look like for your business, including which integrations to prioritize and what results to expect.
               </p>
             </div>
+          </div>
 
-            {/* Output 4 */}
-            <div className="bg-white p-8 rounded-xl border border-gray-100 hover:shadow-lg transition-shadow">
-              <div className="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-6">
-                <span className="text-brand-gold font-display font-bold text-xl">04</span>
-              </div>
-              <h3 className="font-display font-bold text-xl text-brand-navy mb-4">Tier Recommendation</h3>
-              <p className="text-brand-slate leading-relaxed text-sm">
-                Based on your complexity, urgency, and internal capacity, we recommend a specific engagement tier so you know exactly what working together would look like.
-              </p>
-            </div>
-
-            {/* Output 5 */}
-            <div className="bg-white p-8 rounded-xl border border-gray-100 hover:shadow-lg transition-shadow">
-              <div className="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-6">
-                <span className="text-brand-gold font-display font-bold text-xl">05</span>
-              </div>
-              <h3 className="font-display font-bold text-xl text-brand-navy mb-4">Next Steps Clarity</h3>
-              <p className="text-brand-slate leading-relaxed text-sm">
-                You will leave with a clear decision: proceed, pause, or pass. No pressure, no ambiguity. Just a straightforward path forward based on your specific situation.
-              </p>
-            </div>
-
-            {/* Bonus */}
-            <div className="bg-brand-navy p-8 rounded-xl text-white hover:shadow-lg transition-shadow">
-              <div className="w-12 h-12 bg-brand-gold/20 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-6 h-6 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          {/* Promise */}
+          <div className="max-w-3xl mx-auto">
+            <div className="bg-brand-navy p-8 md:p-12 rounded-xl text-white text-center">
+              <div className="inline-flex items-center gap-2 bg-brand-gold/20 px-4 py-1.5 rounded-full mb-6">
+                <svg className="w-5 h-5 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
+                <span className="text-brand-gold font-bold text-sm">Our Promise</span>
               </div>
-              <h3 className="font-display font-bold text-xl mb-4">No Strings Attached</h3>
-              <p className="text-gray-400 leading-relaxed text-sm">
-                This is a genuine diagnostic, not a disguised pitch. Many clients take our quick wins and run. That is a successful outcome for us too.
+              <h3 className="font-display font-bold text-2xl mb-4">First Bottleneck Solved in 60 Days</h3>
+              <p className="text-gray-400 leading-relaxed">
+                If you choose to work with us, we guarantee your first operational bottleneck will be solved within 60 days. Then we prove ROI every 30 days with our Monthly Value Creation Reports.
               </p>
             </div>
           </div>

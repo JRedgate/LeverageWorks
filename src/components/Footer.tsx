@@ -9,11 +9,14 @@ export const Footer: React.FC = () => (
                 <div className="md:col-span-4">
                     <Link to="/" className="flex items-center gap-3 mb-6 group">
                         <LwSymbol color="#FFFFFF" className="w-8 h-8" />
-                        <span className="font-display font-bold text-xl tracking-tight text-white group-hover:text-brand-gold transition-colors">LeverageWorks</span>
+                        <span className="font-display font-bold text-xl tracking-tight text-white group-hover:text-brand-gold transition-colors">LVRGWRKS</span>
                     </Link>
-                    <p className="text-gray-400 max-w-sm leading-relaxed text-sm">
-                        Architecting the future of global enterprise execution at scale. Bridging the divide between strategy and implementation for leadership teams across North America.
+                    <p className="text-gray-400 max-w-sm leading-relaxed text-sm mb-4">
+                        Your fractional CTO and AI operations partner. Serving mid-market companies across Alberta and Western Canada.
                     </p>
+                    <a href="mailto:jredgate@lvrgwrks.com" className="text-brand-gold hover:text-white transition-colors text-sm font-medium">
+                        jredgate@lvrgwrks.com
+                    </a>
                 </div>
                 <div className="md:col-span-3">
                     <h4 className="text-[10px] tracking-[0.3em] uppercase mb-6 text-brand-gold font-bold">Expertise</h4>
@@ -52,9 +55,9 @@ export const Footer: React.FC = () => (
                     <p className="text-sm text-gray-400">Canada</p>
                 </div>
             </div>
-            <div className="pt-8 border-t border-white/10 flex justify-between items-center text-[11px] text-gray-500 uppercase tracking-widest">
-                <p>&copy; {new Date().getFullYear()} LeverageWorks</p>
-                <p>Architecting Intelligence</p>
+            <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] text-gray-500 uppercase tracking-widest">
+                <p>&copy; {new Date().getFullYear()} LVRGWRKS (LeverageWorks)</p>
+                <p>We Prove It Every 30 Days</p>
             </div>
         </div>
     </footer>

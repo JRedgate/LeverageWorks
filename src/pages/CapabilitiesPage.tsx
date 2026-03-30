@@ -77,10 +77,10 @@ export const CapabilitiesPage: React.FC = () => {
         <div className="container mx-auto px-6 md:px-16">
           <div className="max-w-5xl mx-auto">
             <div className="mb-16 text-center">
-              <span className="text-brand-gold font-bold tracking-widest text-[11px] uppercase mb-4 block">Our Approach</span>
-              <h2 className="font-display font-bold text-4xl text-brand-navy mb-6">How We Work</h2>
+              <span className="text-brand-gold font-bold tracking-widest text-[11px] uppercase mb-4 block">Our Process</span>
+              <h2 className="font-display font-bold text-4xl text-brand-navy mb-6">Diagnose. Design. Build. Stay.</h2>
               <p className="text-brand-slate text-lg leading-relaxed max-w-2xl mx-auto">
-                Every engagement follows our proven methodology: diagnose, architect, implement, govern.
+                Every engagement follows our proven methodology. This is not a project with an end date. We become your long-term operating partner.
               </p>
             </div>
 
@@ -95,20 +95,20 @@ export const CapabilitiesPage: React.FC = () => {
                   </div>
                   <div className="md:w-2/3">
                     <p className="text-brand-slate leading-relaxed mb-4">
-                      We audit your current operating model, technology stack, and decision pathways. The goal is to identify where the friction lives between leadership intent and operational execution.
+                      We map your current workflows, quantify the labour cost of manual workarounds, and identify where the friction lives between your systems and your team.
                     </p>
                     <ul className="text-brand-slate text-sm space-y-2">
                       <li className="flex items-start gap-2">
                         <span className="text-brand-gold mt-1">&#8226;</span>
-                        Operating model assessment
+                        Workflow mapping across all platforms
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-brand-gold mt-1">&#8226;</span>
-                        Technology stack evaluation
+                        Labour cost quantification
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-brand-gold mt-1">&#8226;</span>
-                        Decision pathway mapping
+                        Friction point identification
                       </li>
                     </ul>
                   </div>
@@ -121,24 +121,24 @@ export const CapabilitiesPage: React.FC = () => {
                     <div className="w-16 h-16 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-4">
                       <span className="text-brand-gold font-display font-bold text-2xl">02</span>
                     </div>
-                    <h3 className="font-display font-bold text-xl text-brand-navy mb-2">Architect</h3>
+                    <h3 className="font-display font-bold text-xl text-brand-navy mb-2">Design</h3>
                   </div>
                   <div className="md:w-2/3">
                     <p className="text-brand-slate leading-relaxed mb-4">
-                      We design the synthesis layer: the architecture that connects your AI capabilities to your organizational structure. This includes governance frameworks, data pipelines, and human-in-the-loop checkpoints.
+                      We outline the automation architecture that will connect your platforms and eliminate the manual data movement. You see the blueprint before any building begins.
                     </p>
                     <ul className="text-brand-slate text-sm space-y-2">
                       <li className="flex items-start gap-2">
                         <span className="text-brand-gold mt-1">&#8226;</span>
-                        Synthesis layer design
+                        Automation architecture blueprint
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-brand-gold mt-1">&#8226;</span>
-                        Governance framework development
+                        Integration design
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-brand-gold mt-1">&#8226;</span>
-                        Integration architecture
+                        Human-in-the-loop checkpoints
                       </li>
                     </ul>
                   </div>
@@ -151,11 +151,11 @@ export const CapabilitiesPage: React.FC = () => {
                     <div className="w-16 h-16 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-4">
                       <span className="text-brand-gold font-display font-bold text-2xl">03</span>
                     </div>
-                    <h3 className="font-display font-bold text-xl text-brand-navy mb-2">Implement</h3>
+                    <h3 className="font-display font-bold text-xl text-brand-navy mb-2">Build</h3>
                   </div>
                   <div className="md:w-2/3">
                     <p className="text-brand-slate leading-relaxed mb-4">
-                      We build and deploy the systems. This is not a handoff of a slide deck. We work alongside your teams to implement the architecture, train your people, and ensure adoption.
+                      We implement the systems. This is not a handoff of a slide deck. We work alongside your teams to build the integrations, train your people, and ensure adoption. First bottleneck solved in 60 days.
                     </p>
                     <ul className="text-brand-slate text-sm space-y-2">
                       <li className="flex items-start gap-2">
@@ -175,30 +175,30 @@ export const CapabilitiesPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="bg-white p-8 md:p-12 rounded-xl border border-gray-100">
+              <div className="bg-brand-navy p-8 md:p-12 rounded-xl text-white">
                 <div className="flex flex-col md:flex-row gap-8">
                   <div className="md:w-1/3">
-                    <div className="w-16 h-16 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-4">
+                    <div className="w-16 h-16 bg-brand-gold/20 rounded-lg flex items-center justify-center mb-4">
                       <span className="text-brand-gold font-display font-bold text-2xl">04</span>
                     </div>
-                    <h3 className="font-display font-bold text-xl text-brand-navy mb-2">Govern</h3>
+                    <h3 className="font-display font-bold text-xl mb-2">Stay</h3>
                   </div>
                   <div className="md:w-2/3">
-                    <p className="text-brand-slate leading-relaxed mb-4">
-                      AI systems require ongoing governance. We establish the monitoring, measurement, and iteration frameworks that ensure your implementation continues to deliver value as your organization evolves.
+                    <p className="text-gray-300 leading-relaxed mb-4">
+                      This is not a project with an end date. We stay with you as your fractional CTO and AI operations partner. Every 30 days, you receive a Monthly Value Creation Report proving ROI.
                     </p>
-                    <ul className="text-brand-slate text-sm space-y-2">
+                    <ul className="text-gray-300 text-sm space-y-2">
                       <li className="flex items-start gap-2">
                         <span className="text-brand-gold mt-1">&#8226;</span>
-                        Performance monitoring frameworks
+                        Monthly Value Creation Reports
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-brand-gold mt-1">&#8226;</span>
-                        Continuous improvement cycles
+                        Ongoing optimization and iteration
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-brand-gold mt-1">&#8226;</span>
-                        Governance and compliance oversight
+                        Long-term strategic partnership
                       </li>
                     </ul>
                   </div>

@@ -11,8 +11,8 @@ export const HomePage: React.FC = () => {
   const { openBriefing } = useOutletContext<LayoutContext>();
 
   useSEO({
-    title: 'LVRGWRKS (LeverageWorks) | Enterprise AI Strategy & Execution | Calgary, AB',
-    description: 'LVRGWRKS (LeverageWorks) helps North American executive teams move AI from experimentation into disciplined operating systems. Enterprise AI strategy consultants based in Calgary.',
+    title: 'LVRGWRKS (LeverageWorks) | Fractional CTO & AI Operations Partner | Calgary, AB',
+    description: 'LVRGWRKS (LeverageWorks) helps mid-market companies (20-250 employees) in Alberta and Western Canada move AI from experimentation into disciplined operating systems. Fractional CTO services in Calgary.',
     canonical: 'https://www.lvrgwrks.com/',
   });
 
@@ -28,6 +28,45 @@ export const HomePage: React.FC = () => {
           window.location.href = '/capabilities';
         }}
       />
+
+      {/* The Problem */}
+      <section className="py-20 md:py-32 bg-brand-navy text-white">
+        <div className="container mx-auto px-6 md:px-16">
+          <div className="max-w-5xl mx-auto">
+            <span className="text-brand-gold font-bold tracking-widest text-[11px] uppercase mb-6 block">The Problem</span>
+            <h2 className="font-display font-bold text-3xl md:text-5xl mb-10 leading-tight">
+              Your platforms do not talk to each other.<br />
+              <span className="text-gray-400">Your team is manually moving data between them.</span>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              <div className="bg-white/5 border border-white/10 p-8 rounded-xl">
+                <div className="text-brand-gold font-display font-bold text-4xl mb-4">70%</div>
+                <p className="text-gray-400 leading-relaxed">of digital transformation value is lost in the gap between AI capability and organizational execution</p>
+              </div>
+              <div className="bg-white/5 border border-white/10 p-8 rounded-xl">
+                <div className="text-brand-gold font-display font-bold text-4xl mb-4">60</div>
+                <p className="text-gray-400 leading-relaxed">days to solve your first bottleneck when you work with LVRGWRKS</p>
+              </div>
+              <div className="bg-white/5 border border-white/10 p-8 rounded-xl">
+                <div className="text-brand-gold font-display font-bold text-4xl mb-4">30</div>
+                <p className="text-gray-400 leading-relaxed">days between each Monthly Value Creation Report proving ROI</p>
+              </div>
+            </div>
+            <p className="text-gray-300 text-lg leading-relaxed max-w-3xl mb-8">
+              No single tool can see the whole picture. You have bought software that promised to fix this, but your team is still the glue holding everything together. The result: missed deadlines, costly errors, and leaders making decisions on incomplete information.
+            </p>
+            <Link
+              to="/leverage-audit"
+              className="inline-flex items-center gap-2 text-brand-gold font-bold text-sm uppercase tracking-widest border-b-2 border-brand-gold pb-1 hover:text-white transition-all group"
+            >
+              Get a Free Leverage Audit
+              <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* Brief intro pointing to other pages */}
       <section className="py-20 md:py-32 bg-white border-b border-gray-100">
