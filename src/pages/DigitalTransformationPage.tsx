@@ -32,7 +32,7 @@ export const DigitalTransformationPage: React.FC = () => {
               Operating model consulting for Alberta&apos;s mid-market.
             </p>
             <p className="text-brand-slate text-lg leading-relaxed mb-10 max-w-3xl">
-              70% of digital transformation initiatives fail to deliver their projected value. Not because of the technology — the tools exist. They fail because of operating model misalignment. LVRGWRKS (LeverageWorks) solves the layer between strategy and execution: the synthesis layer that connects leadership intent to technical reality.
+              70% of digital transformation initiatives fail to deliver their projected value. Not because of the technology - the tools exist. They fail because of operating model misalignment. LVRGWRKS (LeverageWorks) solves the layer between strategy and execution - the synthesis layer that connects leadership intent to technical reality.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button
@@ -87,7 +87,7 @@ export const DigitalTransformationPage: React.FC = () => {
           <div className="max-w-5xl mx-auto">
             <h2 className="font-display font-bold text-3xl md:text-4xl text-brand-navy mb-8">How LVRGWRKS Is Different</h2>
             <p className="text-brand-slate text-lg leading-relaxed mb-12 max-w-3xl">
-              We are not a project consultancy. We don&apos;t hand you a report and leave. LVRGWRKS embeds as your long-term operating partner — designing the system, building the system, and staying accountable to the outcomes. Every 30 days you receive a Value Creation Report that proves what changed and what it returned.
+              We are not a project consultancy. We don&apos;t hand you a report and leave. LVRGWRKS embeds as your long-term operating partner - designing the system, building the system, and staying accountable to the outcomes. Every 30 days you receive a Value Creation Report that proves what changed and what it returned.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
               <div className="text-center p-8 bg-brand-surface rounded-xl">
@@ -134,7 +134,7 @@ export const DigitalTransformationPage: React.FC = () => {
               <div className="bg-white p-8 rounded-xl border border-gray-100">
                 <h3 className="font-display font-bold text-lg text-brand-navy mb-4">Measurement Frameworks</h3>
                 <p className="text-brand-slate text-sm leading-relaxed">
-                  Defining the KPIs that prove transformation value — and reporting against them monthly.
+                  Defining the KPIs that prove transformation value - and reporting against them monthly.
                 </p>
               </div>
             </div>
@@ -147,7 +147,7 @@ export const DigitalTransformationPage: React.FC = () => {
         <div className="container mx-auto px-6 md:px-16 text-center">
           <h2 className="font-display font-bold text-3xl md:text-4xl mb-6">Your transformation shouldn&apos;t be a sunk cost.</h2>
           <p className="text-gray-400 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
-            Start with the Leverage Audit — a free 60-minute session that maps your current state and defines a clear path forward.
+            Start with the Leverage Audit - a free 60-minute session that maps your current state and defines a clear path forward.
           </p>
           <button
             onClick={() => openBriefing()}

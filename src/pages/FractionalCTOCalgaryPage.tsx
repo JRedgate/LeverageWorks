@@ -31,7 +31,7 @@ export const FractionalCTOCalgaryPage: React.FC = () => {
               <span className="text-brand-slate italic">Without the Full-Time Cost.</span>
             </h1>
             <p className="text-brand-slate text-xl leading-relaxed max-w-2xl mb-10">
-              <em className="text-brand-navy not-italic font-medium">Your fractional CTO in Calgary and Western Canada.</em> Most mid-market companies in Alberta don&apos;t need a $250,000/year full-time CTO. They need one for 20% of the time, all of the time. LVRGWRKS (LeverageWorks) embeds as your fractional CTO — owning your technology roadmap, vendor decisions, and AI integration strategy on a retainer basis.
+              <em className="text-brand-navy not-italic font-medium">Your fractional CTO in Calgary and Western Canada.</em> Most mid-market companies in Alberta don&apos;t need a $250,000/year full-time CTO. They need one for 20% of the time, all of the time. LVRGWRKS (LeverageWorks) embeds as your fractional CTO - owning your technology roadmap, vendor decisions, and AI integration strategy on a retainer basis.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
@@ -78,7 +78,7 @@ export const FractionalCTOCalgaryPage: React.FC = () => {
                 </div>
                 <h3 className="font-display font-bold text-xl text-brand-navy mb-4">Vendor & Platform Evaluation</h3>
                 <p className="text-brand-slate leading-relaxed text-sm">
-                  We evaluate, select, and hold accountable every software vendor you work with — so you stop buying tools that don&apos;t talk to each other.
+                  We evaluate, select, and hold accountable every software vendor you work with - so you stop buying tools that don&apos;t talk to each other.
                 </p>
               </div>
 
@@ -154,7 +154,7 @@ export const FractionalCTOCalgaryPage: React.FC = () => {
                 <span className="text-brand-gold font-bold tracking-widest text-[11px] uppercase mb-4 block">Local Expertise</span>
                 <h2 className="font-display font-bold text-4xl text-brand-navy mb-6">Why Calgary Companies Choose a Fractional CTO</h2>
                 <p className="text-brand-slate text-lg leading-relaxed">
-                  The Alberta mid-market operates differently from tech-centric markets. You need a technical partner who understands the operational realities of energy, construction, and industrial services — not someone who learned technology in a startup. LVRGWRKS was built in Calgary, at the Haskayne School of Business, for exactly this context.
+                  The Alberta mid-market operates differently from tech-centric markets. You need a technical partner who understands the operational realities of energy, construction, and industrial services - not someone who learned technology in a startup. LVRGWRKS was built in Calgary, at the Haskayne School of Business, for exactly this context.
                 </p>
               </div>
 

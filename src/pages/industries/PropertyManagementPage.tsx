@@ -11,7 +11,7 @@ export const PropertyManagementPage: React.FC = () => {
 
   useSEO({
     title: 'AI & Automation for Property Management Companies Alberta | LVRGWRKS (LeverageWorks)',
-    description: 'LVRGWRKS automates property management workflows for Alberta companies — maintenance dispatch, tenant communications, reporting, and more. Based in Calgary.',
+    description: 'LVRGWRKS automates property management workflows for Alberta companies - maintenance dispatch, tenant communications, reporting, and more. Based in Calgary.',
     canonical: 'https://www.lvrgwrks.com/industries/property-management',
   });
 
@@ -32,7 +32,7 @@ export const PropertyManagementPage: React.FC = () => {
               AI and automation for Alberta property management companies.
             </p>
             <p className="text-brand-slate text-lg leading-relaxed mb-10 max-w-3xl">
-              Property management is a high-volume, process-intensive business where margin lives in efficiency. LVRGWRKS (LeverageWorks) automates the repetitive workflows — maintenance dispatch, lease renewals, tenant communications, and financial reporting — so your team can manage a larger portfolio without adding headcount.
+              Property management is a high-volume, process-intensive business where margin lives in efficiency. LVRGWRKS (LeverageWorks) automates the repetitive workflows - maintenance dispatch, lease renewals, tenant communications, and financial reporting - so your team can manage a larger portfolio without adding headcount.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button
@@ -90,7 +90,7 @@ export const PropertyManagementPage: React.FC = () => {
               <div className="bg-brand-surface p-8 rounded-xl">
                 <h3 className="font-display font-bold text-lg text-brand-navy mb-4">Maintenance Workflow Automation</h3>
                 <p className="text-brand-slate text-sm leading-relaxed">
-                  From work order creation to contractor dispatch to completion sign-off — automated end-to-end.
+                  From work order creation to contractor dispatch to completion sign-off - automated end-to-end.
                 </p>
               </div>
               <div className="bg-brand-surface p-8 rounded-xl">

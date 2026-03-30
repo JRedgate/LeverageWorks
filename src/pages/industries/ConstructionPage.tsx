@@ -32,7 +32,7 @@ export const ConstructionPage: React.FC = () => {
               AI and operating systems for Alberta&apos;s construction sector.
             </p>
             <p className="text-brand-slate text-lg leading-relaxed mb-10 max-w-3xl">
-              Construction is a margin-thin, schedule-critical business where the difference between profit and loss is often the quality of information reaching your project managers. LVRGWRKS (LeverageWorks) connects your field, finance, and operations data into a system that surfaces the right information at the right time — so your team spends less time chasing status and more time building.
+              Construction is a margin-thin, schedule-critical business where the difference between profit and loss is often the quality of information reaching your project managers. LVRGWRKS (LeverageWorks) connects your field, finance, and operations data into a system that surfaces the right information at the right time - so your team spends less time chasing status and more time building.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button
@@ -96,13 +96,13 @@ export const ConstructionPage: React.FC = () => {
               <div className="bg-brand-surface p-8 rounded-xl">
                 <h3 className="font-display font-bold text-xl text-brand-navy mb-4">Subcontractor Management Automation</h3>
                 <p className="text-brand-slate leading-relaxed">
-                  Scheduling, communication, document collection, and compliance tracking — automated and centralized.
+                  Scheduling, communication, document collection, and compliance tracking - automated and centralized.
                 </p>
               </div>
               <div className="bg-brand-surface p-8 rounded-xl">
                 <h3 className="font-display font-bold text-xl text-brand-navy mb-4">Integrated Project Dashboards</h3>
                 <p className="text-brand-slate leading-relaxed">
-                  One view of every active project: schedule, cost, resource utilization, and critical path — updated automatically.
+                  One view of every active project: schedule, cost, resource utilization, and critical path - updated automatically.
                 </p>
               </div>
             </div>
@@ -116,7 +116,7 @@ export const ConstructionPage: React.FC = () => {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display font-bold text-3xl md:text-4xl text-brand-navy mb-8">Built for Alberta&apos;s Construction Reality</h2>
             <p className="text-brand-slate text-lg leading-relaxed">
-              Alberta construction operates across extreme weather, complex procurement environments, and tight labour markets. Your operating system needs to reflect that reality. LVRGWRKS builds for the context you&apos;re actually in — not a generic playbook.
+              Alberta construction operates across extreme weather, complex procurement environments, and tight labour markets. Your operating system needs to reflect that reality. LVRGWRKS builds for the context you&apos;re actually in - not a generic playbook.
             </p>
           </div>
         </div>
@@ -127,7 +127,7 @@ export const ConstructionPage: React.FC = () => {
         <div className="container mx-auto px-6 md:px-16 text-center">
           <h2 className="font-display font-bold text-3xl md:text-4xl mb-6">What would a real-time view of every project cost you?</h2>
           <p className="text-gray-400 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
-            Less than the next overrun. Start with the Leverage Audit — free, 60 minutes.
+            Less than the next overrun. Start with the Leverage Audit - free, 60 minutes.
           </p>
           <button
             onClick={() => openBriefing()}

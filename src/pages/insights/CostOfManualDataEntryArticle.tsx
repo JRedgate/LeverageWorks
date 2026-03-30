@@ -5,7 +5,7 @@ import { useSEO } from '../../hooks/useSEO';
 export const CostOfManualDataEntryArticle: React.FC = () => {
   useSEO({
     title: 'How to Calculate the Real Cost of Manual Data Entry in Your Business | LVRGWRKS',
-    description: 'Most Alberta business owners underestimate what manual data entry is actually costing them. Here\'s a simple framework to calculate it — and what to do about it.',
+    description: 'Most Alberta business owners underestimate what manual data entry is actually costing them. Here\'s a simple framework to calculate it - and what to do about it.',
     canonical: 'https://www.lvrgwrks.com/insights/cost-of-manual-data-entry',
   });
 
@@ -32,7 +32,7 @@ export const CostOfManualDataEntryArticle: React.FC = () => {
           <article className="max-w-3xl mx-auto prose prose-lg prose-slate">
             <h2 className="font-display font-bold text-2xl text-brand-navy mt-12 mb-6">The Invisible Line Item</h2>
             <p className="text-brand-slate leading-relaxed mb-6">
-              Manual data entry doesn&apos;t appear as a line item on your P&L. It hides inside salaries, in overtime, in the cost of errors, and in the decisions that didn&apos;t get made because the information wasn&apos;t ready in time. For most mid-market companies, it represents one of the largest controllable costs in the business — and most owners have never tried to calculate it.
+              Manual data entry doesn&apos;t appear as a line item on your P&L. It hides inside salaries, in overtime, in the cost of errors, and in the decisions that didn&apos;t get made because the information wasn&apos;t ready in time. For most mid-market companies, it represents one of the largest controllable costs in the business - and most owners have never tried to calculate it.
             </p>
 
             <h2 className="font-display font-bold text-2xl text-brand-navy mt-12 mb-6">The Three Categories of Manual Work Cost</h2>
@@ -96,14 +96,14 @@ export const CostOfManualDataEntryArticle: React.FC = () => {
 
             <h2 className="font-display font-bold text-2xl text-brand-navy mt-12 mb-6">What To Do With That Number</h2>
             <p className="text-brand-slate leading-relaxed mb-8">
-              Once you have a baseline, you can evaluate automation investments against a real ROI calculation rather than a gut feel. A $30,000 automation project that recovers $150,000 in annual labour cost pays back in less than three months. The math is usually better than people expect — which is why the Leverage Audit starts here.
+              Once you have a baseline, you can evaluate automation investments against a real ROI calculation rather than a gut feel. A $30,000 automation project that recovers $150,000 in annual labour cost pays back in less than three months. The math is usually better than people expect - which is why the Leverage Audit starts here.
             </p>
           </article>
 
           {/* CTA Box */}
           <div className="max-w-3xl mx-auto mt-12">
             <div className="bg-brand-navy p-8 md:p-12 rounded-xl text-white text-center">
-              <h3 className="font-display font-bold text-2xl mb-4">We run this calculation for you in the first 30 minutes of the Leverage Audit — for free.</h3>
+              <h3 className="font-display font-bold text-2xl mb-4">We run this calculation for you in the first 30 minutes of the Leverage Audit - for free.</h3>
               <p className="text-gray-400 leading-relaxed mb-8">
                 Book your session and leave with a number.
               </p>

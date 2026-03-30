@@ -32,7 +32,7 @@ export const ManufacturingPage: React.FC = () => {
               AI and automation for Alberta&apos;s manufacturing sector.
             </p>
             <p className="text-brand-slate text-lg leading-relaxed mb-10 max-w-3xl">
-              Alberta manufacturers are facing margin compression, input volatility, and growing demand — all with fixed headcount. LVRGWRKS (LeverageWorks) deploys predictive scheduling, production optimization, and integrated data systems that let your existing team do more without burning out.
+              Alberta manufacturers are facing margin compression, input volatility, and growing demand - all with fixed headcount. LVRGWRKS (LeverageWorks) deploys predictive scheduling, production optimization, and integrated data systems that let your existing team do more without burning out.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button

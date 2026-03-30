@@ -11,7 +11,7 @@ export const BusinessProcessAutomationPage: React.FC = () => {
 
   useSEO({
     title: 'Business Process Automation Alberta | LVRGWRKS (LeverageWorks) - Eliminate Manual Work',
-    description: 'LVRGWRKS automates business processes for mid-market companies in Alberta. We eliminate manual data entry, disconnected systems, and costly workarounds — and prove the ROI in 60 days.',
+    description: 'LVRGWRKS automates business processes for mid-market companies in Alberta. We eliminate manual data entry, disconnected systems, and costly workarounds - and prove the ROI in 60 days.',
     canonical: 'https://www.lvrgwrks.com/business-process-automation',
   });
 
@@ -32,7 +32,7 @@ export const BusinessProcessAutomationPage: React.FC = () => {
               Business process automation for Alberta&apos;s mid-market.
             </p>
             <p className="text-brand-slate text-lg leading-relaxed mb-10 max-w-3xl">
-              Every time a member of your team copies data from one system to another, exports a report to a spreadsheet, or chases down a status update manually — that is money leaving your business. LVRGWRKS (LeverageWorks) maps, redesigns, and automates these processes so your people can focus on the work that actually requires human judgment.
+              Every time a member of your team copies data from one system to another, exports a report to a spreadsheet, or chases down a status update manually - that is money leaving your business. LVRGWRKS (LeverageWorks) maps, redesigns, and automates these processes so your people can focus on the work that actually requires human judgment.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button

@@ -110,7 +110,7 @@ export const AIAutomationConsultingPage: React.FC = () => {
             <h2 className="font-display font-bold text-4xl text-brand-navy mb-8">The Cost of Doing Nothing</h2>
 
             <p className="text-brand-slate text-lg leading-relaxed mb-10">
-              70% of digital transformation value is lost in the gap between AI capability and organizational execution. For a company with 50 employees, manual data movement typically costs $200,000–$400,000 per year in labour and missed opportunity — most of it invisible in your P&L.
+              70% of digital transformation value is lost in the gap between AI capability and organizational execution. For a company with 50 employees, manual data movement typically costs $200,000-$400,000 per year in labour and missed opportunity - most of it invisible in your P&L.
             </p>
 
             <div className="bg-brand-navy p-8 md:p-12 rounded-xl text-white">
@@ -158,7 +158,7 @@ export const AIAutomationConsultingPage: React.FC = () => {
                   </div>
                   <div className="md:w-2/3">
                     <p className="text-brand-slate leading-relaxed">
-                      We architect the automation system — integrations, logic, triggers, and data flows.
+                      We architect the automation system - integrations, logic, triggers, and data flows.
                     </p>
                   </div>
                 </div>

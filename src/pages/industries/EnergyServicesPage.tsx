@@ -32,7 +32,7 @@ export const EnergyServicesPage: React.FC = () => {
               AI and operating model consulting for Alberta&apos;s energy services sector.
             </p>
             <p className="text-brand-slate text-lg leading-relaxed mb-10 max-w-3xl">
-              Alberta&apos;s energy services companies operate in one of the most data-rich environments in the world — and most of that data never gets used. LVRGWRKS (LeverageWorks) builds the integration and intelligence layer that connects field operations, fleet, procurement, and project management into a single operating system.
+              Alberta&apos;s energy services companies operate in one of the most data-rich environments in the world - and most of that data never gets used. LVRGWRKS (LeverageWorks) builds the integration and intelligence layer that connects field operations, fleet, procurement, and project management into a single operating system.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button
@@ -116,7 +116,7 @@ export const EnergyServicesPage: React.FC = () => {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display font-bold text-3xl md:text-4xl text-brand-navy mb-8">Built for Alberta&apos;s Operating Reality</h2>
             <p className="text-brand-slate text-lg leading-relaxed">
-              We understand that energy services in Alberta operates differently from every other market. Commodity price cycles, regulatory complexity, and remote operations demand a technical partner who has thought carefully about this context — not one importing playbooks from Silicon Valley.
+              We understand that energy services in Alberta operates differently from every other market. Commodity price cycles, regulatory complexity, and remote operations demand a technical partner who has thought carefully about this context - not one importing playbooks from Silicon Valley.
             </p>
           </div>
         </div>

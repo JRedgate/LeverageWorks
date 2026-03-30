@@ -4,8 +4,8 @@ import { useSEO } from '../../hooks/useSEO';
 
 export const WhyTransformationsFailArticle: React.FC = () => {
   useSEO({
-    title: 'Why Most Digital Transformations Fail — And What Mid-Market Companies Do Instead | LVRGWRKS',
-    description: '70% of digital transformations fail to deliver projected value. Here\'s the real reason why — and how Alberta\'s mid-market companies are solving it differently.',
+    title: 'Why Most Digital Transformations Fail - And What Mid-Market Companies Do Instead | LVRGWRKS',
+    description: '70% of digital transformations fail to deliver projected value. Here\'s the real reason why - and how Alberta\'s mid-market companies are solving it differently.',
     canonical: 'https://www.lvrgwrks.com/insights/why-digital-transformations-fail',
   });
 
@@ -33,12 +33,12 @@ export const WhyTransformationsFailArticle: React.FC = () => {
           <article className="max-w-3xl mx-auto prose prose-lg prose-slate">
             <h2 className="font-display font-bold text-2xl text-brand-navy mt-12 mb-6">The Number Everyone Knows, and the Reason No One Talks About</h2>
             <p className="text-brand-slate leading-relaxed mb-6">
-              The 70% failure statistic for digital transformation has been quoted so often it has lost its power. But the number is real. McKinsey, BCG, and Harvard Business Review have all documented it across industries and geographies. The question worth asking isn&apos;t whether transformations fail — it&apos;s why. And the answer is almost never the technology.
+              The 70% failure statistic for digital transformation has been quoted so often it has lost its power. But the number is real. McKinsey, BCG, and Harvard Business Review have all documented it across industries and geographies. The question worth asking isn&apos;t whether transformations fail - it&apos;s why. And the answer is almost never the technology.
             </p>
 
             <h2 className="font-display font-bold text-2xl text-brand-navy mt-12 mb-6">The Real Reason: Operating Model Misalignment</h2>
             <p className="text-brand-slate leading-relaxed mb-6">
-              Most digital transformations fail because they deploy new tools on top of old workflows. The ERP gets implemented, but the planning process doesn&apos;t change. The CRM goes live, but the sales team still tracks deals in a spreadsheet. The AI tool gets purchased, but nobody changes how decisions get made. Technology can&apos;t fix a process problem. It can only accelerate it — in either direction.
+              Most digital transformations fail because they deploy new tools on top of old workflows. The ERP gets implemented, but the planning process doesn&apos;t change. The CRM goes live, but the sales team still tracks deals in a spreadsheet. The AI tool gets purchased, but nobody changes how decisions get made. Technology can&apos;t fix a process problem. It can only accelerate it - in either direction.
             </p>
 
             <h2 className="font-display font-bold text-2xl text-brand-navy mt-12 mb-6">The Three Gaps That Kill Transformations</h2>
@@ -66,12 +66,12 @@ export const WhyTransformationsFailArticle: React.FC = () => {
 
             <h2 className="font-display font-bold text-2xl text-brand-navy mt-12 mb-6">What Mid-Market Companies Are Doing Differently</h2>
             <p className="text-brand-slate leading-relaxed mb-6">
-              The companies getting ROI from digital transformation share a common pattern: they treat it as an operating model problem, not a technology problem. They start by mapping their workflows and quantifying the cost of friction — before buying anything. They build the integration layer between systems rather than adding more systems. And they keep someone accountable to outcomes long after go-live.
+              The companies getting ROI from digital transformation share a common pattern: they treat it as an operating model problem, not a technology problem. They start by mapping their workflows and quantifying the cost of friction - before buying anything. They build the integration layer between systems rather than adding more systems. And they keep someone accountable to outcomes long after go-live.
             </p>
 
             <h2 className="font-display font-bold text-2xl text-brand-navy mt-12 mb-6">The Synthesis Layer</h2>
             <p className="text-brand-slate leading-relaxed mb-6">
-              LVRGWRKS calls this the synthesis layer — the connective tissue between leadership intent and technical execution. It is not a product. It is not a software platform. It is a methodology for ensuring that every technology decision serves the operational goals of the business, and that someone stays accountable to proving it did.
+              LVRGWRKS calls this the synthesis layer - the connective tissue between leadership intent and technical execution. It is not a product. It is not a software platform. It is a methodology for ensuring that every technology decision serves the operational goals of the business, and that someone stays accountable to proving it did.
             </p>
 
             <h2 className="font-display font-bold text-2xl text-brand-navy mt-12 mb-6">Where to Start</h2>
@@ -79,7 +79,7 @@ export const WhyTransformationsFailArticle: React.FC = () => {
               If your organization has been through a transformation that didn&apos;t deliver, or is about to start one, the most valuable first step is a clear-eyed assessment of your current operating model. Map your manual workflows. Quantify the labour cost. Identify the integration gaps. Only then does the technology conversation make sense.
             </p>
             <p className="text-brand-slate leading-relaxed mb-8">
-              That&apos;s what the LVRGWRKS Leverage Audit does in 60 minutes — at no cost.
+              That&apos;s what the LVRGWRKS Leverage Audit does in 60 minutes - at no cost.
             </p>
           </article>
 

@@ -123,7 +123,7 @@ export const HomePage: React.FC = () => {
             <Link to="/fractional-cto-calgary" className="group bg-white p-10 rounded-xl border border-gray-100 hover:border-brand-gold/30 hover:shadow-xl transition-all">
               <span className="text-brand-gold font-bold tracking-widest text-[10px] uppercase mb-4 block">Services</span>
               <h3 className="font-display font-bold text-2xl text-brand-navy mb-4 group-hover:text-brand-gold transition-colors">What We Build</h3>
-              <p className="text-brand-slate leading-relaxed mb-6">Fractional CTO, AI automation, digital transformation, and business process automation — all built for Alberta&apos;s mid-market.</p>
+              <p className="text-brand-slate leading-relaxed mb-6">Fractional CTO, AI automation, digital transformation, and business process automation - all built for Alberta&apos;s mid-market.</p>
               <span className="text-brand-navy font-bold text-sm uppercase tracking-widest flex items-center gap-2 group-hover:text-brand-gold transition-colors">
                 Explore Services
                 <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
