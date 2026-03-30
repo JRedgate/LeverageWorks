@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { LwSymbol } from './Logo';
-import { NavigationItem } from '@/types';
 
 const LinkedInIcon: React.FC<{ className?: string }> = ({ className }) => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -11,6 +10,11 @@ const LinkedInIcon: React.FC<{ className?: string }> = ({ className }) => (
     </svg>
 );
 
+interface NavItem {
+    label: string;
+    href: string;
+}
+
 interface NavbarProps {
     onContactClick: () => void;
 }
@@ -18,6 +22,7 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileOpen, setIsMobileOpen] = useState(false);
+    const location = useLocation();
 
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -25,7 +30,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Close mobile menu on resize to desktop
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth >= 768) setIsMobileOpen(false);
@@ -34,39 +38,40 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    const navItems: NavigationItem[] = [
-        { label: 'Firm Thesis', href: '#firm' },
-        { label: 'Capabilities', href: '#capabilities' },
-        { label: 'Impact', href: '#scenarios' },
-        { label: 'Strategist', href: '#divide' },
+    // Close mobile menu on route change
+    useEffect(() => {
+        setIsMobileOpen(false);
+    }, [location.pathname]);
+
+    const navItems: NavItem[] = [
+        { label: 'Firm', href: '/firm' },
+        { label: 'Capabilities', href: '/capabilities' },
+        { label: 'Impact', href: '/impact' },
     ];
 
-    const handleMobileNavClick = (href: string) => {
-        setIsMobileOpen(false);
-        const id = href.replace('#', '');
-        const element = document.getElementById(id);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
+    const isActive = (href: string) => location.pathname === href;
 
     return (
         <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-white/95 border-b border-gray-200 py-4 backdrop-blur-sm shadow-sm' : 'bg-transparent py-6'}`}>
             <div className="container mx-auto px-6 md:px-16 flex justify-between items-center">
-                <a href="#" className="flex items-center gap-4 group" aria-label="LeverageWorks Home">
+                <Link to="/" className="flex items-center gap-4 group" aria-label="LeverageWorks Home">
                     <LwSymbol className="w-10 h-10 transition-transform group-hover:scale-105" />
                     <span className={`font-display font-bold text-xl tracking-tight transition-opacity duration-300 ${isScrolled ? 'opacity-100 text-brand-navy' : 'opacity-0'}`}>
                         LVRGWRKS
                     </span>
-                </a>
+                </Link>
 
                 {/* Desktop Navigation */}
                 <div className="hidden md:flex items-center gap-8">
                     {navItems.map((item) => (
-                        <a key={item.label} href={item.href} className="text-sm font-medium text-brand-slate hover:text-brand-navy transition-colors relative group">
+                        <Link 
+                            key={item.label} 
+                            to={item.href} 
+                            className={`text-sm font-medium transition-colors relative group ${isActive(item.href) ? 'text-brand-navy' : 'text-brand-slate hover:text-brand-navy'}`}
+                        >
                             {item.label}
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-gold transition-all duration-300 group-hover:w-full"></span>
-                        </a>
+                            <span className={`absolute -bottom-1 left-0 h-0.5 bg-brand-gold transition-all duration-300 ${isActive(item.href) ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                        </Link>
                     ))}
 
                     <div className="h-6 w-[1px] bg-gray-200 mx-2"></div>
@@ -81,12 +86,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
                         <LinkedInIcon className="w-5 h-5" />
                     </a>
 
-                    <button
-                        onClick={onContactClick}
-                        className="ml-2 bg-brand-navy text-white px-5 py-2.5 rounded-md text-xs font-bold uppercase tracking-wide hover:bg-brand-slate transition-all shadow-md hover:shadow-lg"
+                    <Link
+                        to="/contact"
+                        className={`ml-2 px-5 py-2.5 rounded-md text-xs font-bold uppercase tracking-wide transition-all shadow-md hover:shadow-lg ${isActive('/contact') ? 'bg-brand-gold text-brand-navy' : 'bg-brand-navy text-white hover:bg-brand-slate'}`}
                     >
                         Contact
-                    </button>
+                    </Link>
                 </div>
 
                 {/* Mobile Hamburger Button */}
@@ -108,13 +113,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
             >
                 <div className="bg-white border-t border-gray-100 shadow-lg px-6 py-6 flex flex-col gap-4">
                     {navItems.map((item) => (
-                        <button
+                        <Link
                             key={item.label}
-                            onClick={() => handleMobileNavClick(item.href)}
-                            className="text-left text-base font-medium text-brand-slate hover:text-brand-navy transition-colors py-2 border-b border-gray-50"
+                            to={item.href}
+                            className={`text-left text-base font-medium transition-colors py-2 border-b border-gray-50 ${isActive(item.href) ? 'text-brand-gold' : 'text-brand-slate hover:text-brand-navy'}`}
                         >
                             {item.label}
-                        </button>
+                        </Link>
                     ))}
 
                     <div className="flex items-center gap-4 pt-2">
@@ -128,12 +133,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
                             <LinkedInIcon className="w-5 h-5" />
                         </a>
 
-                        <button
-                            onClick={() => { setIsMobileOpen(false); onContactClick(); }}
+                        <Link
+                            to="/contact"
                             className="bg-brand-navy text-white px-5 py-2.5 rounded-md text-xs font-bold uppercase tracking-wide hover:bg-brand-slate transition-all shadow-md"
                         >
                             Contact
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>

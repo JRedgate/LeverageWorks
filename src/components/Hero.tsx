@@ -1,5 +1,5 @@
-
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface HeroProps {
     onCtaClick: () => void;
@@ -16,7 +16,7 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick, onSecondCtaClick }) => (
             <div className="max-w-4xl">
                 <div className="inline-flex items-center gap-2 bg-white border border-gray-100 px-4 py-1.5 rounded-full mb-8 shadow-sm">
                     <div className="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></div>
-                    <span className="text-[10px] font-bold tracking-[0.1em] text-brand-navy uppercase">Operating Leverage Protocol</span>
+                    <span className="text-[10px] font-bold tracking-[0.1em] text-brand-navy uppercase">Fractional CTO + AI Operations Partner</span>
                 </div>
 
                 <h1 className="font-display font-semibold text-6xl md:text-7xl leading-[1.1] text-brand-navy mb-8 tracking-tight">
@@ -25,32 +25,33 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick, onSecondCtaClick }) => (
                 </h1>
 
                 <p className="text-brand-slate text-xl leading-relaxed mb-10 max-w-2xl font-light">
-                    LeverageWorks helps North American executive teams move AI from experimentation into disciplined operating systems. Human judgment remains accountable while intelligent systems reduce friction at scale.
+                    Your fractional CTO and AI operations partner. LVRGWRKS (LeverageWorks) helps founders, owners, and COOs of mid-market companies (20-250 employees, $5M-$150M revenue) across Alberta and Western Canada move AI from experimentation into disciplined operating systems.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4">
-                    <button
-                        onClick={onCtaClick}
+                    <Link
+                        to="/contact"
                         className="bg-brand-navy text-white px-10 py-4 rounded-lg font-bold text-sm flex items-center justify-center gap-3 hover:bg-brand-slate transition-all shadow-lg hover:shadow-brand-navy/20 group"
                     >
-                        Initialize Diagnostic
+                        Request Leverage Audit
                         <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                    </button>
-                    <button
-                        onClick={onSecondCtaClick}
-                        className="bg-white border border-gray-200 text-brand-navy px-10 py-4 rounded-lg font-bold text-sm hover:border-brand-navy/30 hover:bg-gray-50 transition-all"
+                    </Link>
+                    <Link
+                        to="/capabilities"
+                        className="bg-white border border-gray-200 text-brand-navy px-10 py-4 rounded-lg font-bold text-sm hover:border-brand-navy/30 hover:bg-gray-50 transition-all text-center"
                     >
-                        View Operating Model
-                    </button>
+                        View Capabilities
+                    </Link>
                 </div>
 
                 {/* Trust Signals */}
-                <div className="mt-16 flex items-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-                    <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest">Trusted By Leaders In:</p>
-                    <div className="flex gap-6 text-sm font-bold text-gray-400">
-                        <span>ENERGY</span>
-                        <span>FINANCE</span>
+                <div className="mt-16 flex flex-col md:flex-row md:items-center gap-4 md:gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                    <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest">Serving:</p>
+                    <div className="flex flex-wrap gap-4 md:gap-6 text-sm font-bold text-gray-400">
+                        <span>PROPERTY MANAGEMENT</span>
+                        <span>CONSTRUCTION</span>
                         <span>MANUFACTURING</span>
+                        <span>ENERGY SERVICES</span>
                     </div>
                 </div>
             </div>
