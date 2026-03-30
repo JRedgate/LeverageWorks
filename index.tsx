@@ -10,6 +10,7 @@ import { CapabilitiesPage } from './src/pages/CapabilitiesPage';
 import { ImpactPage } from './src/pages/ImpactPage';
 import { ContactPage } from './src/pages/ContactPage';
 import { LeverageAuditPage } from './src/pages/LeverageAuditPage';
+import { FractionalCTOCalgaryPage } from './src/pages/FractionalCTOCalgaryPage';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
@@ -28,6 +29,7 @@ root.render(
           <Route path="impact" element={<ImpactPage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="leverage-audit" element={<LeverageAuditPage />} />
+          <Route path="fractional-cto-calgary" element={<FractionalCTOCalgaryPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
