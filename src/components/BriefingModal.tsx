@@ -76,7 +76,7 @@ export const BriefingModal: React.FC<BriefingModalProps> = ({ isOpen, onClose, i
       className="fixed inset-0 z-[999] flex items-center justify-center p-4"
       role="dialog"
       aria-modal="true"
-      aria-label="Request Briefing"
+      aria-label="Request Leverage Audit"
     >
       {/* Backdrop */}
       <div className="absolute inset-0 bg-brand-navy/80 backdrop-blur-sm" onClick={onClose} />
@@ -102,9 +102,9 @@ export const BriefingModal: React.FC<BriefingModalProps> = ({ isOpen, onClose, i
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="font-display font-bold text-2xl text-brand-navy mb-3">Briefing Requested</h3>
+              <h3 className="font-display font-bold text-2xl text-brand-navy mb-3">Leverage Audit Requested</h3>
               <p className="text-brand-slate leading-relaxed mb-8">
-                Your inquiry has been received. A member of the LeverageWorks team will respond within one business day.
+                Your inquiry has been received. A member of the LVRGWRKS team will reach out within one business day to schedule your free 60-minute Leverage Audit.
               </p>
               <button
                 onClick={onClose}
@@ -117,13 +117,13 @@ export const BriefingModal: React.FC<BriefingModalProps> = ({ isOpen, onClose, i
             <>
               <div className="mb-8">
                 <span className="text-brand-gold font-bold tracking-widest text-[11px] uppercase mb-2 block">
-                  Executive Briefing
+                  Free 60-Minute Call
                 </span>
                 <h3 className="font-display font-bold text-2xl text-brand-navy mb-2">
-                  Request a Strategy Briefing
+                  Request a Leverage Audit
                 </h3>
                 <p className="text-brand-slate text-sm leading-relaxed">
-                  Share your organizational context and a senior strategist will prepare a tailored briefing for your team.
+                  Share your organizational context and a senior LVRGWRKS strategist will schedule a free 60-minute Leverage Audit to assess your opportunities.
                 </p>
               </div>
 
@@ -220,7 +220,7 @@ export const BriefingModal: React.FC<BriefingModalProps> = ({ isOpen, onClose, i
                   disabled={status === 'submitting'}
                   className="w-full bg-brand-navy text-white py-4 rounded-lg font-bold text-sm uppercase tracking-widest hover:bg-brand-gold transition-all shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {status === 'submitting' ? 'Submitting...' : 'Submit Briefing Request'}
+                  {status === 'submitting' ? 'Submitting...' : 'Request Leverage Audit'}
                 </button>
 
                 <p className="text-gray-400 text-xs text-center">

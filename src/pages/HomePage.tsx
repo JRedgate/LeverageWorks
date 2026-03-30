@@ -11,8 +11,8 @@ export const HomePage: React.FC = () => {
   const { openBriefing } = useOutletContext<LayoutContext>();
 
   useSEO({
-    title: 'LeverageWorks | Enterprise AI Strategy & Operating Model Architecture',
-    description: 'LeverageWorks helps North American executive teams move AI from experimentation into disciplined operating systems. Enterprise AI strategy consultants based in Calgary.',
+    title: 'LVRGWRKS (LeverageWorks) | Enterprise AI Strategy & Execution | Calgary, AB',
+    description: 'LVRGWRKS (LeverageWorks) helps North American executive teams move AI from experimentation into disciplined operating systems. Enterprise AI strategy consultants based in Calgary.',
     canonical: 'https://www.lvrgwrks.com/',
   });
 
@@ -38,7 +38,7 @@ export const HomePage: React.FC = () => {
               The divide between AI potential and realized value is found in the <span className="text-brand-gold italic">operating model.</span>
             </p>
             <p className="text-brand-slate text-lg leading-relaxed max-w-3xl mx-auto mb-10">
-              LeverageWorks was architected during the Haskayne EMBA to solve a specific problem: the friction between leadership intent and technological execution.
+              LVRGWRKS (LeverageWorks) was architected during the Haskayne EMBA to solve a specific problem: the friction between leadership intent and technological execution.
             </p>
             <Link
               to="/firm"
@@ -84,9 +84,9 @@ export const HomePage: React.FC = () => {
             <Link to="/contact" className="group bg-brand-navy p-10 rounded-xl hover:bg-brand-slate transition-all">
               <span className="text-brand-gold font-bold tracking-widest text-[10px] uppercase mb-4 block">Connect</span>
               <h3 className="font-display font-bold text-2xl text-white mb-4">Start the Conversation</h3>
-              <p className="text-gray-400 leading-relaxed mb-6">Tell us what you are working through. Open a direct line to a LeverageWorks strategist.</p>
+              <p className="text-gray-400 leading-relaxed mb-6">Tell us what you are working through. Open a direct line to a LVRGWRKS strategist.</p>
               <span className="text-white font-bold text-sm uppercase tracking-widest flex items-center gap-2 group-hover:text-brand-gold transition-colors">
-                Request Briefing
+                Request Leverage Audit
                 <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -108,7 +108,7 @@ export const HomePage: React.FC = () => {
               onClick={() => openBriefing()}
               className="bg-brand-navy text-white px-12 py-5 rounded-lg font-bold text-sm uppercase tracking-widest hover:bg-brand-gold transition-all shadow-xl hover:shadow-brand-gold/20"
             >
-              Request Briefing
+              Request Leverage Audit
             </button>
             <Link
               to="/firm"

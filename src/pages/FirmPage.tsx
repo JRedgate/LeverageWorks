@@ -10,8 +10,8 @@ export const FirmPage: React.FC = () => {
   const { openBriefing } = useOutletContext<LayoutContext>();
 
   useSEO({
-    title: 'The Firm | LeverageWorks - Enterprise AI Strategy Calgary',
-    description: 'Founded in Calgary, LeverageWorks bridges executive strategy and engineering reality. We build the synthesis layer between AI capability and organizational execution.',
+    title: 'The Firm | LVRGWRKS (LeverageWorks) - Enterprise AI Strategy Calgary',
+    description: 'Founded in Calgary, LVRGWRKS (LeverageWorks) bridges executive strategy and engineering reality. We build the synthesis layer between AI capability and organizational execution.',
     canonical: 'https://www.lvrgwrks.com/firm',
   });
 
@@ -27,7 +27,7 @@ export const FirmPage: React.FC = () => {
               Bridging the divide between <span className="text-brand-slate italic">intent and execution.</span>
             </h1>
             <p className="text-brand-slate text-xl leading-relaxed max-w-2xl">
-              LeverageWorks was architected during the Haskayne School of Business EMBA to solve a specific problem: the friction between leadership intent and technological execution.
+              LVRGWRKS (LeverageWorks) was architected during the Haskayne School of Business EMBA to solve a specific problem: the friction between leadership intent and technological execution.
             </p>
           </div>
         </div>
@@ -40,7 +40,7 @@ export const FirmPage: React.FC = () => {
             <div>
               <h2 className="font-display font-bold text-3xl text-brand-navy mb-6">Leadership & Origin</h2>
               <p className="text-brand-slate leading-relaxed mb-6">
-                Founded in Calgary, LeverageWorks bridges the gap between executive strategy and engineering reality. Our methodology is rooted in systems thinking and architectural precision.
+                Founded in Calgary, LVRGWRKS (LeverageWorks) bridges the gap between executive strategy and engineering reality. Our methodology is rooted in systems thinking and architectural precision.
               </p>
               <p className="text-brand-slate leading-relaxed mb-6">
                 We emerged from a recognition that most "Digital Transformation" initiatives fail not because of technology limitations, but because of operating model misalignment. The tools exist. The talent exists. What is missing is the synthesis layer that connects leadership intent to technical execution.
@@ -120,7 +120,7 @@ export const FirmPage: React.FC = () => {
               onClick={() => openBriefing()}
               className="bg-brand-gold text-brand-navy px-12 py-5 rounded-lg font-bold text-sm uppercase tracking-widest hover:bg-white transition-all shadow-xl"
             >
-              Request Briefing
+              Request Leverage Audit
             </button>
             <Link
               to="/capabilities"

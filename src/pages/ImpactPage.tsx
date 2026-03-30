@@ -11,8 +11,8 @@ export const ImpactPage: React.FC = () => {
   const { openBriefing } = useOutletContext<LayoutContext>();
 
   useSEO({
-    title: 'Impact & Case Studies | LeverageWorks - Proven AI Implementation Results',
-    description: 'See how LeverageWorks delivers 7.5x+ ROI across manufacturing, finance, and energy sectors. Case studies in AI strategy, operating model optimization, and digital transformation.',
+    title: 'Impact & Case Studies | LVRGWRKS (LeverageWorks) - Proven AI Implementation Results',
+    description: 'See how LVRGWRKS (LeverageWorks) delivers 7.5x+ ROI across manufacturing, finance, and energy sectors. Case studies in AI strategy, operating model optimization, and digital transformation.',
     canonical: 'https://www.lvrgwrks.com/impact',
   });
 
@@ -140,7 +140,7 @@ export const ImpactPage: React.FC = () => {
               onClick={() => openBriefing()}
               className="bg-brand-gold text-brand-navy px-12 py-5 rounded-lg font-bold text-sm uppercase tracking-widest hover:bg-white transition-all shadow-xl"
             >
-              Request Briefing
+              Request Leverage Audit
             </button>
             <Link
               to="/capabilities"

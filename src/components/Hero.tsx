@@ -25,7 +25,7 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick, onSecondCtaClick }) => (
                 </h1>
 
                 <p className="text-brand-slate text-xl leading-relaxed mb-10 max-w-2xl font-light">
-                    LeverageWorks helps North American executive teams move AI from experimentation into disciplined operating systems. Human judgment remains accountable while intelligent systems reduce friction at scale.
+                    LVRGWRKS (LeverageWorks) helps North American executive teams move AI from experimentation into disciplined operating systems. Human judgment remains accountable while intelligent systems reduce friction at scale.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -33,7 +33,7 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick, onSecondCtaClick }) => (
                         to="/contact"
                         className="bg-brand-navy text-white px-10 py-4 rounded-lg font-bold text-sm flex items-center justify-center gap-3 hover:bg-brand-slate transition-all shadow-lg hover:shadow-brand-navy/20 group"
                     >
-                        Request Briefing
+                        Request Leverage Audit
                         <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                     </Link>
                     <Link

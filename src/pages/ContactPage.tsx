@@ -16,8 +16,8 @@ export const ContactPage: React.FC = () => {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
   useSEO({
-    title: 'Contact | LeverageWorks - Request an AI Strategy Briefing',
-    description: 'Connect with LeverageWorks strategists. Request a briefing to discuss your AI implementation challenges and explore engagement pathways for your enterprise.',
+    title: 'Contact | LVRGWRKS (LeverageWorks) - Request a Free Leverage Audit',
+    description: 'Connect with LVRGWRKS (LeverageWorks) strategists. Request a free 60-minute Leverage Audit to discuss your AI implementation challenges and explore engagement pathways.',
     canonical: 'https://www.lvrgwrks.com/contact',
   });
 
@@ -61,7 +61,7 @@ export const ContactPage: React.FC = () => {
               Start the <span className="text-gray-400 italic">Conversation.</span>
             </h1>
             <p className="text-gray-400 text-xl leading-relaxed max-w-2xl">
-              Tell us what you are working through. We will open a direct line to a LeverageWorks strategist to explore what is possible for your organization.
+              Tell us what you are working through. We will schedule a free 60-minute Leverage Audit with a LVRGWRKS strategist to explore what is possible for your organization.
             </p>
           </div>
         </div>
@@ -80,9 +80,9 @@ export const ContactPage: React.FC = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h3 className="font-display font-bold text-2xl text-brand-navy mb-4">Request Received</h3>
+                  <h3 className="font-display font-bold text-2xl text-brand-navy mb-4">Leverage Audit Requested</h3>
                   <p className="text-brand-slate leading-relaxed mb-8">
-                    Thank you for reaching out. A LeverageWorks strategist will be in touch within 24 hours to discuss your challenge.
+                    Thank you for reaching out. A LVRGWRKS strategist will be in touch within 24 hours to schedule your free 60-minute Leverage Audit.
                   </p>
                   <Link
                     to="/"
@@ -93,7 +93,7 @@ export const ContactPage: React.FC = () => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="bg-white p-8 md:p-12 rounded-xl border border-gray-100">
-                  <h2 className="font-display font-bold text-2xl text-brand-navy mb-8">Request a Briefing</h2>
+                  <h2 className="font-display font-bold text-2xl text-brand-navy mb-8">Request a Leverage Audit</h2>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
@@ -191,11 +191,11 @@ export const ContactPage: React.FC = () => {
                 <ul className="space-y-4 text-brand-slate">
                   <li className="flex items-start gap-3">
                     <span className="text-brand-gold font-bold">01.</span>
-                    A LeverageWorks strategist will review your submission within 24 hours.
+                    A LVRGWRKS strategist will review your submission within 24 hours.
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-brand-gold font-bold">02.</span>
-                    We will schedule a 30-minute discovery call to understand your context.
+                    We will schedule your free 60-minute Leverage Audit to understand your context.
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-brand-gold font-bold">03.</span>

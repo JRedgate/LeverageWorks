@@ -21,8 +21,8 @@ export const CapabilitiesPage: React.FC = () => {
   const { openBriefing } = useOutletContext<LayoutContext>();
 
   useSEO({
-    title: 'Capabilities | LeverageWorks - AI Strategy, Systems Design & Operating Models',
-    description: 'Strategic readiness audits, execution models, and systems design for the AI-augmented enterprise. Build the synthesis layer between AI capability and organizational execution.',
+    title: 'Capabilities | LVRGWRKS (LeverageWorks) - AI Strategy, Systems Design & Operating Models',
+    description: 'Strategic readiness audits, execution models, and systems design for the AI-augmented enterprise. LVRGWRKS builds the synthesis layer between AI capability and organizational execution.',
     canonical: 'https://www.lvrgwrks.com/capabilities',
   });
 
@@ -227,7 +227,7 @@ export const CapabilitiesPage: React.FC = () => {
               onClick={() => openBriefing()}
               className="text-white text-sm font-bold uppercase tracking-widest border-b-2 border-brand-gold pb-1 hover:text-brand-gold transition-all"
             >
-              Request Briefing
+              Request Leverage Audit
             </button>
           </div>
         </div>
