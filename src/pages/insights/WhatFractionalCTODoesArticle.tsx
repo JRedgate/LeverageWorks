@@ -32,7 +32,7 @@ export const WhatFractionalCTODoesArticle: React.FC = () => {
           <article className="max-w-3xl mx-auto prose prose-lg prose-slate">
             <h2 className="font-display font-bold text-2xl text-brand-navy mt-12 mb-6">The Problem With "CTO"</h2>
             <p className="text-brand-slate leading-relaxed mb-6">
-              The title Chief Technology Officer means different things in different organizations. In a 10-person startup, the CTO is usually a co-founder who writes code. In a Fortune 500, it is a C-suite executive managing hundreds of engineers. For a mid-market company with 50–200 employees, neither model fits. What you actually need is strategic technical leadership - someone who can own the technology roadmap, evaluate vendors, and lead AI and automation initiatives - without the $200,000+ salary.
+              The title Chief Technology Officer means different things in different organizations. In a 10-person startup, the CTO is usually a co-founder who writes code. In a Fortune 500, it is a C-suite executive managing hundreds of engineers. For a mid-market company with 50-200 employees, neither model fits. What you actually need is strategic technical leadership - someone who can own the technology roadmap, evaluate vendors, and lead AI and automation initiatives - without the $200,000+ salary.
             </p>
 
             <h2 className="font-display font-bold text-2xl text-brand-navy mt-12 mb-6">What a Fractional CTO Does (and Doesn&apos;t Do)</h2>
@@ -88,7 +88,7 @@ export const WhatFractionalCTODoesArticle: React.FC = () => {
 
             <h2 className="font-display font-bold text-2xl text-brand-navy mt-12 mb-6">What Does a Fractional CTO Cost in Alberta?</h2>
             <p className="text-brand-slate leading-relaxed mb-6">
-              Full-time CTOs in Alberta typically command $180,000–$280,000 per year in total compensation. Fractional arrangements typically range from $3,000-$10,000 per month depending on engagement depth - giving you access to the same level of strategic leadership for 10-30% of the cost. For most mid-market engagements, the ROI justification comes from a single avoided bad software decision or one successfully automated workflow.
+              Full-time CTOs in Alberta typically command $180,000-$280,000 per year in total compensation. Fractional arrangements typically range from $3,000-$10,000 per month depending on engagement depth - giving you access to the same level of strategic leadership for 10-30% of the cost. For most mid-market engagements, the ROI justification comes from a single avoided bad software decision or one successfully automated workflow.
             </p>
 
             <h2 className="font-display font-bold text-2xl text-brand-navy mt-12 mb-6">How LVRGWRKS Approaches Fractional CTO Engagements</h2>

@@ -50,7 +50,7 @@ export const CostOfManualDataEntryArticle: React.FC = () => {
             <div className="bg-brand-surface p-8 rounded-xl mb-6">
               <h3 className="font-display font-bold text-xl text-brand-navy mb-4">2. Error Cost</h3>
               <p className="text-brand-slate leading-relaxed">
-                Manual data entry has an error rate of 1–4%. In a business processing hundreds of transactions per week, this means incorrect invoices, missed orders, and planning decisions based on wrong numbers.
+                Manual data entry has an error rate of 1-4%. In a business processing hundreds of transactions per week, this means incorrect invoices, missed orders, and planning decisions based on wrong numbers.
               </p>
             </div>
 
@@ -90,7 +90,7 @@ export const CostOfManualDataEntryArticle: React.FC = () => {
 
             <div className="bg-brand-gold/10 border-l-4 border-brand-gold p-6 rounded-r-xl mb-8">
               <p className="text-brand-navy font-bold">
-                For a company with 50 employees, this number is typically $150,000–$400,000 per year. Most owners are surprised.
+                For a company with 50 employees, this number is typically $150,000-$400,000 per year. Most owners are surprised.
               </p>
             </div>
 

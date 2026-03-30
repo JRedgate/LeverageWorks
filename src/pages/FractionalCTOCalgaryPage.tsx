@@ -11,7 +11,7 @@ export const FractionalCTOCalgaryPage: React.FC = () => {
 
   useSEO({
     title: 'Fractional CTO Calgary | LVRGWRKS (LeverageWorks) - Part-Time CTO for Mid-Market Companies',
-    description: 'LVRGWRKS provides fractional CTO services in Calgary and across Alberta. We give mid-market companies ($5M–$150M) access to senior technical leadership without the full-time cost.',
+    description: 'LVRGWRKS provides fractional CTO services in Calgary and across Alberta. We give mid-market companies ($5M-$150M) access to senior technical leadership without the full-time cost.',
     canonical: 'https://www.lvrgwrks.com/fractional-cto-calgary',
   });
 
@@ -110,7 +110,7 @@ export const FractionalCTOCalgaryPage: React.FC = () => {
                 <svg className="w-6 h-6 text-brand-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                 </svg>
-                <span className="text-gray-300">Have 20–250 employees and $5M–$150M in revenue</span>
+                <span className="text-gray-300">Have 20-250 employees and $5M-$150M in revenue</span>
               </div>
 
               <div className="bg-white/5 border border-white/10 p-6 rounded-xl flex items-start gap-4">
