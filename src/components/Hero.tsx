@@ -45,12 +45,14 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick, onSecondCtaClick }) => (
                 </div>
 
                 {/* Trust Signals */}
-                <div className="mt-16 flex items-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <div className="mt-16 flex flex-col md:flex-row md:items-center gap-4 md:gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
                     <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest">Trusted By Leaders In:</p>
-                    <div className="flex gap-6 text-sm font-bold text-gray-400">
+                    <div className="flex flex-wrap gap-4 md:gap-6 text-sm font-bold text-gray-400">
                         <span>ENERGY</span>
                         <span>FINANCE</span>
                         <span>MANUFACTURING</span>
+                        <span>CONSTRUCTION</span>
+                        <span>PROPERTY MANAGEMENT</span>
                     </div>
                 </div>
             </div>
