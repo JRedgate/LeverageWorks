@@ -15,6 +15,7 @@ export const BriefingModal: React.FC<BriefingModalProps> = ({ isOpen, onClose, i
     company: '',
     role: '',
     message: '',
+    referredBy: '',
   });
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
@@ -60,7 +61,7 @@ export const BriefingModal: React.FC<BriefingModalProps> = ({ isOpen, onClose, i
 
       if (res.ok) {
         setStatus('success');
-        setFormData({ name: '', email: '', company: '', role: '', message: '' });
+        setFormData({ name: '', email: '', company: '', role: '', message: '', referredBy: '' });
       } else {
         setStatus('error');
       }
@@ -206,6 +207,21 @@ export const BriefingModal: React.FC<BriefingModalProps> = ({ isOpen, onClose, i
                     onChange={handleChange}
                     placeholder="e.g., We need to integrate AI into our supply chain operations but lack a clear execution roadmap..."
                     className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-brand-navy placeholder:text-gray-400 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/30 transition-all resize-none"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="brief-referredBy" className="block text-xs font-bold text-brand-navy uppercase tracking-wider mb-1.5">
+                    How Did You Hear About Us?
+                  </label>
+                  <input
+                    id="brief-referredBy"
+                    name="referredBy"
+                    type="text"
+                    value={formData.referredBy}
+                    onChange={handleChange}
+                    placeholder="e.g., LinkedIn, referral from John Smith, Google search..."
+                    className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-brand-navy placeholder:text-gray-400 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/30 transition-all"
                   />
                 </div>
 

@@ -9,6 +9,7 @@ import { FirmPage } from './src/pages/FirmPage';
 import { CapabilitiesPage } from './src/pages/CapabilitiesPage';
 import { ImpactPage } from './src/pages/ImpactPage';
 import { ContactPage } from './src/pages/ContactPage';
+import { LeverageAuditPage } from './src/pages/LeverageAuditPage';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
@@ -26,6 +27,7 @@ root.render(
           <Route path="capabilities" element={<CapabilitiesPage />} />
           <Route path="impact" element={<ImpactPage />} />
           <Route path="contact" element={<ContactPage />} />
+          <Route path="leverage-audit" element={<LeverageAuditPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

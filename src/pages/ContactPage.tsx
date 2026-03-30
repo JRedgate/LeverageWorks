@@ -12,6 +12,7 @@ export const ContactPage: React.FC = () => {
     company: '',
     role: '',
     message: '',
+    referredBy: '',
   });
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
@@ -34,7 +35,7 @@ export const ContactPage: React.FC = () => {
 
       if (response.ok) {
         setStatus('success');
-        setFormData({ name: '', email: '', company: '', role: '', message: '' });
+        setFormData({ name: '', email: '', company: '', role: '', message: '', referredBy: '' });
       } else {
         setStatus('error');
       }
@@ -154,7 +155,7 @@ export const ContactPage: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="mb-8">
+                  <div className="mb-6">
                     <label className="block text-xs font-bold uppercase tracking-widest text-brand-slate mb-2">Describe Your Challenge *</label>
                     <textarea
                       name="message"
@@ -164,6 +165,18 @@ export const ContactPage: React.FC = () => {
                       rows={5}
                       className="w-full border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-gold transition-colors resize-none"
                       placeholder="Tell us about the organizational friction points you are experiencing..."
+                    />
+                  </div>
+
+                  <div className="mb-8">
+                    <label className="block text-xs font-bold uppercase tracking-widest text-brand-slate mb-2">How Did You Hear About Us?</label>
+                    <input
+                      type="text"
+                      name="referredBy"
+                      value={formData.referredBy}
+                      onChange={handleChange}
+                      className="w-full border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-gold transition-colors"
+                      placeholder="e.g., LinkedIn, referral from John Smith, Google search..."
                     />
                   </div>
 

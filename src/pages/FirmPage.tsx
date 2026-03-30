@@ -52,10 +52,10 @@ export const FirmPage: React.FC = () => {
             <div>
               <h2 className="font-display font-bold text-3xl text-brand-navy mb-6">The Mandate</h2>
               <p className="text-brand-slate leading-relaxed mb-6">
-                We operate with a singular mandate: to equip enterprise leaders with the "synthesis layer" required to govern AI agents. We turn theoretical capability into deployed, governed, and revenue-generating infrastructure.
+                Think of us as your fractional CTO and AI operations partner. For a fraction of the cost of a full-time hire, you get senior strategic guidance and hands-on implementation support.
               </p>
               <p className="text-brand-slate leading-relaxed mb-6">
-                This means we do not just implement AI. We rebuild the decision pathways that power your firm. We redesign standard operating procedures for an AI-augmented workforce where human judgment remains the primary lever.
+                We operate with a singular mandate: to equip enterprise leaders with the "synthesis layer" required to govern AI agents. We turn theoretical capability into deployed, governed, and revenue-generating infrastructure.
               </p>
               <p className="text-brand-slate leading-relaxed">
                 The result is measurable EBITDA uplift, not just new software. Capital efficiency, not just capability demonstrations.

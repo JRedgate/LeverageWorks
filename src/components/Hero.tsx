@@ -16,7 +16,7 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick, onSecondCtaClick }) => (
             <div className="max-w-4xl">
                 <div className="inline-flex items-center gap-2 bg-white border border-gray-100 px-4 py-1.5 rounded-full mb-8 shadow-sm">
                     <div className="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></div>
-                    <span className="text-[10px] font-bold tracking-[0.1em] text-brand-navy uppercase">Operating Leverage Protocol</span>
+                    <span className="text-[10px] font-bold tracking-[0.1em] text-brand-navy uppercase">Fractional CTO + AI Operations Partner</span>
                 </div>
 
                 <h1 className="font-display font-semibold text-6xl md:text-7xl leading-[1.1] text-brand-navy mb-8 tracking-tight">
@@ -25,7 +25,7 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick, onSecondCtaClick }) => (
                 </h1>
 
                 <p className="text-brand-slate text-xl leading-relaxed mb-10 max-w-2xl font-light">
-                    LVRGWRKS (LeverageWorks) helps North American executive teams move AI from experimentation into disciplined operating systems. Human judgment remains accountable while intelligent systems reduce friction at scale.
+                    Your fractional CTO and AI operations partner. LVRGWRKS (LeverageWorks) helps North American executive teams move AI from experimentation into disciplined operating systems at a fraction of the cost of a full-time hire.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4">
