@@ -45,13 +45,25 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick, onSecondCtaClick }) => (
                 </div>
 
                 {/* Trust Signals */}
-                <div className="mt-16 flex flex-col md:flex-row md:items-center gap-4 md:gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <div className="mt-16 flex flex-col md:flex-row md:items-center gap-4 md:gap-8 opacity-60 hover:opacity-100 transition-all duration-500">
                     <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest">Serving:</p>
                     <div className="flex flex-wrap gap-4 md:gap-6 text-sm font-bold text-gray-400">
-                        <span>PROPERTY MANAGEMENT</span>
-                        <span>CONSTRUCTION</span>
-                        <span>MANUFACTURING</span>
-                        <span>ENERGY SERVICES</span>
+                        <Link to="/industries/property-management" className="hover:text-brand-navy transition-colors group inline-flex items-center gap-1">
+                            PROPERTY MANAGEMENT
+                            <svg className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" /></svg>
+                        </Link>
+                        <Link to="/industries/construction" className="hover:text-brand-navy transition-colors group inline-flex items-center gap-1">
+                            CONSTRUCTION
+                            <svg className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" /></svg>
+                        </Link>
+                        <Link to="/industries/manufacturing" className="hover:text-brand-navy transition-colors group inline-flex items-center gap-1">
+                            MANUFACTURING
+                            <svg className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" /></svg>
+                        </Link>
+                        <Link to="/industries/energy-services" className="hover:text-brand-navy transition-colors group inline-flex items-center gap-1">
+                            ENERGY SERVICES
+                            <svg className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" /></svg>
+                        </Link>
                     </div>
                 </div>
             </div>
