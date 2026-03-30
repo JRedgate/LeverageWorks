@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { LwSymbol } from './Logo';
 
@@ -10,7 +10,13 @@ const LinkedInIcon: React.FC<{ className?: string }> = ({ className }) => (
     </svg>
 );
 
-interface NavItem {
+const ChevronDownIcon: React.FC<{ className?: string }> = ({ className }) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+        <polyline points="6 9 12 15 18 9" />
+    </svg>
+);
+
+interface DropdownItem {
     label: string;
     href: string;
 }
@@ -22,7 +28,9 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileOpen, setIsMobileOpen] = useState(false);
+    const [openDropdown, setOpenDropdown] = useState<string | null>(null);
     const location = useLocation();
+    const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -41,15 +49,38 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
     // Close mobile menu on route change
     useEffect(() => {
         setIsMobileOpen(false);
+        setOpenDropdown(null);
     }, [location.pathname]);
 
-    const navItems: NavItem[] = [
-        { label: 'Firm', href: '/firm' },
-        { label: 'Capabilities', href: '/capabilities' },
-        { label: 'Impact', href: '/impact' },
+    const servicesItems: DropdownItem[] = [
+        { label: 'Fractional CTO Calgary', href: '/fractional-cto-calgary' },
+        { label: 'AI Automation Consulting', href: '/ai-automation-consulting' },
+        { label: 'Digital Transformation Consulting', href: '/digital-transformation-consulting' },
+        { label: 'Business Process Automation', href: '/business-process-automation' },
+    ];
+
+    const industriesItems: DropdownItem[] = [
+        { label: 'Manufacturing', href: '/industries/manufacturing' },
+        { label: 'Energy Services', href: '/industries/energy-services' },
+        { label: 'Property Management', href: '/industries/property-management' },
+        { label: 'Construction', href: '/industries/construction' },
     ];
 
     const isActive = (href: string) => location.pathname === href;
+    const isDropdownActive = (items: DropdownItem[]) => items.some(item => location.pathname === item.href);
+
+    const handleMouseEnter = (dropdown: string) => {
+        if (dropdownTimeoutRef.current) {
+            clearTimeout(dropdownTimeoutRef.current);
+        }
+        setOpenDropdown(dropdown);
+    };
+
+    const handleMouseLeave = () => {
+        dropdownTimeoutRef.current = setTimeout(() => {
+            setOpenDropdown(null);
+        }, 150);
+    };
 
     return (
         <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-white/95 border-b border-gray-200 py-4 backdrop-blur-sm shadow-sm' : 'bg-transparent py-6'}`}>
@@ -62,17 +93,94 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
                 </Link>
 
                 {/* Desktop Navigation */}
-                <div className="hidden md:flex items-center gap-8">
-                    {navItems.map((item) => (
-                        <Link 
-                            key={item.label} 
-                            to={item.href} 
-                            className={`text-sm font-medium transition-colors relative group ${isActive(item.href) ? 'text-brand-navy' : 'text-brand-slate hover:text-brand-navy'}`}
+                <div className="hidden md:flex items-center gap-6">
+                    {/* Services Dropdown */}
+                    <div 
+                        className="relative"
+                        onMouseEnter={() => handleMouseEnter('services')}
+                        onMouseLeave={handleMouseLeave}
+                    >
+                        <button 
+                            className={`text-sm font-medium transition-colors relative group flex items-center gap-1 ${isDropdownActive(servicesItems) ? 'text-brand-navy' : 'text-brand-slate hover:text-brand-navy'}`}
                         >
-                            {item.label}
-                            <span className={`absolute -bottom-1 left-0 h-0.5 bg-brand-gold transition-all duration-300 ${isActive(item.href) ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
-                        </Link>
-                    ))}
+                            Services
+                            <ChevronDownIcon className={`w-3.5 h-3.5 transition-transform ${openDropdown === 'services' ? 'rotate-180' : ''}`} />
+                            <span className={`absolute -bottom-1 left-0 h-0.5 bg-brand-gold transition-all duration-300 ${isDropdownActive(servicesItems) ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                        </button>
+                        <div className={`absolute top-full left-0 pt-2 transition-all duration-200 ${openDropdown === 'services' ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
+                            <div className="bg-white border border-gray-100 rounded-lg shadow-xl py-2 min-w-[240px]">
+                                {servicesItems.map((item) => (
+                                    <Link
+                                        key={item.href}
+                                        to={item.href}
+                                        className={`block px-4 py-2.5 text-sm transition-colors ${isActive(item.href) ? 'text-brand-gold bg-brand-surface' : 'text-brand-slate hover:text-brand-navy hover:bg-brand-surface'}`}
+                                    >
+                                        {item.label}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Industries Dropdown */}
+                    <div 
+                        className="relative"
+                        onMouseEnter={() => handleMouseEnter('industries')}
+                        onMouseLeave={handleMouseLeave}
+                    >
+                        <button 
+                            className={`text-sm font-medium transition-colors relative group flex items-center gap-1 ${isDropdownActive(industriesItems) ? 'text-brand-navy' : 'text-brand-slate hover:text-brand-navy'}`}
+                        >
+                            Industries
+                            <ChevronDownIcon className={`w-3.5 h-3.5 transition-transform ${openDropdown === 'industries' ? 'rotate-180' : ''}`} />
+                            <span className={`absolute -bottom-1 left-0 h-0.5 bg-brand-gold transition-all duration-300 ${isDropdownActive(industriesItems) ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                        </button>
+                        <div className={`absolute top-full left-0 pt-2 transition-all duration-200 ${openDropdown === 'industries' ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
+                            <div className="bg-white border border-gray-100 rounded-lg shadow-xl py-2 min-w-[200px]">
+                                {industriesItems.map((item) => (
+                                    <Link
+                                        key={item.href}
+                                        to={item.href}
+                                        className={`block px-4 py-2.5 text-sm transition-colors ${isActive(item.href) ? 'text-brand-gold bg-brand-surface' : 'text-brand-slate hover:text-brand-navy hover:bg-brand-surface'}`}
+                                    >
+                                        {item.label}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    <Link 
+                        to="/firm" 
+                        className={`text-sm font-medium transition-colors relative group ${isActive('/firm') ? 'text-brand-navy' : 'text-brand-slate hover:text-brand-navy'}`}
+                    >
+                        Firm
+                        <span className={`absolute -bottom-1 left-0 h-0.5 bg-brand-gold transition-all duration-300 ${isActive('/firm') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                    </Link>
+
+                    <Link 
+                        to="/capabilities" 
+                        className={`text-sm font-medium transition-colors relative group ${isActive('/capabilities') ? 'text-brand-navy' : 'text-brand-slate hover:text-brand-navy'}`}
+                    >
+                        Capabilities
+                        <span className={`absolute -bottom-1 left-0 h-0.5 bg-brand-gold transition-all duration-300 ${isActive('/capabilities') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                    </Link>
+
+                    <Link 
+                        to="/impact" 
+                        className={`text-sm font-medium transition-colors relative group ${isActive('/impact') ? 'text-brand-navy' : 'text-brand-slate hover:text-brand-navy'}`}
+                    >
+                        Impact
+                        <span className={`absolute -bottom-1 left-0 h-0.5 bg-brand-gold transition-all duration-300 ${isActive('/impact') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                    </Link>
+
+                    <Link 
+                        to="/insights" 
+                        className={`text-sm font-medium transition-colors relative group ${isActive('/insights') || location.pathname.startsWith('/insights/') ? 'text-brand-navy' : 'text-brand-slate hover:text-brand-navy'}`}
+                    >
+                        Insights
+                        <span className={`absolute -bottom-1 left-0 h-0.5 bg-brand-gold transition-all duration-300 ${isActive('/insights') || location.pathname.startsWith('/insights/') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                    </Link>
 
                     <div className="h-6 w-[1px] bg-gray-200 mx-2"></div>
 
@@ -109,20 +217,82 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
 
             {/* Mobile Menu Panel */}
             <div
-                className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMobileOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'}`}
+                className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMobileOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'}`}
             >
-                <div className="bg-white border-t border-gray-100 shadow-lg px-6 py-6 flex flex-col gap-4">
-                    {navItems.map((item) => (
-                        <Link
-                            key={item.label}
-                            to={item.href}
-                            className={`text-left text-base font-medium transition-colors py-2 border-b border-gray-50 ${isActive(item.href) ? 'text-brand-gold' : 'text-brand-slate hover:text-brand-navy'}`}
+                <div className="bg-white border-t border-gray-100 shadow-lg px-6 py-6 flex flex-col gap-2">
+                    {/* Services Section */}
+                    <div className="border-b border-gray-50 pb-3">
+                        <button
+                            onClick={() => setOpenDropdown(openDropdown === 'mobile-services' ? null : 'mobile-services')}
+                            className="w-full flex items-center justify-between text-left text-base font-medium text-brand-slate py-2"
                         >
-                            {item.label}
-                        </Link>
-                    ))}
+                            Services
+                            <ChevronDownIcon className={`w-4 h-4 transition-transform ${openDropdown === 'mobile-services' ? 'rotate-180' : ''}`} />
+                        </button>
+                        <div className={`overflow-hidden transition-all duration-200 ${openDropdown === 'mobile-services' ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                            {servicesItems.map((item) => (
+                                <Link
+                                    key={item.href}
+                                    to={item.href}
+                                    className={`block pl-4 py-2 text-sm ${isActive(item.href) ? 'text-brand-gold' : 'text-brand-slate hover:text-brand-navy'}`}
+                                >
+                                    {item.label}
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
 
-                    <div className="flex items-center gap-4 pt-2">
+                    {/* Industries Section */}
+                    <div className="border-b border-gray-50 pb-3">
+                        <button
+                            onClick={() => setOpenDropdown(openDropdown === 'mobile-industries' ? null : 'mobile-industries')}
+                            className="w-full flex items-center justify-between text-left text-base font-medium text-brand-slate py-2"
+                        >
+                            Industries
+                            <ChevronDownIcon className={`w-4 h-4 transition-transform ${openDropdown === 'mobile-industries' ? 'rotate-180' : ''}`} />
+                        </button>
+                        <div className={`overflow-hidden transition-all duration-200 ${openDropdown === 'mobile-industries' ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                            {industriesItems.map((item) => (
+                                <Link
+                                    key={item.href}
+                                    to={item.href}
+                                    className={`block pl-4 py-2 text-sm ${isActive(item.href) ? 'text-brand-gold' : 'text-brand-slate hover:text-brand-navy'}`}
+                                >
+                                    {item.label}
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+
+                    <Link
+                        to="/firm"
+                        className={`text-left text-base font-medium transition-colors py-2 border-b border-gray-50 ${isActive('/firm') ? 'text-brand-gold' : 'text-brand-slate hover:text-brand-navy'}`}
+                    >
+                        Firm
+                    </Link>
+
+                    <Link
+                        to="/capabilities"
+                        className={`text-left text-base font-medium transition-colors py-2 border-b border-gray-50 ${isActive('/capabilities') ? 'text-brand-gold' : 'text-brand-slate hover:text-brand-navy'}`}
+                    >
+                        Capabilities
+                    </Link>
+
+                    <Link
+                        to="/impact"
+                        className={`text-left text-base font-medium transition-colors py-2 border-b border-gray-50 ${isActive('/impact') ? 'text-brand-gold' : 'text-brand-slate hover:text-brand-navy'}`}
+                    >
+                        Impact
+                    </Link>
+
+                    <Link
+                        to="/insights"
+                        className={`text-left text-base font-medium transition-colors py-2 border-b border-gray-50 ${isActive('/insights') || location.pathname.startsWith('/insights/') ? 'text-brand-gold' : 'text-brand-slate hover:text-brand-navy'}`}
+                    >
+                        Insights
+                    </Link>
+
+                    <div className="flex items-center gap-4 pt-4">
                         <a
                             href="https://www.linkedin.com/company/lvrgwrks/"
                             target="_blank"

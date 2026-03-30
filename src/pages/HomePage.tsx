@@ -95,7 +95,7 @@ export const HomePage: React.FC = () => {
       {/* Quick links to pages */}
       <section className="py-20 md:py-32 bg-brand-surface">
         <div className="container mx-auto px-6 md:px-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <Link to="/capabilities" className="group bg-white p-10 rounded-xl border border-gray-100 hover:border-brand-gold/30 hover:shadow-xl transition-all">
               <span className="text-brand-gold font-bold tracking-widest text-[10px] uppercase mb-4 block">Capabilities</span>
               <h3 className="font-display font-bold text-2xl text-brand-navy mb-4 group-hover:text-brand-gold transition-colors">Architectural Excellence</h3>
@@ -114,6 +114,18 @@ export const HomePage: React.FC = () => {
               <p className="text-brand-slate leading-relaxed mb-6">Representative scenarios where we closed the gap between AI potential and measurable performance.</p>
               <span className="text-brand-navy font-bold text-sm uppercase tracking-widest flex items-center gap-2 group-hover:text-brand-gold transition-colors">
                 View Cases
+                <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </span>
+            </Link>
+
+            <Link to="/fractional-cto-calgary" className="group bg-white p-10 rounded-xl border border-gray-100 hover:border-brand-gold/30 hover:shadow-xl transition-all">
+              <span className="text-brand-gold font-bold tracking-widest text-[10px] uppercase mb-4 block">Services</span>
+              <h3 className="font-display font-bold text-2xl text-brand-navy mb-4 group-hover:text-brand-gold transition-colors">What We Build</h3>
+              <p className="text-brand-slate leading-relaxed mb-6">Fractional CTO, AI automation, digital transformation, and business process automation — all built for Alberta&apos;s mid-market.</p>
+              <span className="text-brand-navy font-bold text-sm uppercase tracking-widest flex items-center gap-2 group-hover:text-brand-gold transition-colors">
+                Explore Services
                 <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
