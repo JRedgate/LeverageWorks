@@ -1,5 +1,5 @@
-
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface HeroProps {
     onCtaClick: () => void;
@@ -29,19 +29,19 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick, onSecondCtaClick }) => (
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4">
-                    <button
-                        onClick={onCtaClick}
+                    <Link
+                        to="/contact"
                         className="bg-brand-navy text-white px-10 py-4 rounded-lg font-bold text-sm flex items-center justify-center gap-3 hover:bg-brand-slate transition-all shadow-lg hover:shadow-brand-navy/20 group"
                     >
-                        Initialize Diagnostic
+                        Request Briefing
                         <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                    </button>
-                    <button
-                        onClick={onSecondCtaClick}
-                        className="bg-white border border-gray-200 text-brand-navy px-10 py-4 rounded-lg font-bold text-sm hover:border-brand-navy/30 hover:bg-gray-50 transition-all"
+                    </Link>
+                    <Link
+                        to="/capabilities"
+                        className="bg-white border border-gray-200 text-brand-navy px-10 py-4 rounded-lg font-bold text-sm hover:border-brand-navy/30 hover:bg-gray-50 transition-all text-center"
                     >
-                        View Operating Model
-                    </button>
+                        View Capabilities
+                    </Link>
                 </div>
 
                 {/* Trust Signals */}

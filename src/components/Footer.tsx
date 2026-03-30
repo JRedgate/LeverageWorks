@@ -1,5 +1,5 @@
-
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { LwSymbol } from './Logo';
 
 export const Footer: React.FC = () => (
@@ -7,10 +7,10 @@ export const Footer: React.FC = () => (
         <div className="container mx-auto px-6 md:px-16">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
                 <div className="md:col-span-4">
-                    <div className="flex items-center gap-3 mb-6">
+                    <Link to="/" className="flex items-center gap-3 mb-6 group">
                         <LwSymbol color="#FFFFFF" className="w-8 h-8" />
-                        <span className="font-display font-bold text-xl tracking-tight text-white">LeverageWorks</span>
-                    </div>
+                        <span className="font-display font-bold text-xl tracking-tight text-white group-hover:text-brand-gold transition-colors">LeverageWorks</span>
+                    </Link>
                     <p className="text-gray-400 max-w-sm leading-relaxed text-sm">
                         Architecting the future of global enterprise execution at scale. Bridging the divide between strategy and implementation for leadership teams across North America.
                     </p>
@@ -18,14 +18,17 @@ export const Footer: React.FC = () => (
                 <div className="md:col-span-3">
                     <h4 className="text-[10px] tracking-[0.3em] uppercase mb-6 text-brand-gold font-bold">Expertise</h4>
                     <ul className="space-y-3 text-sm text-gray-400">
-                        <li><a href="#capabilities" className="hover:text-white transition-colors hover:translate-x-1 inline-block">Operating Models</a></li>
-                        <li><a href="#capabilities" className="hover:text-white transition-colors hover:translate-x-1 inline-block">AI Governance</a></li>
-                        <li><a href="#capabilities" className="hover:text-white transition-colors hover:translate-x-1 inline-block">Systems Architecture</a></li>
+                        <li><Link to="/capabilities" className="hover:text-white transition-colors hover:translate-x-1 inline-block">Operating Models</Link></li>
+                        <li><Link to="/capabilities" className="hover:text-white transition-colors hover:translate-x-1 inline-block">AI Governance</Link></li>
+                        <li><Link to="/capabilities" className="hover:text-white transition-colors hover:translate-x-1 inline-block">Systems Architecture</Link></li>
                     </ul>
                 </div>
                 <div className="md:col-span-3">
-                    <h4 className="text-[10px] tracking-[0.3em] uppercase mb-6 text-brand-gold font-bold">Network</h4>
+                    <h4 className="text-[10px] tracking-[0.3em] uppercase mb-6 text-brand-gold font-bold">Company</h4>
                     <ul className="space-y-3 text-sm text-gray-400">
+                        <li><Link to="/firm" className="hover:text-white transition-colors hover:translate-x-1 inline-block">The Firm</Link></li>
+                        <li><Link to="/impact" className="hover:text-white transition-colors hover:translate-x-1 inline-block">Impact</Link></li>
+                        <li><Link to="/contact" className="hover:text-white transition-colors hover:translate-x-1 inline-block">Contact</Link></li>
                         <li>
                             <a
                                 href="https://www.linkedin.com/company/lvrgwrks/"
@@ -50,7 +53,7 @@ export const Footer: React.FC = () => (
                 </div>
             </div>
             <div className="pt-8 border-t border-white/10 flex justify-between items-center text-[11px] text-gray-500 uppercase tracking-widest">
-                <p>© {new Date().getFullYear()} LeverageWorks</p>
+                <p>&copy; {new Date().getFullYear()} LeverageWorks</p>
                 <p>Architecting Intelligence</p>
             </div>
         </div>
