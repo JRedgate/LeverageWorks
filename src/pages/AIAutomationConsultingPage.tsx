@@ -1,5 +1,3 @@
-Output
-
 import React from 'react';
 import { Link, useOutletContext } from 'react-router-dom';
 import { useSEO } from '../hooks/useSEO';
