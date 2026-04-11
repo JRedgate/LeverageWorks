@@ -265,48 +265,29 @@ export const FractionalCTOCalgaryPage: React.FC = () => {
             <div className="mb-16 text-center">
               <span className="text-brand-gold font-bold tracking-widest text-[11px] uppercase mb-4 block">The Investment</span>
               <h2 className="font-display font-bold text-4xl text-brand-navy mb-4">Less than your next admin hire. Without the attrition risk.</h2>
-              <p className="text-brand-slate text-lg max-w-2xl mx-auto">Every tier includes fractional CTO hours. All engagements are 12-month commitments designed to build a durable operational foundation, not a quick fix. All intellectual property is client-owned from day one.</p>
+              <p className="text-brand-slate text-lg max-w-2xl mx-auto">A full-time CTO costs $200,000 or more per year before benefits, ramp time, and attrition risk. Most mid-market companies are not ready for that hire but are already feeling the pain of not having one. LVRGWRKS delivers that capability at a fraction of the cost, operational from day one.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="bg-white p-8 rounded-xl border border-gray-200">
                 <h3 className="font-display font-bold text-2xl text-brand-navy mb-2">Ignite</h3>
-                <div className="text-brand-gold font-display font-bold text-4xl mb-6">$4,500<span className="text-brand-slate text-lg font-normal">/mo</span></div>
+                <p className="text-brand-gold font-bold text-sm uppercase tracking-widest mb-6">Your operational proof point</p>
                 <p className="text-brand-slate text-sm leading-relaxed mb-6">Get more out of the team you already have, starting with your biggest bottleneck.</p>
-                <ul className="space-y-3 text-sm text-brand-slate">
-                  <li className="flex items-start gap-2"><svg className="w-4 h-4 text-brand-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" /></svg>20 developer hours per month</li>
-                  <li className="flex items-start gap-2"><svg className="w-4 h-4 text-brand-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" /></svg>2 fractional CTO hours per month</li>
-                  <li className="flex items-start gap-2"><svg className="w-4 h-4 text-brand-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" /></svg>1 automation build in first 3 months</li>
-                  <li className="flex items-start gap-2"><svg className="w-4 h-4 text-brand-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" /></svg>48-hour support response</li>
-                  <li className="flex items-start gap-2"><svg className="w-4 h-4 text-brand-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" /></svg>Monthly Value Creation Report</li>
-                </ul>
+                <p className="text-brand-slate text-sm leading-relaxed"><span className="font-bold text-brand-navy">What you get:</span> Your LVRGWRKS Fractional CTO, your first automation live within 60 days, and your Monthly Value Creation Report showing ROI every 30 days.</p>
               </div>
               <div className="bg-brand-navy p-8 rounded-xl relative">
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-gold text-brand-navy text-[10px] font-bold tracking-widest uppercase px-4 py-1.5 rounded-full">Most Chosen</div>
                 <h3 className="font-display font-bold text-2xl text-white mb-2">Build</h3>
-                <div className="text-brand-gold font-display font-bold text-4xl mb-6">$6,500<span className="text-gray-400 text-lg font-normal">/mo</span></div>
+                <p className="text-brand-gold font-bold text-sm uppercase tracking-widest mb-6">An embedded operator</p>
                 <p className="text-gray-300 text-sm leading-relaxed mb-6">Build the operational foundation that lets your business grow without your costs growing with it.</p>
-                <ul className="space-y-3 text-sm text-gray-300">
-                  <li className="flex items-start gap-2"><svg className="w-4 h-4 text-brand-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" /></svg>32 developer hours per month</li>
-                  <li className="flex items-start gap-2"><svg className="w-4 h-4 text-brand-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" /></svg>4 fractional CTO hours per month</li>
-                  <li className="flex items-start gap-2"><svg className="w-4 h-4 text-brand-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" /></svg>Up to 3 automation builds</li>
-                  <li className="flex items-start gap-2"><svg className="w-4 h-4 text-brand-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" /></svg>24-hour priority support</li>
-                  <li className="flex items-start gap-2"><svg className="w-4 h-4 text-brand-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" /></svg>Monthly Value Creation Report</li>
-                </ul>
+                <p className="text-gray-300 text-sm leading-relaxed"><span className="font-bold text-white">What you get:</span> Your LVRGWRKS Fractional CTO embedded across departments, multiple automations built and managed as a unified system, and cross-department ROI tracking monthly.</p>
               </div>
               <div className="bg-white p-8 rounded-xl border border-gray-200">
                 <h3 className="font-display font-bold text-2xl text-brand-navy mb-2">Scale</h3>
-                <div className="text-brand-gold font-display font-bold text-4xl mb-6">$8,500<span className="text-brand-slate text-lg font-normal">/mo</span></div>
+                <p className="text-brand-gold font-bold text-sm uppercase tracking-widest mb-6">A named operating partner</p>
                 <p className="text-brand-slate text-sm leading-relaxed mb-6">A permanent operating partner inside your business, managing your systems as you grow.</p>
-                <ul className="space-y-3 text-sm text-brand-slate">
-                  <li className="flex items-start gap-2"><svg className="w-4 h-4 text-brand-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" /></svg>40 developer hours per month</li>
-                  <li className="flex items-start gap-2"><svg className="w-4 h-4 text-brand-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" /></svg>8 fractional CTO hours per month</li>
-                  <li className="flex items-start gap-2"><svg className="w-4 h-4 text-brand-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" /></svg>Unlimited automation builds</li>
-                  <li className="flex items-start gap-2"><svg className="w-4 h-4 text-brand-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" /></svg>Same-day support response</li>
-                  <li className="flex items-start gap-2"><svg className="w-4 h-4 text-brand-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" /></svg>Monthly Value Creation Report</li>
-                </ul>
+                <p className="text-brand-slate text-sm leading-relaxed"><span className="font-bold text-brand-navy">What you get:</span> Your LVRGWRKS Fractional CTO alongside your leadership. Unlimited automation scope, no project caps. Executive-level Monthly Value Creation Report every 30 days.</p>
               </div>
             </div>
-            <p className="text-center text-brand-slate text-sm mt-8">Unused hours accumulate from month 4 onward, capped at 2x monthly allocation. Overage rates: $225/hr developer, $300/hr fractional CTO.</p>
           </div>
         </div>
       </section>
