@@ -1,312 +1,204 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { LwSymbol } from './Logo';
+import React from 'react';
+import { Link, useOutletContext } from 'react-router-dom';
+import { useSEO } from '../hooks/useSEO';
 
-const LinkedInIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect x="2" y="9" width="4" height="12" />
-    <circle cx="4" cy="4" r="2" />
-  </svg>
-);
-
-const ChevronDownIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <polyline points="6 9 12 15 18 9" />
-  </svg>
-);
-
-interface DropdownItem {
-  label: string;
-  href: string;
+interface LayoutContext {
+  openBriefing: (message?: string) => void;
 }
 
-interface NavbarProps {
-  onContactClick: () => void;
-}
+export const LeverageAuditPage: React.FC = () => {
+  const { openBriefing } = useOutletContext<LayoutContext>();
 
-// Pages whose hero is dark navy -- navbar needs white text when unscrolled
-const DARK_HERO_ROUTES = ['/leverage-audit'];
-
-export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const location = useLocation();
-  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  const hasDarkHero = DARK_HERO_ROUTES.includes(location.pathname);
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) setIsMobileOpen(false);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // Close mobile menu on route change
-  useEffect(() => {
-    setIsMobileOpen(false);
-    setOpenDropdown(null);
-  }, [location.pathname]);
-
-  const servicesItems: DropdownItem[] = [
-    { label: 'Fractional CTO Calgary', href: '/fractional-cto-calgary' },
-    { label: 'AI Automation Consulting', href: '/ai-automation-consulting' },
-    { label: 'Digital Transformation Consulting', href: '/digital-transformation-consulting' },
-    { label: 'Business Process Automation', href: '/business-process-automation' },
-  ];
-
-  const industriesItems: DropdownItem[] = [
-    { label: 'Manufacturing', href: '/industries/manufacturing' },
-    { label: 'Energy Services', href: '/industries/energy-services' },
-    { label: 'Property Management', href: '/industries/property-management' },
-    { label: 'Construction', href: '/industries/construction' },
-  ];
-
-  const isActive = (href: string) => location.pathname === href;
-  const isDropdownActive = (items: DropdownItem[]) => items.some(item => location.pathname === item.href);
-
-  const handleMouseEnter = (dropdown: string) => {
-    if (dropdownTimeoutRef.current) {
-      clearTimeout(dropdownTimeoutRef.current);
-    }
-    setOpenDropdown(dropdown);
-  };
-
-  const handleMouseLeave = () => {
-    dropdownTimeoutRef.current = setTimeout(() => {
-      setOpenDropdown(null);
-    }, 150);
-  };
-
-  // Nav link color logic:
-  // - scrolled: always dark (bg-white navbar)
-  // - unscrolled + dark hero: white text
-  // - unscrolled + light hero: slate text
-  const navLinkBase = isScrolled
-    ? 'text-brand-slate hover:text-brand-navy'
-    : hasDarkHero
-      ? 'text-white/80 hover:text-white'
-      : 'text-brand-slate hover:text-brand-navy';
-
-  const navLinkActive = isScrolled
-    ? 'text-brand-navy'
-    : hasDarkHero
-      ? 'text-white'
-      : 'text-brand-navy';
-
-  // Hamburger bar color
-  const hamburgerColor = !isScrolled && hasDarkHero ? 'bg-white' : 'bg-brand-navy';
+  useSEO({
+    title: 'Book a Free Leverage Audit | LVRGWRKS - 60-Minute Operational Diagnostic',
+    description: 'The LVRGWRKS Leverage Audit is a free 60-minute working session where we map your manual workflows, quantify the labour cost, and outline a conceptual automation architecture. No commitment.',
+    canonical: 'https://www.lvrgwrks.com/leverage-audit',
+  });
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-white/95 border-b border-gray-200 py-4 backdrop-blur-sm shadow-sm' : 'bg-transparent py-6'}`}>
-      <div className="container mx-auto px-6 md:px-16 flex justify-between items-center">
-        <Link to="/" className="flex items-center gap-4 group" aria-label="LeverageWorks Home">
-          <LwSymbol className="w-10 h-10 transition-transform group-hover:scale-105" />
-          <span className={`font-display font-bold text-xl tracking-tight transition-opacity duration-300 ${isScrolled ? 'opacity-100 text-brand-navy' : 'opacity-0'}`}>
-            LVRGWRKS
-          </span>
-        </Link>
-
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-6">
-
-          {/* Services Dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={() => handleMouseEnter('services')}
-            onMouseLeave={handleMouseLeave}
-          >
-            <button
-              className={`text-sm font-medium transition-colors relative group flex items-center gap-1 ${isDropdownActive(servicesItems) ? navLinkActive : navLinkBase}`}
-            >
-              Services
-              <ChevronDownIcon className={`w-3.5 h-3.5 transition-transform ${openDropdown === 'services' ? 'rotate-180' : ''}`} />
-              <span className={`absolute -bottom-1 left-0 h-0.5 bg-brand-gold transition-all duration-300 ${isDropdownActive(servicesItems) ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
-            </button>
-            <div className={`absolute top-full left-0 pt-2 transition-all duration-200 ${openDropdown === 'services' ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
-              <div className="bg-white border border-gray-100 rounded-lg shadow-xl py-2 min-w-[240px]">
-                {servicesItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    to={item.href}
-                    className={`block px-4 py-2.5 text-sm transition-colors ${isActive(item.href) ? 'text-brand-gold bg-brand-surface' : 'text-brand-slate hover:text-brand-navy hover:bg-brand-surface'}`}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
+    <>
+      {/* Hero */}
+      <header className="relative pt-40 pb-20 md:pt-56 md:pb-32 overflow-hidden bg-brand-surface">
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-gold/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2"></div>
+        <div className="container mx-auto px-6 md:px-16 relative z-10">
+          <div className="max-w-4xl">
+            <div className="inline-flex items-center gap-2 bg-white border border-gray-100 shadow-sm px-4 py-1.5 rounded-full mb-8">
+              <div className="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></div>
+              <span className="text-[10px] font-bold tracking-[0.1em] text-brand-navy uppercase">Free -- No Commitment</span>
             </div>
-          </div>
-
-          {/* Industries Dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={() => handleMouseEnter('industries')}
-            onMouseLeave={handleMouseLeave}
-          >
-            <button
-              className={`text-sm font-medium transition-colors relative group flex items-center gap-1 ${isDropdownActive(industriesItems) ? navLinkActive : navLinkBase}`}
-            >
-              Industries
-              <ChevronDownIcon className={`w-3.5 h-3.5 transition-transform ${openDropdown === 'industries' ? 'rotate-180' : ''}`} />
-              <span className={`absolute -bottom-1 left-0 h-0.5 bg-brand-gold transition-all duration-300 ${isDropdownActive(industriesItems) ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
-            </button>
-            <div className={`absolute top-full left-0 pt-2 transition-all duration-200 ${openDropdown === 'industries' ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
-              <div className="bg-white border border-gray-100 rounded-lg shadow-xl py-2 min-w-[200px]">
-                {industriesItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    to={item.href}
-                    className={`block px-4 py-2.5 text-sm transition-colors ${isActive(item.href) ? 'text-brand-gold bg-brand-surface' : 'text-brand-slate hover:text-brand-navy hover:bg-brand-surface'}`}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <Link to="/firm" className={`text-sm font-medium transition-colors relative group ${isActive('/firm') ? navLinkActive : navLinkBase}`}>
-            Firm
-            <span className={`absolute -bottom-1 left-0 h-0.5 bg-brand-gold transition-all duration-300 ${isActive('/firm') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
-          </Link>
-
-          <Link to="/capabilities" className={`text-sm font-medium transition-colors relative group ${isActive('/capabilities') ? navLinkActive : navLinkBase}`}>
-            Capabilities
-            <span className={`absolute -bottom-1 left-0 h-0.5 bg-brand-gold transition-all duration-300 ${isActive('/capabilities') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
-          </Link>
-
-          <Link to="/impact" className={`text-sm font-medium transition-colors relative group ${isActive('/impact') ? navLinkActive : navLinkBase}`}>
-            Impact
-            <span className={`absolute -bottom-1 left-0 h-0.5 bg-brand-gold transition-all duration-300 ${isActive('/impact') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
-          </Link>
-
-          <Link to="/insights" className={`text-sm font-medium transition-colors relative group ${isActive('/insights') || location.pathname.startsWith('/insights/') ? navLinkActive : navLinkBase}`}>
-            Insights
-            <span className={`absolute -bottom-1 left-0 h-0.5 bg-brand-gold transition-all duration-300 ${isActive('/insights') || location.pathname.startsWith('/insights/') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
-          </Link>
-
-          <div className={`h-6 w-[1px] mx-2 ${!isScrolled && hasDarkHero ? 'bg-white/20' : 'bg-gray-200'}`}></div>
-
-          <a
-            href="https://www.linkedin.com/company/lvrgwrks/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`transition-all transform hover:scale-110 ${!isScrolled && hasDarkHero ? 'text-white/70 hover:text-white' : 'text-brand-slate hover:text-brand-navy'}`}
-            aria-label="LinkedIn Profile"
-          >
-            <LinkedInIcon className="w-5 h-5" />
-          </a>
-
-          <Link
-            to="/contact"
-            className={`ml-2 px-5 py-2.5 rounded-md text-xs font-bold uppercase tracking-wide transition-all shadow-md hover:shadow-lg ${
-              isActive('/contact')
-                ? 'bg-brand-gold text-brand-navy'
-                : !isScrolled && hasDarkHero
-                  ? 'bg-white text-brand-navy hover:bg-brand-gold'
-                  : 'bg-brand-navy text-white hover:bg-brand-slate'
-            }`}
-          >
-            Contact
-          </Link>
-        </div>
-
-        {/* Mobile Hamburger Button */}
-        <button
-          className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5"
-          onClick={() => setIsMobileOpen(!isMobileOpen)}
-          aria-label={isMobileOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={isMobileOpen}
-        >
-          <span className={`block w-6 h-0.5 transition-all duration-300 ${hamburgerColor} ${isMobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
-          <span className={`block w-6 h-0.5 transition-all duration-300 ${hamburgerColor} ${isMobileOpen ? 'opacity-0' : ''}`} />
-          <span className={`block w-6 h-0.5 transition-all duration-300 ${hamburgerColor} ${isMobileOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-        </button>
-      </div>
-
-      {/* Mobile Menu Panel */}
-      <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMobileOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'}`}
-      >
-        <div className="bg-white border-t border-gray-100 shadow-lg px-6 py-6 flex flex-col gap-2">
-          {/* Services Section */}
-          <div className="border-b border-gray-50 pb-3">
-            <button
-              onClick={() => setOpenDropdown(openDropdown === 'mobile-services' ? null : 'mobile-services')}
-              className="w-full flex items-center justify-between text-left text-base font-medium text-brand-slate py-2"
-            >
-              Services
-              <ChevronDownIcon className={`w-4 h-4 transition-transform ${openDropdown === 'mobile-services' ? 'rotate-180' : ''}`} />
-            </button>
-            <div className={`overflow-hidden transition-all duration-200 ${openDropdown === 'mobile-services' ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0'}`}>
-              {servicesItems.map((item) => (
-                <Link
-                  key={item.href}
-                  to={item.href}
-                  className={`block pl-4 py-2 text-sm ${isActive(item.href) ? 'text-brand-gold' : 'text-brand-slate hover:text-brand-navy'}`}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* Industries Section */}
-          <div className="border-b border-gray-50 pb-3">
-            <button
-              onClick={() => setOpenDropdown(openDropdown === 'mobile-industries' ? null : 'mobile-industries')}
-              className="w-full flex items-center justify-between text-left text-base font-medium text-brand-slate py-2"
-            >
-              Industries
-              <ChevronDownIcon className={`w-4 h-4 transition-transform ${openDropdown === 'mobile-industries' ? 'rotate-180' : ''}`} />
-            </button>
-            <div className={`overflow-hidden transition-all duration-200 ${openDropdown === 'mobile-industries' ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0'}`}>
-              {industriesItems.map((item) => (
-                <Link
-                  key={item.href}
-                  to={item.href}
-                  className={`block pl-4 py-2 text-sm ${isActive(item.href) ? 'text-brand-gold' : 'text-brand-slate hover:text-brand-navy'}`}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          <Link to="/firm" className={`text-left text-base font-medium transition-colors py-2 border-b border-gray-50 ${isActive('/firm') ? 'text-brand-gold' : 'text-brand-slate hover:text-brand-navy'}`}>Firm</Link>
-          <Link to="/capabilities" className={`text-left text-base font-medium transition-colors py-2 border-b border-gray-50 ${isActive('/capabilities') ? 'text-brand-gold' : 'text-brand-slate hover:text-brand-navy'}`}>Capabilities</Link>
-          <Link to="/impact" className={`text-left text-base font-medium transition-colors py-2 border-b border-gray-50 ${isActive('/impact') ? 'text-brand-gold' : 'text-brand-slate hover:text-brand-navy'}`}>Impact</Link>
-          <Link to="/insights" className={`text-left text-base font-medium transition-colors py-2 border-b border-gray-50 ${isActive('/insights') || location.pathname.startsWith('/insights/') ? 'text-brand-gold' : 'text-brand-slate hover:text-brand-navy'}`}>Insights</Link>
-
-          <div className="flex items-center gap-4 pt-4">
-            <a
-              href="https://www.linkedin.com/company/lvrgwrks/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-brand-slate hover:text-brand-navy transition-all"
-              aria-label="LinkedIn Profile"
-            >
-              <LinkedInIcon className="w-5 h-5" />
-            </a>
-            <Link
-              to="/contact"
-              className="bg-brand-navy text-white px-5 py-2.5 rounded-md text-xs font-bold uppercase tracking-wide hover:bg-brand-slate transition-all shadow-md"
-            >
-              Contact
+            <h1 className="font-display font-semibold text-5xl md:text-6xl leading-[1.1] text-brand-navy mb-6 tracking-tight">
+              The Leverage Audit.
+            </h1>
+            <p className="text-brand-slate text-xl leading-relaxed max-w-2xl mb-6">
+              A free 60-minute working session where we map your highest-friction workflows, put a real dollar figure on the labour cost, and outline a conceptual automation architecture before the call ends.
+            </p>
+            <p className="text-brand-slate text-xl leading-relaxed max-w-2xl mb-10">
+              You leave with a written summary of where your operations are bleeding capacity and what it is costing you. No pitch. No generic presentation. No commitment required.
+            </p>
+            <Link to="/leverage-audit" onClick={() => openBriefing()} className="inline-flex items-center gap-3 bg-brand-gold text-brand-navy px-10 py-4 rounded-lg font-bold text-sm uppercase tracking-widest hover:bg-white transition-all shadow-xl group">
+              Book Your Leverage Audit
+              <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </Link>
           </div>
         </div>
-      </div>
-    </nav>
+      </header>
+
+      {/* What Happens in the Audit */}
+      <section className="py-20 md:py-32 bg-brand-surface">
+        <div className="container mx-auto px-6 md:px-16">
+          <div className="max-w-5xl mx-auto">
+            <div className="mb-16 text-center">
+              <span className="text-brand-gold font-bold tracking-widest text-[11px] uppercase mb-4 block">What Happens</span>
+              <h2 className="font-display font-bold text-4xl text-brand-navy mb-4">Three things you walk away with</h2>
+              <p className="text-brand-slate text-lg max-w-2xl mx-auto">The Leverage Audit is a working session, not a sales call. Every minute is focused on your operation specifically.</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              <div className="bg-white p-8 rounded-xl border border-gray-100">
+                <div className="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-6">
+                  <span className="text-brand-gold font-display font-bold text-xl">01</span>
+                </div>
+                <h3 className="font-display font-bold text-xl text-brand-navy mb-4">Workflow map</h3>
+                <p className="text-brand-slate leading-relaxed text-sm">
+                  We work through your current workflows together -- where data moves manually, where your systems are not connected, and where your team is filling the gaps. This is specific to your business, not a generic template. The map becomes the foundation for everything that follows.
+                </p>
+              </div>
+              <div className="bg-white p-8 rounded-xl border border-gray-100">
+                <div className="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-6">
+                  <span className="text-brand-gold font-display font-bold text-xl">02</span>
+                </div>
+                <h3 className="font-display font-bold text-xl text-brand-navy mb-4">Labour cost quantification</h3>
+                <p className="text-brand-slate leading-relaxed text-sm">
+                  We translate every manual workflow into an annual dollar cost using your actual headcount and fully loaded labour rates. For most mid-market companies this number is larger than expected -- and it becomes the baseline against which any automation investment gets measured. You leave knowing what the current state is actually costing you.
+                </p>
+              </div>
+              <div className="bg-white p-8 rounded-xl border border-gray-100">
+                <div className="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-6">
+                  <span className="text-brand-gold font-display font-bold text-xl">03</span>
+                </div>
+                <h3 className="font-display font-bold text-xl text-brand-navy mb-4">Automation architecture outline</h3>
+                <p className="text-brand-slate leading-relaxed text-sm">
+                  Before the call ends, we outline what an automation architecture would look like for your highest-cost workflows -- which integrations to build, which processes to automate first, and what the ROI case looks like before any work begins. You leave with a conceptual blueprint, not a promise to send a proposal.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-brand-navy p-8 md:p-12 rounded-xl text-white text-center">
+              <h3 className="font-display font-bold text-2xl mb-4">You own the output whether or not you engage us</h3>
+              <p className="text-gray-400 leading-relaxed max-w-2xl mx-auto">
+                The workflow map, cost quantification, and automation architecture outline are yours to keep. If the numbers make sense and you want to move forward, we talk about what an engagement looks like. If not, you leave with a clear operational picture you did not have before. Either way, the session pays for itself.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Who This Is For */}
+      <section className="py-20 md:py-32 bg-white">
+        <div className="container mx-auto px-6 md:px-16">
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+              <div>
+                <span className="text-brand-gold font-bold tracking-widest text-[11px] uppercase mb-4 block">Who This Is For</span>
+                <h2 className="font-display font-bold text-4xl text-brand-navy mb-6">Founders, owners, and COOs who know something is costing them but cannot see exactly where</h2>
+                <p className="text-brand-slate text-lg leading-relaxed mb-6">
+                  The Leverage Audit is designed for operators running mid-market companies in Alberta who are experiencing the specific pain of coordination drag, headcount pressure, or margin erosion -- and want a clear picture of what is actually driving it before committing to any solution.
+                </p>
+                <p className="text-brand-slate text-lg leading-relaxed mb-6">
+                  You do not need to know anything about AI or automation before the session. You need to know your business and be willing to walk through how work actually gets done day to day. We handle the diagnostic framework.
+                </p>
+                <p className="text-brand-slate text-lg leading-relaxed">
+                  LVRGWRKS works with companies in construction, energy services, manufacturing, and property management across Calgary, Alberta, and Western Canada. Typically 20 to 250 employees, $5M to $150M in revenue.
+                </p>
+              </div>
+              <div className="space-y-4">
+                <div className="bg-brand-surface p-8 rounded-xl border border-gray-100">
+                  <h3 className="font-display font-bold text-lg text-brand-navy mb-3">Good fit for the Audit if:</h3>
+                  <div className="space-y-3">
+                    {[
+                      'Your team is spending meaningful time on manual reporting, data entry, or status tracking',
+                      'Your platforms do not connect to each other and your people bridge the gap',
+                      'You have grown the business but headcount has grown faster than revenue',
+                      'You are ready to use AI seriously but are not sure where to start',
+                      'You have tried automation before and it did not stick -- and you want to understand why',
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-start gap-3">
+                        <svg className="w-4 h-4 text-brand-gold mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" /></svg>
+                        <span className="text-brand-slate text-sm">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="bg-brand-surface p-8 rounded-xl border border-gray-100">
+                  <h3 className="font-display font-bold text-lg text-brand-navy mb-3">Probably not the right fit if:</h3>
+                  <div className="space-y-3">
+                    {[
+                      'Your primary need is software development capacity rather than operational strategy',
+                      'Your organization has fewer than 15 employees and the operational complexity is not yet creating meaningful drag',
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-start gap-3">
+                        <svg className="w-4 h-4 text-gray-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                        <span className="text-brand-slate text-sm">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What Happens Next */}
+      <section className="py-20 md:py-32 bg-brand-surface">
+        <div className="container mx-auto px-6 md:px-16">
+          <div className="max-w-5xl mx-auto">
+            <div className="mb-16 text-center">
+              <span className="text-brand-gold font-bold tracking-widest text-[11px] uppercase mb-4 block">What Comes Next</span>
+              <h2 className="font-display font-bold text-4xl text-brand-navy mb-4">If you decide to move forward</h2>
+              <p className="text-brand-slate text-lg max-w-2xl mx-auto">The Audit is the starting point for every LVRGWRKS engagement. If the numbers make sense, here is what the path looks like.</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-white p-8 rounded-xl border border-gray-100">
+                <h3 className="font-display font-bold text-xl text-brand-navy mb-3">First bottleneck solved in 60 days</h3>
+                <p className="text-brand-slate text-sm leading-relaxed">Every LVRGWRKS engagement starts with a defined first deliverable. Your highest-value automation opportunity is designed and deployed within 60 days of engagement start. You see a working system before the first monthly Value Creation Report is due.</p>
+              </div>
+              <div className="bg-white p-8 rounded-xl border border-gray-100">
+                <h3 className="font-display font-bold text-xl text-brand-navy mb-3">Monthly Value Creation Reports</h3>
+                <p className="text-brand-slate text-sm leading-relaxed">Every 30 days you receive a Value Creation Report showing exactly what was recovered -- labour hours, automation performance, and rolling ROI against the engagement cost. We do not estimate whether the system is working. We document it, every month.</p>
+              </div>
+              <div className="bg-white p-8 rounded-xl border border-gray-100">
+                <h3 className="font-display font-bold text-xl text-brand-navy mb-3">You own everything we build</h3>
+                <p className="text-brand-slate text-sm leading-relaxed">Every workflow, automation, agent, and integration is client-owned from day one. No lock-in. No dependency on LVRGWRKS to keep the systems running. The engagement can end at any time and the systems continue operating on your infrastructure.</p>
+              </div>
+              <div className="bg-white p-8 rounded-xl border border-gray-100">
+                <h3 className="font-display font-bold text-xl text-brand-navy mb-3">Embedded, not advisory</h3>
+                <p className="text-brand-slate text-sm leading-relaxed">LVRGWRKS operates as your fractional CTO and AI operations partner, not a consulting firm that delivers a report. We attend leadership meetings, sit inside operational decisions, and stay accountable to outcomes -- not just deliverables.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-20 md:py-32 bg-brand-navy text-white text-center">
+        <div className="container mx-auto px-6 md:px-16">
+          <h2 className="font-display font-bold text-4xl md:text-5xl mb-6">Book your Leverage Audit.</h2>
+          <p className="text-gray-400 max-w-xl mx-auto mb-4 text-lg leading-relaxed">
+            60 minutes. No cost. No commitment. You leave with a clear picture of where your operations are costing you more than they should.
+          </p>
+          <p className="text-gray-500 max-w-xl mx-auto mb-12 text-base leading-relaxed">
+            Sessions available for founders, owners, and COOs of mid-market companies in Calgary, Alberta, and Western Canada.
+          </p>
+          <button
+            onClick={() => openBriefing()}
+            className="inline-flex items-center gap-3 bg-brand-gold text-brand-navy px-12 py-5 rounded-lg font-bold text-sm uppercase tracking-widest hover:bg-white transition-all shadow-xl group"
+          >
+            Book Your Leverage Audit
+            <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </button>
+          <p className="text-gray-500 text-sm mt-6">Or email directly: jredgate@lvrgwrks.com</p>
+        </div>
+      </section>
+    </>
   );
 };
