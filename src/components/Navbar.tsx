@@ -86,7 +86,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
         <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-white/95 border-b border-gray-200 py-4 backdrop-blur-sm shadow-sm' : 'bg-transparent py-6'}`}>
             <div className="container mx-auto px-6 md:px-16 flex justify-between items-center">
                 <Link to="/" className="flex items-center gap-4 group" aria-label="LeverageWorks Home">
-                    <LwSymbol className="w-10 h-10 transition-transform group-hover:scale-105" color={!isScrolled && hasDarkHero ? '#FFFFFF' : undefined} />
+                    <LwSymbol className="w-10 h-10 transition-transform group-hover:scale-105" />
                     <span className={`font-display font-bold text-xl tracking-tight transition-opacity duration-300 ${isScrolled ? 'opacity-100 text-brand-navy' : 'opacity-0'}`}>
                         LVRGWRKS
                     </span>
