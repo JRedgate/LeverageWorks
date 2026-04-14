@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LVRGWRKS (LeverageWorks) | Fractional CTO & AI Operations Partner | Calgary, AB</title>
   <meta name="description"
-    content="LVRGWRKS is the fractional CTO and AI operations partner for mid-market companies in Alberta and Western Canada. We embed inside your business, rebuild how the work flows, and prove ROI every 30 days.">
+    content="LVRGWRKS (LeverageWorks) is a fractional CTO and AI operations partner serving mid-market companies (20-250 employees) in Alberta and Western Canada. First bottleneck solved in 60 days.">
   <meta name="keywords"
     content="Fractional CTO Calgary, AI Operations Partner, Operating Model Architecture, AI Consulting Calgary, LeverageWorks, Property Management Automation, Construction Tech, Manufacturing AI">
 
@@ -20,7 +20,7 @@
   <link rel="canonical" href="https://www.lvrgwrks.com">
   <meta property="og:title" content="LVRGWRKS (LeverageWorks) | Fractional CTO & AI Operations Partner | Calgary, AB">
   <meta property="og:description"
-    content="LVRGWRKS is the fractional CTO and AI operations partner for mid-market companies in Alberta and Western Canada. We embed inside your business, rebuild how the work flows, and prove ROI every 30 days.">
+    content="Your fractional CTO and AI operations partner. Serving mid-market companies in Alberta and Western Canada. First bottleneck solved in 60 days.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.lvrgwrks.com">
   <meta property="og:image" content="https://www.lvrgwrks.com/og-image.jpg">
@@ -33,13 +33,62 @@
     href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
     rel="stylesheet">
 
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#0F172A',      // Primary Authority
+              slate: '#334155',     // Secondary/Body
+              gold: '#CA8A04',      // CTA/Accent
+              surface: '#F8FAFC',   // Background
+              text: '#020617',      // Main Text
+              // Legacy mapping for smoother refactor
+              graphite: '#0F172A',
+              ash: '#334155',
+              white: '#FFFFFF',
+              teal: '#CA8A04',      // Remapping old Primary to new Accent/CTA? Or maybe keeps teal as an accent? 
+              // Design system says CTA is Gold. Teal elements should probably become Gold or Navy.
+              // Let's map Teal -> Navy for now to de-tealify, or Gold? 
+              // Let's keep Teal as Slate for now to avoid bright gold everywhere.
+              copper: '#CA8A04',    // Copper -> Gold
+              beige: '#F1F5F9'      // Light Slate/Gray
+            }
+          },
+          fontFamily: {
+            sans: ['"Source Sans 3"', 'sans-serif'],
+            display: ['"Lexend"', 'sans-serif'],
+            // Mapping old classes
+            serif: ['"Lexend"', 'sans-serif']
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.8s ease-out forwards',
+            'progress': 'progress 2s ease-in-out infinite',
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0', transform: 'translateY(10px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' }
+            },
+            progress: {
+              '0%': { transform: 'translateX(-100%)' },
+              '100%': { transform: 'translateX(100%)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "LVRGWRKS (LeverageWorks)",
   "alternateName": "LeverageWorks",
-  "description": "Fractional CTO and AI operations partner for mid-market companies in Alberta and Western Canada. We embed inside your business, rebuild how the work flows, and prove ROI every 30 days.",
+  "description": "Enterprise AI strategy and operating model architecture consultancy. Fractional CTO and AI operations partner for mid-market companies.",
   "image": "https://www.lvrgwrks.com/og-image.jpg",
   "@id": "https://www.lvrgwrks.com",
   "url": "https://www.lvrgwrks.com",
