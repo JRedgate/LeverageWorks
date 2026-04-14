@@ -401,6 +401,7 @@ export const CalculatorPage: React.FC = () => {
                         The equivalent of {((hoursPerWeek * 50) / 2000).toFixed(1)} years of full-time work
                       </p>
                     </div>
+                  </div>
 
                   <div className="border-t border-white/10 pt-8">
                     <div className="flex items-center gap-3 mb-4">
