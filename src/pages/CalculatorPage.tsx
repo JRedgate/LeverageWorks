@@ -22,6 +22,14 @@ const TOOL_OPTIONS = [
   'Industry-specific software (Procore, Yardi, AppFolio, etc.)',
 ];
 
+// Tier annual costs (monthly × 12)
+const IGNITE_ANNUAL = 54000;  // $4,500/mo
+const BUILD_ANNUAL = 78000;   // $6,500/mo
+const SCALE_ANNUAL = 102000;  // $8,500/mo
+
+// Standard full-time year: 40 hrs/week × 50 weeks = 2000 hrs
+const FULL_TIME_HOURS_PER_YEAR = 2000;
+
 export const CalculatorPage: React.FC = () => {
   const { openBriefing } = useOutletContext<LayoutContext>();
 
@@ -58,15 +66,52 @@ export const CalculatorPage: React.FC = () => {
     const rawAnnualTax = rawWeeklyTax * 50;
     const annualTax = Math.min(rawAnnualTax, 510000);
     const weeklyTax = annualTax / 50;
-    const headcountEquivalent = hoursPerWeek / 40;
+
+    // FIXED: FTE is now calculated from dollar amount ÷ annual cost per person
+    // This ensures FTE and dollar numbers reconcile (1.08 FTE at $162K with $75/hr)
+    const annualCostPerFTE = hourlyCost * FULL_TIME_HOURS_PER_YEAR;
+    const headcountEquivalent = annualTax / annualCostPerFTE;
+
     const isCapped = rawAnnualTax > 510000;
+
+    // Determine the right tier based on the actual ROI math
+    let recommendedTier: 'Ignite' | 'Build' | 'Scale' | 'Structural' = 'Ignite';
+    let recommendedTierCost = IGNITE_ANNUAL;
+
+    if (isCapped || annualTax >= 450000) {
+      recommendedTier = 'Structural';
+      recommendedTierCost = SCALE_ANNUAL;
+    } else if (annualTax >= 300000) {
+      recommendedTier = 'Scale';
+      recommendedTierCost = SCALE_ANNUAL;
+    } else if (annualTax >= 200000) {
+      recommendedTier = 'Build';
+      recommendedTierCost = BUILD_ANNUAL;
+    } else {
+      recommendedTier = 'Ignite';
+      recommendedTierCost = IGNITE_ANNUAL;
+    }
+
+    const actualROI = annualTax / recommendedTierCost;
 
     let severity: 'Low' | 'Moderate' | 'High' | 'Severe' = 'Low';
     if (annualTax >= 450000 || isCapped) severity = 'Severe';
     else if (annualTax >= 250000) severity = 'High';
     else if (annualTax >= 100000) severity = 'Moderate';
 
-    return { toolsCount, frictionMultiplier, weeklyTax, annualTax, headcountEquivalent, severity, isCapped };
+    return {
+      toolsCount,
+      frictionMultiplier,
+      weeklyTax,
+      annualTax,
+      headcountEquivalent,
+      annualCostPerFTE,
+      severity,
+      isCapped,
+      recommendedTier,
+      recommendedTierCost,
+      actualROI,
+    };
   }, [selectedTools, hoursPerWeek, hourlyCost]);
 
   const formatCurrency = (value: number): string =>
@@ -76,41 +121,61 @@ export const CalculatorPage: React.FC = () => {
       maximumFractionDigits: 0,
     }).format(value);
 
-  // Severity tier content
-  const severityContent = {
-    Low: {
+  const formatROI = (multiplier: number): string => `${multiplier.toFixed(1)}x`;
+
+  // Dynamic severity tier content — ROI math is live, not hardcoded
+  const getSeverityContent = () => {
+    const { severity, annualTax, recommendedTier, recommendedTierCost, actualROI, isCapped } = results;
+
+    if (severity === 'Severe') {
+      return {
+        label: 'Severe',
+        headline: 'The coordination tax is no longer an efficiency problem. It is structural.',
+        body: isCapped
+          ? 'Your calculated coordination tax exceeds $500,000 per year, and at that scale the problem is not something a calculator can size correctly. What you are experiencing is structural misalignment between how your business has scaled and how your systems are architected to support it. This is exactly the situation LVRGWRKS was built to fix.'
+          : 'At this scale, the coordination tax is not just expensive. It is actively constraining your ability to grow. You cannot fix this with another software subscription or another admin hire. It requires structural redesign of how the work flows across your operation.',
+        tierRecommendation: 'Book the Leverage Audit directly. We will map your actual situation in 60 minutes and outline what structural remediation looks like for a business at your scale.',
+        roiMath: 'At this severity, the ROI conversation is no longer about retainer math. It is about what this is costing you every month you wait.',
+      };
+    }
+
+    if (severity === 'High') {
+      return {
+        label: 'High',
+        headline: 'The math is urgent now.',
+        body: 'You are paying for the equivalent of multiple full-time employees whose entire job is holding your systems together with spreadsheets and email. Every month you absorb this is a month of margin you do not get back. Competitors investing in cross-platform orchestration right now are building a gap you will feel in 12 to 18 months.',
+        tierRecommendation: recommendedTier === 'Scale'
+          ? `The Scale tier ($8,500/month, ${formatCurrency(SCALE_ANNUAL)} annually) is sized for your situation. Scale makes LVRGWRKS a named operating partner with unlimited automation scope, not a project vendor.`
+          : `The Build tier ($6,500/month, ${formatCurrency(BUILD_ANNUAL)} annually) fits your current coordination tax. Build embeds across departments and manages multiple automations as a unified system.`,
+        roiMath: `Against your ${formatCurrency(annualTax)} coordination tax, a ${recommendedTier} tier engagement (${formatCurrency(recommendedTierCost)} annually) delivers approximately ${formatROI(actualROI)} ROI in the first year, with compounding returns as the system matures.`,
+      };
+    }
+
+    if (severity === 'Moderate') {
+      return {
+        label: 'Moderate',
+        headline: 'You are feeling it. Most operators start losing their best people here.',
+        body: 'This is the range where your team starts burning out on manual work, and where growth starts costing margin instead of creating it. A Leverage Audit typically recovers 40 to 60 percent of this annual number within the first 90 days of engagement.',
+        tierRecommendation: recommendedTier === 'Build'
+          ? `The Build tier ($6,500/month, ${formatCurrency(BUILD_ANNUAL)} annually) is sized for your situation. Build embeds LVRGWRKS across departments and manages multiple automations as a unified system.`
+          : `The Ignite tier ($4,500/month, ${formatCurrency(IGNITE_ANNUAL)} annually) is the right entry point for your coordination tax. It targets your biggest bottleneck first and proves ROI every 30 days.`,
+        roiMath: `Against your ${formatCurrency(annualTax)} coordination tax, an ${recommendedTier} tier engagement (${formatCurrency(recommendedTierCost)} annually) delivers approximately ${formatROI(actualROI)} ROI in the first year. That math improves significantly in year two as the system compounds.`,
+      };
+    }
+
+    // Low
+    return {
       label: 'Low',
       headline: 'Manageable today. But coordination tax compounds.',
       body: 'Most operators at your stage are in this range. The question is not whether to act now. It is whether you want to get ahead of the curve before it compounds, or absorb the cost until it becomes structural. Most companies wait too long.',
-      tierRecommendation: 'The Ignite tier ($4,500/month) is the right entry point if you want to solve your biggest bottleneck before scaling pressure forces your hand.',
-      roiMath: `At your current coordination tax, Ignite could deliver roughly ${formatCurrency(Math.max(results.annualTax * 2, 54000))}–${formatCurrency(results.annualTax * 4)} in recovered value over the first year.`,
-    },
-    Moderate: {
-      label: 'Moderate',
-      headline: 'You are feeling it. Most operators start losing their best people here.',
-      body: 'This is the range where your team starts burning out on manual work, and where growth starts costing margin instead of creating it. A Leverage Audit typically recovers 40 to 60 percent of this annual number within the first 90 days of engagement.',
-      tierRecommendation: 'The Ignite tier ($4,500/month) or Build tier ($6,500/month) fits your situation. Ignite solves your biggest bottleneck fast. Build embeds across departments and manages multiple automations as a unified system.',
-      roiMath: `A Build tier engagement ($78,000 annually) against a ${formatCurrency(results.annualTax)} coordination tax delivers roughly 3–5x ROI in the first year.`,
-    },
-    High: {
-      label: 'High',
-      headline: 'The math is urgent now.',
-      body: 'You are paying for the equivalent of multiple full-time employees whose entire job is holding your systems together with spreadsheets and email. Every month you absorb this is a month of margin you do not get back. Competitors investing in cross-platform orchestration right now are building a gap you will feel in 12 to 18 months.',
-      tierRecommendation: 'The Build tier ($6,500/month) or Scale tier ($8,500/month) is sized for your situation. Scale makes LVRGWRKS a named operating partner with unlimited automation scope, not a project vendor.',
-      roiMath: `A Scale tier engagement ($102,000 annually) against a ${formatCurrency(results.annualTax)} coordination tax delivers 3–4x ROI in the first year, with compounding returns as the system matures.`,
-    },
-    Severe: {
-      label: 'Severe',
-      headline: 'The coordination tax is no longer an efficiency problem. It is structural.',
-      body: results.isCapped
-        ? 'Your calculated coordination tax exceeds $500,000 per year, and at that scale the problem is not something a calculator can size correctly. What you are experiencing is structural misalignment between how your business has scaled and how your systems are architected to support it. This is exactly the situation LVRGWRKS was built to fix.'
-        : 'At this scale, the coordination tax is not just expensive. It is actively constraining your ability to grow. You cannot fix this with another software subscription or another admin hire. It requires structural redesign of how the work flows across your operation.',
-      tierRecommendation: 'Book the Leverage Audit directly. We will map your actual situation in 60 minutes and outline what structural remediation looks like for a business at your scale.',
-      roiMath: 'At this severity, the ROI conversation is no longer about retainer math. It is about what this is costing you every month you wait.',
-    },
+      tierRecommendation: `The Ignite tier ($4,500/month, ${formatCurrency(IGNITE_ANNUAL)} annually) is the right entry point if you want to solve your biggest bottleneck before scaling pressure forces your hand.`,
+      roiMath: actualROI >= 1
+        ? `Against your ${formatCurrency(annualTax)} coordination tax, an Ignite tier engagement delivers approximately ${formatROI(actualROI)} ROI in year one. The real value at this stage is preventing the problem from compounding before it becomes severe.`
+        : `At your current coordination tax, the direct ROI math on Ignite is modest — but the real value at this stage is getting ahead of the problem before it compounds into the Moderate or High severity ranges, where it becomes much more expensive to fix.`,
+    };
   };
 
-  const currentSeverity = severityContent[results.severity];
+  const currentSeverity = getSeverityContent();
   const showResults = selectedTools.length > 0;
 
   // Email submission to Formspree
@@ -142,8 +207,10 @@ export const CalculatorPage: React.FC = () => {
           hourly_cost: hourlyCost,
           weekly_coordination_tax: formatCurrency(results.weeklyTax),
           annual_coordination_tax: formatCurrency(results.annualTax),
-          headcount_equivalent: results.headcountEquivalent.toFixed(1),
+          headcount_equivalent: results.headcountEquivalent.toFixed(2),
           severity: results.severity,
+          recommended_tier: results.recommendedTier,
+          actual_roi: formatROI(results.actualROI),
           is_capped: results.isCapped,
         }),
       });
@@ -248,7 +315,6 @@ export const CalculatorPage: React.FC = () => {
                           : 'bg-white text-brand-slate border-gray-200 hover:border-brand-navy/30'
                       }`}
                     >
-                      <span className="inline-block w-4 h-4 rounded border-2 mr-2 align-middle ${selectedTools.includes(tool) ? 'bg-brand-gold border-brand-gold' : 'border-gray-300'}"></span>
                       {tool}
                     </button>
                   ))}
@@ -326,11 +392,15 @@ export const CalculatorPage: React.FC = () => {
                     </div>
                     <div className="bg-white/5 border border-white/10 p-6 rounded-xl">
                       <div className="text-brand-gold font-display font-bold text-3xl md:text-4xl mb-2">
-                        {results.headcountEquivalent.toFixed(1)} FTE
+                        {(hoursPerWeek * 50).toLocaleString()} hrs
                       </div>
-                      <p className="text-gray-400 text-sm leading-relaxed">equivalent full-time employees doing coordination work</p>
+                      <p className="text-gray-400 text-sm leading-relaxed mb-2">
+                        of your team's capacity burned on coordination work each year
+                      </p>
+                      <p className="text-gray-500 text-xs italic">
+                        The equivalent of {((hoursPerWeek * 50) / 2000).toFixed(1)} years of full-time work
+                      </p>
                     </div>
-                  </div>
 
                   <div className="border-t border-white/10 pt-8">
                     <div className="flex items-center gap-3 mb-4">
@@ -357,7 +427,7 @@ export const CalculatorPage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Email Capture (Option B) */}
+                {/* Email Capture */}
                 <div className="bg-brand-surface p-8 md:p-10 rounded-xl border border-gray-100">
                   {emailSubmitted ? (
                     <>
@@ -407,7 +477,7 @@ export const CalculatorPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Methodology / Credibility Section */}
+      {/* Methodology Section */}
       <section className="py-20 md:py-32 bg-brand-surface border-t border-gray-100">
         <div className="container mx-auto px-6 md:px-16">
           <div className="max-w-4xl mx-auto">
@@ -425,7 +495,7 @@ export const CalculatorPage: React.FC = () => {
               The friction multiplier in this calculator (8 percent added coordination overhead per tool beyond the first three) is an approximation based on those benchmarks and LVRGWRKS operational experience across manufacturing, industrial services, and capital programs. It is designed to be conservative. The real number, measured precisely in a Leverage Audit, is usually higher.
             </p>
             <p className="text-brand-slate text-lg leading-relaxed">
-              The severity tiers and ROI math are anchored to LVRGWRKS engagement pricing (Ignite $4,500/month, Build $6,500/month, Scale $8,500/month) and a defensible 3–5x ROI ceiling. If your calculation exceeds $500,000 annually, the coordination tax has moved beyond an efficiency problem and become a structural one, which is a different conversation entirely.
+              The tier recommendation and ROI math are calculated live against LVRGWRKS engagement pricing (Ignite $4,500/month, Build $6,500/month, Scale $8,500/month) and shown as actual multipliers, not ranges. FTE equivalents are calculated by dividing the annual coordination tax by the annual cost of one full-time employee (2,000 hours per year × hourly cost). If your calculation exceeds $500,000 annually, the coordination tax has moved beyond an efficiency problem and become a structural one, which is a different conversation entirely.
             </p>
           </div>
         </div>
