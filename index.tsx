@@ -22,6 +22,7 @@ import { WhyTransformationsFailArticle } from './src/pages/insights/WhyTransform
 import { WhatFractionalCTODoesArticle } from './src/pages/insights/WhatFractionalCTODoesArticle';
 import { CostOfManualDataEntryArticle } from './src/pages/insights/CostOfManualDataEntryArticle';
 import { InsightsPage } from './src/pages/InsightsPage';
+import { CalculatorPage } from './src/pages/CalculatorPage';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
@@ -40,6 +41,7 @@ root.render(
           <Route path="impact" element={<ImpactPage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="leverage-audit" element={<LeverageAuditPage />} />
+          <Route path="coordination-tax-calculator" element={<CalculatorPage />} />
           <Route path="fractional-cto-calgary" element={<FractionalCTOCalgaryPage />} />
           <Route path="ai-automation-consulting" element={<AIAutomationConsultingPage />} />
           <Route path="digital-transformation-consulting" element={<DigitalTransformationPage />} />
