@@ -10,8 +10,8 @@ export const FirmPage: React.FC = () => {
   const { openBriefing } = useOutletContext<LayoutContext>();
 
   useSEO({
-    title: 'The Firm | LVRGWRKS (LeverageWorks) - Enterprise AI Strategy Calgary',
-    description: 'Founded in Calgary, LVRGWRKS (LeverageWorks) bridges executive strategy and engineering reality. We build the synthesis layer between AI capability and organizational execution.',
+    title: 'The Firm | LVRGWRKS (LeverageWorks) - Fractional CTO Calgary',
+    description: 'LVRGWRKS is a fractional CTO and AI operations partner founded in Calgary. 20 years of operational experience across manufacturing, industrial services, and capital programs. Architected during the Haskayne EMBA to fix the gap between leadership intent and execution.',
     canonical: 'https://www.lvrgwrks.com/firm',
   });
 
@@ -24,10 +24,10 @@ export const FirmPage: React.FC = () => {
           <div className="max-w-4xl">
             <span className="text-brand-gold font-bold tracking-widest text-[11px] uppercase mb-6 block">The Firm</span>
             <h1 className="font-display font-semibold text-5xl md:text-6xl leading-[1.1] text-brand-navy mb-8 tracking-tight">
-              Bridging the divide between <span className="text-brand-slate italic">intent and execution.</span>
+              Built by operators, <span className="text-brand-slate italic">for operators.</span>
             </h1>
-            <p className="text-brand-slate text-xl leading-relaxed max-w-2xl">
-              LVRGWRKS (LeverageWorks) was architected during the Haskayne School of Business EMBA to solve a specific problem: the friction between leadership intent and technological execution.
+            <p className="text-brand-slate text-xl leading-relaxed max-w-2xl font-light">
+              LVRGWRKS was founded in Calgary by someone who spent 20 years watching smart, growing businesses get strangled by the same problem. Revenue grows, headcount grows faster, and the coordination tax quietly eats the margin that growth was supposed to deliver. We built LVRGWRKS to fix it.
             </p>
           </div>
         </div>
@@ -36,74 +36,105 @@ export const FirmPage: React.FC = () => {
       {/* Origin Story */}
       <section className="py-20 md:py-32 bg-white">
         <div className="container mx-auto px-6 md:px-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-6xl mx-auto">
-            <div>
-              <h2 className="font-display font-bold text-3xl text-brand-navy mb-6">Leadership & Origin</h2>
-              <p className="text-brand-slate leading-relaxed mb-6">
-                Founded in Calgary, LVRGWRKS (LeverageWorks) bridges the gap between executive strategy and engineering reality. Our methodology is rooted in systems thinking and architectural precision.
-              </p>
-              <p className="text-brand-slate leading-relaxed mb-6">
-                We emerged from a recognition that most "Digital Transformation" initiatives fail not because of technology limitations, but because of operating model misalignment. The tools exist. The talent exists. What is missing is the synthesis layer that connects leadership intent to technical execution.
-              </p>
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-16">
+              <div>
+                <span className="text-brand-gold font-bold tracking-widest text-[11px] uppercase mb-4 block">The Origin</span>
+                <h2 className="font-display font-bold text-3xl md:text-4xl text-brand-navy mb-6 leading-tight">
+                  Twenty years inside the operations that actually run Alberta.
+                </h2>
+                <p className="text-brand-slate leading-relaxed mb-6">
+                  LVRGWRKS was founded on 20 years of hands-on operational experience across manufacturing, industrial services, and capital programs. Not a software startup. Not a management consultancy. Real operations, in real industries, with real margin pressure and real consequences when the math stops working.
+                </p>
+                <p className="text-brand-slate leading-relaxed mb-6">
+                  That experience taught us one thing above everything else: most technology transformations fail not because the technology is wrong, but because the operating model around the technology is wrong. You can buy the best software on the market and still end up with your team manually moving data between systems at 9pm on a Tuesday. The tools exist. The talent exists. What's missing is the layer that connects what leadership wants to what the operation can actually execute.
+                </p>
+                <p className="text-brand-slate leading-relaxed">
+                  That missing layer is what LVRGWRKS builds.
+                </p>
+              </div>
+              <div>
+                <span className="text-brand-gold font-bold tracking-widest text-[11px] uppercase mb-4 block">The Haskayne Thesis</span>
+                <h2 className="font-display font-bold text-3xl md:text-4xl text-brand-navy mb-6 leading-tight">
+                  Architected during an EMBA. Sharpened in the field.
+                </h2>
+                <p className="text-brand-slate leading-relaxed mb-6">
+                  LVRGWRKS was architected during the Haskayne School of Business EMBA at the University of Calgary, grounded in the executive and financial frameworks the program is known for. EBITDA discipline, capital efficiency, structural thinking about how businesses actually create value.
+                </p>
+                <p className="text-brand-slate leading-relaxed mb-6">
+                  The Haskayne training matters because it's where the operational experience and the financial rigor come together. A Leverage Audit isn't a process-improvement exercise. It's a structural diagnosis of where your business is losing capacity and what that capacity is worth in P&L terms. Every recommendation we make ties back to one question: does this move the numbers, or doesn't it?
+                </p>
+                <p className="text-brand-slate leading-relaxed">
+                  If it doesn't move the numbers, we don't build it.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What We Believe */}
+      <section className="py-20 md:py-32 bg-brand-surface">
+        <div className="container mx-auto px-6 md:px-16">
+          <div className="max-w-4xl mx-auto text-center mb-16">
+            <span className="text-brand-gold font-bold tracking-widest text-[11px] uppercase mb-4 block">What We Believe</span>
+            <h2 className="font-display font-bold text-3xl md:text-5xl text-brand-navy mb-6 leading-tight">
+              Three principles that shape every engagement.
+            </h2>
+            <p className="text-brand-slate text-lg leading-relaxed">
+              These aren't marketing lines. They're the rules we actually follow when we're inside a client's operation deciding what to build, what to leave alone, and what to walk away from.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="bg-white p-10 rounded-xl border border-gray-100">
+              <div className="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-6">
+                <span className="text-brand-gold font-display font-bold text-xl">01</span>
+              </div>
+              <h3 className="font-display font-bold text-xl text-brand-navy mb-4">Structure before speed</h3>
               <p className="text-brand-slate leading-relaxed">
-                Our team brings together strategic consulting rigor with hands-on implementation experience, ensuring that every recommendation we make is grounded in operational reality.
+                Most consultants make your existing system faster. We ask a different question first: is the structure itself economically viable under growth? If it's not, speeding it up just gets you to the cliff faster. We fix the structure, then we make it fast.
               </p>
             </div>
-            <div>
-              <h2 className="font-display font-bold text-3xl text-brand-navy mb-6">The Mandate</h2>
-              <p className="text-brand-slate leading-relaxed mb-6">
-                Think of us as your fractional CTO and AI operations partner. For a fraction of the cost of a full-time hire, you get senior strategic guidance and hands-on implementation support.
-              </p>
-              <p className="text-brand-slate leading-relaxed mb-6">
-                We operate with a singular mandate: to equip enterprise leaders with the "synthesis layer" required to govern AI agents. We turn theoretical capability into deployed, governed, and revenue-generating infrastructure.
-              </p>
+            <div className="bg-white p-10 rounded-xl border border-gray-100">
+              <div className="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-6">
+                <span className="text-brand-gold font-display font-bold text-xl">02</span>
+              </div>
+              <h3 className="font-display font-bold text-xl text-brand-navy mb-4">Human judgment first</h3>
               <p className="text-brand-slate leading-relaxed">
-                The result is measurable EBITDA uplift, not just new software. Capital efficiency, not just capability demonstrations.
+                AI augments human decision-making. It does not replace it. Our implementations keep your leadership team accountable for the decisions that matter and remove the friction from the decisions that shouldn't require a human at all.
+              </p>
+            </div>
+            <div className="bg-white p-10 rounded-xl border border-gray-100">
+              <div className="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-6">
+                <span className="text-brand-gold font-display font-bold text-xl">03</span>
+              </div>
+              <h3 className="font-display font-bold text-xl text-brand-navy mb-4">If it doesn't move the P&L, it doesn't ship</h3>
+              <p className="text-brand-slate leading-relaxed">
+                We don't measure success in demos, dashboards, or pilot programs. We measure it in EBITDA uplift, labour hours recovered, and rolling ROI against the retainer. Every month. Documented in a Value Creation Report. No guessing.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Philosophy */}
-      <section className="py-20 md:py-32 bg-brand-surface">
+      {/* Why it matters */}
+      <section className="py-20 md:py-32 bg-white border-b border-gray-100">
         <div className="container mx-auto px-6 md:px-16">
-          <div className="max-w-4xl mx-auto text-center mb-16">
-            <span className="text-brand-gold font-bold tracking-widest text-[11px] uppercase mb-4 block">Our Philosophy</span>
-            <h2 className="font-display font-bold text-4xl text-brand-navy mb-6">Architecture Over Automation</h2>
-            <p className="text-brand-slate text-lg leading-relaxed">
-              The divide between AI potential and realized value is not a technology problem. It is an operating model problem. We build the connective tissue between what AI can do and what your organization is structured to execute.
+          <div className="max-w-4xl mx-auto">
+            <span className="text-brand-gold font-bold tracking-widest text-[11px] uppercase mb-6 block">Why It Matters</span>
+            <h2 className="font-display font-bold text-3xl md:text-5xl text-brand-navy mb-8 leading-tight">
+              The Alberta mid-market operates differently. <span className="text-brand-slate italic">We built LVRGWRKS for that.</span>
+            </h2>
+            <p className="text-brand-slate text-lg leading-relaxed mb-6">
+              Most AI and automation firms were built inside the tech ecosystem. They know SaaS, they know software, and they know how to sell enterprise dashboards. They don't know what it feels like to run a 40-truck energy services company at 6am, or coordinate six subcontractors across a multi-site construction project, or reconcile maintenance requests across a growing property management portfolio. They don't know the operations. They know the tools.
             </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div className="bg-white p-8 rounded-xl border border-gray-100">
-              <div className="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-6">
-                <span className="text-brand-gold font-display font-bold text-xl">01</span>
-              </div>
-              <h3 className="font-display font-bold text-xl text-brand-navy mb-4">Systems Thinking</h3>
-              <p className="text-brand-slate leading-relaxed text-sm">
-                Every intervention is designed with the full system in view. Point solutions create technical debt. Architectural solutions create compounding value.
-              </p>
-            </div>
-            <div className="bg-white p-8 rounded-xl border border-gray-100">
-              <div className="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-6">
-                <span className="text-brand-gold font-display font-bold text-xl">02</span>
-              </div>
-              <h3 className="font-display font-bold text-xl text-brand-navy mb-4">Human Judgment First</h3>
-              <p className="text-brand-slate leading-relaxed text-sm">
-                AI augments human decision-making. It does not replace it. Our implementations keep leadership accountable while reducing cognitive friction at scale.
-              </p>
-            </div>
-            <div className="bg-white p-8 rounded-xl border border-gray-100">
-              <div className="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-6">
-                <span className="text-brand-gold font-display font-bold text-xl">03</span>
-              </div>
-              <h3 className="font-display font-bold text-xl text-brand-navy mb-4">Measurable Outcomes</h3>
-              <p className="text-brand-slate leading-relaxed text-sm">
-                We do not measure success in demos or pilots. We measure EBITDA uplift, capital efficiency, and governance clarity. If it does not move the P&L, it does not ship.
-              </p>
-            </div>
+            <p className="text-brand-slate text-lg leading-relaxed mb-6">
+              LVRGWRKS is built the other way around. Operations first, tools second. We work with founders, owners, and COOs of mid-market companies (20 to 250 employees, $5M to $150M in revenue) across Alberta and Western Canada, because that's where the operational realities and the operational opportunities are the clearest. When you engage LVRGWRKS, you're not hiring a vendor who's going to learn your industry on your dime. You're adding a partner who already speaks the language.
+            </p>
+            <p className="text-brand-slate text-lg leading-relaxed">
+              Every workflow, automation, and AI agent we build belongs to you from day one. No vendor lock-in. No dependency on us. The engagement can end at any time and your operation keeps running. That's not a risk reversal tactic. It's the only honest way to build what we build.
+            </p>
           </div>
         </div>
       </section>
@@ -111,16 +142,19 @@ export const FirmPage: React.FC = () => {
       {/* CTA */}
       <section className="py-20 md:py-32 bg-brand-navy text-white text-center">
         <div className="container mx-auto px-6 md:px-16">
-          <h2 className="font-display font-bold text-4xl md:text-5xl mb-8">Ready to close the gap?</h2>
-          <p className="text-gray-400 max-w-xl mx-auto mb-12 text-lg leading-relaxed">
-            Whether you are exploring AI readiness or scaling existing capabilities, we are here to help architect the path forward.
+          <h2 className="font-display font-bold text-4xl md:text-5xl mb-8 leading-tight">
+            Ready to close the gap<br />
+            <span className="text-gray-400 italic">between intent and execution?</span>
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto mb-12 text-lg leading-relaxed">
+            Start with a free 60-minute Leverage Audit. We map your highest-friction workflows, quantify the exact labour cost of that pain, and outline a conceptual automation architecture before the call ends. No cost. No commitment. No generic presentation.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6 items-center">
             <button
               onClick={() => openBriefing()}
               className="bg-brand-gold text-brand-navy px-12 py-5 rounded-lg font-bold text-sm uppercase tracking-widest hover:bg-white transition-all shadow-xl"
             >
-              Request Leverage Audit
+              Request Free Leverage Audit
             </button>
             <Link
               to="/capabilities"
