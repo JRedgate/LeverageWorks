@@ -57,9 +57,40 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            <p className="text-gray-300 text-lg leading-relaxed max-w-3xl">
+            <p className="text-gray-300 text-lg leading-relaxed max-w-3xl mb-12">
               You do not need another software subscription. You need an operating partner embedded inside your business who can see where the system is breaking and build the infrastructure to fix it.
             </p>
+
+            {/* Calculator CTA - inline within Problem section */}
+            <div className="bg-gradient-to-br from-brand-gold/10 to-brand-gold/5 border border-brand-gold/30 rounded-xl p-8 md:p-10 max-w-3xl">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-brand-gold rounded-lg flex items-center justify-center">
+                  <svg className="w-6 h-6 text-brand-navy" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <span className="text-brand-gold font-bold tracking-widest text-[11px] uppercase mb-2 block">Free Tool</span>
+                  <h3 className="font-display font-bold text-2xl md:text-3xl text-white leading-tight">
+                    Want to see what this is costing you?
+                  </h3>
+                </div>
+              </div>
+              <p className="text-gray-300 leading-relaxed mb-6 md:pl-16">
+                Use the Coordination Tax Calculator to quantify the hidden labour cost your team is absorbing every week. Five inputs. Real numbers. Sixty seconds. No email required to see your result.
+              </p>
+              <div className="md:pl-16">
+                <Link
+                  to="/coordination-tax-calculator"
+                  className="inline-flex items-center gap-2 bg-brand-gold text-brand-navy px-8 py-4 rounded-lg font-bold text-sm uppercase tracking-widest hover:bg-white transition-all shadow-lg group"
+                >
+                  Try the Calculator
+                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
