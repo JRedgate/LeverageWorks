@@ -22,9 +22,9 @@ const TOOL_OPTIONS = [
 ];
 
 // Tier annual costs (monthly × 12)
-const IGNITE_ANNUAL = 54000;  // $4,500/mo
-const BUILD_ANNUAL = 78000;   // $6,500/mo
-const SCALE_ANNUAL = 102000;  // $8,500/mo
+const IGNITE_ANNUAL = 54000; // $4,500/mo
+const BUILD_ANNUAL = 78000; // $6,500/mo
+const SCALE_ANNUAL = 102000; // $8,500/mo
 
 // Blended coordination overhead rate across typical office team mix
 // (ops, admin, PM, finance, engineering). Conservative estimate.
@@ -48,7 +48,9 @@ export const CalculatorPage: React.FC = () => {
   const [selectedTools, setSelectedTools] = useState<string[]>([]);
   const [hourlyCost, setHourlyCost] = useState<number>(75);
 
-  // Email capture state
+  // Email capture state - UPDATED TO INCLUDE NAME AND COMPANY
+  const [name, setName] = useState<string>('');
+  const [company, setCompany] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [emailSubmitted, setEmailSubmitted] = useState<boolean>(false);
   const [emailSubmitting, setEmailSubmitting] = useState<boolean>(false);
@@ -64,11 +66,10 @@ export const CalculatorPage: React.FC = () => {
   const results = useMemo(() => {
     const toolsCount = selectedTools.length;
     const frictionMultiplier = 1 + Math.max(0, toolsCount - 3) * 0.08;
-    
+
     // Calculate coordination hours based on office staff count
     // Standard workweek (40 hrs) × 30% blended coordination rate × friction multiplier
     const weeklyCoordinationHours = officeStaff * 40 * COORDINATION_OVERHEAD_RATE * frictionMultiplier;
-    
     const weeklyTax = weeklyCoordinationHours * hourlyCost;
     const rawAnnualTax = weeklyTax * 50;
     const annualTax = Math.min(rawAnnualTax, 2000000);
@@ -137,7 +138,8 @@ export const CalculatorPage: React.FC = () => {
         body: isCapped
           ? 'Your calculated coordination tax exceeds $2,000,000 per year, and at that scale the problem is not something a calculator can size correctly. What you are experiencing is structural misalignment between how your business has scaled and how your systems are architected to support it. This is exactly the situation LVRGWRKS was built to fix.'
           : 'At this scale, the coordination tax is not just expensive. It is actively constraining your ability to grow. You cannot fix this with another software subscription or another admin hire. It requires structural redesign of how the work flows across your operation.',
-        tierRecommendation: 'Book the Leverage Audit directly. We will map your actual situation in 60 minutes and outline what structural remediation looks like for a business at your scale.',
+        tierRecommendation:
+          'Book the Leverage Audit directly. We will map your actual situation in 60 minutes and outline what structural remediation looks like for a business at your scale.',
         roiMath: 'At this severity, the ROI conversation is no longer about retainer math. It is about what this is costing you every month you wait.',
       };
     }
@@ -147,9 +149,10 @@ export const CalculatorPage: React.FC = () => {
         label: 'High',
         headline: 'The math is urgent now.',
         body: 'You are paying for the equivalent of multiple full-time employees whose entire job is holding your systems together with spreadsheets and email. Every month you absorb this is a month of margin you do not get back. Competitors investing in cross-platform orchestration right now are building a gap you will feel in 12 to 18 months.',
-        tierRecommendation: recommendedTier === 'Scale'
-          ? `The Scale tier ($8,500/month, ${formatCurrency(SCALE_ANNUAL)} annually) is sized for your situation. Scale makes LVRGWRKS a named operating partner with unlimited automation scope, not a project vendor.`
-          : `The Build tier ($6,500/month, ${formatCurrency(BUILD_ANNUAL)} annually) fits your current coordination tax. Build embeds across departments and manages multiple automations as a unified system.`,
+        tierRecommendation:
+          recommendedTier === 'Scale'
+            ? `The Scale tier ($8,500/month, ${formatCurrency(SCALE_ANNUAL)} annually) is sized for your situation. Scale makes LVRGWRKS a named operating partner with unlimited automation scope, not a project vendor.`
+            : `The Build tier ($6,500/month, ${formatCurrency(BUILD_ANNUAL)} annually) fits your current coordination tax. Build embeds across departments and manages multiple automations as a unified system.`,
         roiMath: `Your total coordination tax is approximately ${formatCurrency(annualTax)} per year. Based on LVRGWRKS operational benchmarks, approximately ${formatCurrency(recoverableAmount)} of that is recoverable through cross-platform automation and process redesign. Against that recoverable amount, a ${recommendedTier} tier engagement (${formatCurrency(recommendedTierCost)} annually) delivers approximately ${formatROI(actualROI)} ROI in the first year, with compounding returns as the system matures.`,
       };
     }
@@ -159,9 +162,10 @@ export const CalculatorPage: React.FC = () => {
         label: 'Moderate',
         headline: 'You are feeling it. Most operators start losing their best people here.',
         body: 'This is the range where your team starts burning out on manual work, and where growth starts costing margin instead of creating it. A Leverage Audit typically recovers 40 to 60 percent of this annual number within the first 90 days of engagement.',
-        tierRecommendation: recommendedTier === 'Build'
-          ? `The Build tier ($6,500/month, ${formatCurrency(BUILD_ANNUAL)} annually) is sized for your situation. Build embeds LVRGWRKS across departments and manages multiple automations as a unified system.`
-          : `The Ignite tier ($4,500/month, ${formatCurrency(IGNITE_ANNUAL)} annually) is the right entry point for your coordination tax. It targets your biggest bottleneck first and proves ROI every 30 days.`,
+        tierRecommendation:
+          recommendedTier === 'Build'
+            ? `The Build tier ($6,500/month, ${formatCurrency(BUILD_ANNUAL)} annually) is sized for your situation. Build embeds LVRGWRKS across departments and manages multiple automations as a unified system.`
+            : `The Ignite tier ($4,500/month, ${formatCurrency(IGNITE_ANNUAL)} annually) is the right entry point for your coordination tax. It targets your biggest bottleneck first and proves ROI every 30 days.`,
         roiMath: `Your total coordination tax is approximately ${formatCurrency(annualTax)} per year. Based on LVRGWRKS operational benchmarks, approximately ${formatCurrency(recoverableAmount)} of that is recoverable through cross-platform automation and process redesign. Against that recoverable amount, an ${recommendedTier} tier engagement (${formatCurrency(recommendedTierCost)} annually) delivers approximately ${formatROI(actualROI)} ROI in the first year. That math improves significantly in year two as the system compounds.`,
       };
     }
@@ -172,22 +176,36 @@ export const CalculatorPage: React.FC = () => {
       headline: 'Manageable today. But coordination tax compounds.',
       body: 'Most operators at your stage are in this range. The question is not whether to act now. It is whether you want to get ahead of the curve before it compounds, or absorb the cost until it becomes structural. Most companies wait too long.',
       tierRecommendation: `The Ignite tier ($4,500/month, ${formatCurrency(IGNITE_ANNUAL)} annually) is the right entry point if you want to solve your biggest bottleneck before scaling pressure forces your hand.`,
-      roiMath: actualROI >= 1
-        ? `Your total coordination tax is approximately ${formatCurrency(annualTax)} per year, with approximately ${formatCurrency(recoverableAmount)} recoverable through automation. Against that recoverable amount, an Ignite tier engagement delivers approximately ${formatROI(actualROI)} ROI in year one. The real value at this stage is preventing the problem from compounding before it becomes severe.`
-        : `At your current coordination tax, the direct ROI math on Ignite is modest — but the real value at this stage is getting ahead of the problem before it compounds into the Moderate or High severity ranges, where it becomes much more expensive to fix.`,
+      roiMath:
+        actualROI >= 1
+          ? `Your total coordination tax is approximately ${formatCurrency(annualTax)} per year, with approximately ${formatCurrency(recoverableAmount)} recoverable through automation. Against that recoverable amount, an Ignite tier engagement delivers approximately ${formatROI(actualROI)} ROI in year one. The real value at this stage is preventing the problem from compounding before it becomes severe.`
+          : `At your current coordination tax, the direct ROI math on Ignite is modest — but the real value at this stage is getting ahead of the problem before it compounds into the Moderate or High severity ranges, where it becomes much more expensive to fix.`,
     };
   };
 
   const currentSeverity = getSeverityContent();
   const showResults = selectedTools.length > 0;
 
-  // Email submission to Formspree
+  // Email submission to Formspree - UPDATED TO INCLUDE NAME AND COMPANY
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validation
+    if (!name.trim()) {
+      setEmailError('Please enter your name.');
+      return;
+    }
+    
+    if (!company.trim()) {
+      setEmailError('Please enter your company name.');
+      return;
+    }
+    
     if (!email || !email.includes('@')) {
       setEmailError('Please enter a valid email address.');
       return;
     }
+
     setEmailError('');
     setEmailSubmitting(true);
 
@@ -200,6 +218,8 @@ export const CalculatorPage: React.FC = () => {
         },
         body: JSON.stringify({
           _subject: 'Coordination Tax Calculator — Personalized Breakdown Request',
+          name,  // Added name field
+          company,  // Added company field
           email,
           source: 'Coordination Tax Calculator',
           office_staff: officeStaff,
@@ -354,7 +374,6 @@ export const CalculatorPage: React.FC = () => {
               <>
                 <div className="bg-brand-navy text-white p-8 md:p-12 rounded-xl mb-8">
                   <span className="text-brand-gold font-bold tracking-widest text-[11px] uppercase mb-6 block">Your Estimated Coordination Tax</span>
-
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
                     <div className="bg-white/5 border border-white/10 p-6 rounded-xl">
                       <div className="text-brand-gold font-display font-bold text-3xl md:text-4xl mb-2">
@@ -380,7 +399,6 @@ export const CalculatorPage: React.FC = () => {
                       </p>
                     </div>
                   </div>
-
                   <div className="border-t border-white/10 pt-8">
                     <div className="flex items-center gap-3 mb-4">
                       <span className="text-brand-gold font-bold tracking-widest text-[11px] uppercase">Severity</span>
@@ -406,7 +424,7 @@ export const CalculatorPage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Email Capture */}
+                {/* Email Capture - UPDATED FORM WITH NAME, COMPANY, EMAIL */}
                 <div className="bg-brand-surface p-8 md:p-10 rounded-xl border border-gray-100">
                   {emailSubmitted ? (
                     <>
@@ -421,21 +439,40 @@ export const CalculatorPage: React.FC = () => {
                         Want this as a personalized one-page breakdown?
                       </h3>
                       <p className="text-brand-slate leading-relaxed mb-6">
-                        Enter your email and we will send you a breakdown specific to {industry} operators, with examples of where the coordination tax typically hides in your industry and what recovering it looks like in practice. No sales pitch. No automated drip sequence.
+                        Enter your details and we will send you a breakdown specific to {industry} operators, with examples of where the coordination tax typically hides in your industry and what recovering it looks like in practice. No sales pitch. No automated drip sequence.
                       </p>
-                      <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-3">
+                      <form onSubmit={handleEmailSubmit} className="space-y-4">
+                        <input
+                          type="text"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          placeholder="Your full name"
+                          required
+                          className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 bg-white text-brand-navy font-medium focus:border-brand-navy focus:outline-none transition-all"
+                        />
+                        
+                        <input
+                          type="text"
+                          value={company}
+                          onChange={(e) => setCompany(e.target.value)}
+                          placeholder="Company name"
+                          required
+                          className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 bg-white text-brand-navy font-medium focus:border-brand-navy focus:outline-none transition-all"
+                        />
+                        
                         <input
                           type="email"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="your@email.com"
                           required
-                          className="flex-1 px-4 py-3 rounded-lg border-2 border-gray-200 bg-white text-brand-navy font-medium focus:border-brand-navy focus:outline-none transition-all"
+                          className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 bg-white text-brand-navy font-medium focus:border-brand-navy focus:outline-none transition-all"
                         />
+                        
                         <button
                           type="submit"
                           disabled={emailSubmitting}
-                          className="bg-brand-navy text-white px-8 py-3 rounded-lg font-bold text-sm uppercase tracking-widest hover:bg-brand-slate transition-all shadow-lg disabled:opacity-60"
+                          className="w-full bg-brand-navy text-white px-8 py-3 rounded-lg font-bold text-sm uppercase tracking-widest hover:bg-brand-slate transition-all shadow-lg disabled:opacity-60"
                         >
                           {emailSubmitting ? 'Sending...' : 'Send Me The Breakdown'}
                         </button>

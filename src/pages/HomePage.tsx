@@ -77,7 +77,7 @@ export const HomePage: React.FC = () => {
                 </div>
               </div>
               <p className="text-gray-300 leading-relaxed mb-6 md:pl-16">
-                Use the Coordination Tax Calculator to quantify the hidden labour cost your team is absorbing every week. Five inputs. Real numbers. Sixty seconds. No email required to see your result.
+                Use the Coordination Tax Calculator to quantify the hidden labour cost your team is absorbing every week. Four inputs. Real numbers. Sixty seconds. No email required to see your result.
               </p>
               <div className="md:pl-16">
                 <Link
