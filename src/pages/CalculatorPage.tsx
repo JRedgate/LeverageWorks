@@ -6,7 +6,6 @@ interface LayoutContext {
   openBriefing: (message?: string) => void;
 }
 
-type CompanySize = '20-50' | '51-100' | '101-250';
 type Industry = 'Construction' | 'Energy Services' | 'Manufacturing' | 'Property Management' | 'Other';
 
 const TOOL_OPTIONS = [
@@ -27,8 +26,12 @@ const IGNITE_ANNUAL = 54000;  // $4,500/mo
 const BUILD_ANNUAL = 78000;   // $6,500/mo
 const SCALE_ANNUAL = 102000;  // $8,500/mo
 
-// Standard full-time year: 40 hrs/week × 50 weeks = 2000 hrs
-const FULL_TIME_HOURS_PER_YEAR = 2000;
+// Blended coordination overhead rate across typical office team mix
+// (ops, admin, PM, finance, engineering). Conservative estimate.
+const COORDINATION_OVERHEAD_RATE = 0.30; // 30%
+
+// Recoverable portion of total coordination tax through automation
+const RECOVERABLE_RATE = 0.50; // 50%
 
 export const CalculatorPage: React.FC = () => {
   const { openBriefing } = useOutletContext<LayoutContext>();
@@ -40,10 +43,9 @@ export const CalculatorPage: React.FC = () => {
   });
 
   // Form state
-  const [companySize, setCompanySize] = useState<CompanySize>('51-100');
+  const [officeStaff, setOfficeStaff] = useState<number>(25);
   const [industry, setIndustry] = useState<Industry>('Construction');
   const [selectedTools, setSelectedTools] = useState<string[]>([]);
-  const [hoursPerWeek, setHoursPerWeek] = useState<number>(40);
   const [hourlyCost, setHourlyCost] = useState<number>(75);
 
   // Email capture state
@@ -62,29 +64,30 @@ export const CalculatorPage: React.FC = () => {
   const results = useMemo(() => {
     const toolsCount = selectedTools.length;
     const frictionMultiplier = 1 + Math.max(0, toolsCount - 3) * 0.08;
-    const rawWeeklyTax = hoursPerWeek * hourlyCost * frictionMultiplier;
-    const rawAnnualTax = rawWeeklyTax * 50;
+    
+    // Calculate coordination hours based on office staff count
+    // Standard workweek (40 hrs) × 30% blended coordination rate × friction multiplier
+    const weeklyCoordinationHours = officeStaff * 40 * COORDINATION_OVERHEAD_RATE * frictionMultiplier;
+    
+    const weeklyTax = weeklyCoordinationHours * hourlyCost;
+    const rawAnnualTax = weeklyTax * 50;
     const annualTax = Math.min(rawAnnualTax, 510000);
-    const weeklyTax = annualTax / 50;
-
-    // FIXED: FTE is now calculated from dollar amount ÷ annual cost per person
-    // This ensures FTE and dollar numbers reconcile (1.08 FTE at $162K with $75/hr)
-    const annualCostPerFTE = hourlyCost * FULL_TIME_HOURS_PER_YEAR;
-    const headcountEquivalent = annualTax / annualCostPerFTE;
-
     const isCapped = rawAnnualTax > 510000;
 
-    // Determine the right tier based on the actual ROI math
+    // Calculate recoverable amount (50% of total coordination tax)
+    const recoverableAmount = annualTax * RECOVERABLE_RATE;
+
+    // Determine the right tier based on recoverable amount ROI
     let recommendedTier: 'Ignite' | 'Build' | 'Scale' | 'Structural' = 'Ignite';
     let recommendedTierCost = IGNITE_ANNUAL;
 
-    if (isCapped || annualTax >= 450000) {
+    if (isCapped || recoverableAmount >= 400000) {
       recommendedTier = 'Structural';
       recommendedTierCost = SCALE_ANNUAL;
-    } else if (annualTax >= 300000) {
+    } else if (recoverableAmount >= 250000) {
       recommendedTier = 'Scale';
       recommendedTierCost = SCALE_ANNUAL;
-    } else if (annualTax >= 200000) {
+    } else if (recoverableAmount >= 150000) {
       recommendedTier = 'Build';
       recommendedTierCost = BUILD_ANNUAL;
     } else {
@@ -92,7 +95,7 @@ export const CalculatorPage: React.FC = () => {
       recommendedTierCost = IGNITE_ANNUAL;
     }
 
-    const actualROI = annualTax / recommendedTierCost;
+    const actualROI = recoverableAmount / recommendedTierCost;
 
     let severity: 'Low' | 'Moderate' | 'High' | 'Severe' = 'Low';
     if (annualTax >= 450000 || isCapped) severity = 'Severe';
@@ -102,17 +105,17 @@ export const CalculatorPage: React.FC = () => {
     return {
       toolsCount,
       frictionMultiplier,
+      weeklyCoordinationHours,
       weeklyTax,
       annualTax,
-      headcountEquivalent,
-      annualCostPerFTE,
+      recoverableAmount,
       severity,
       isCapped,
       recommendedTier,
       recommendedTierCost,
       actualROI,
     };
-  }, [selectedTools, hoursPerWeek, hourlyCost]);
+  }, [officeStaff, selectedTools, hourlyCost]);
 
   const formatCurrency = (value: number): string =>
     new Intl.NumberFormat('en-CA', {
@@ -123,9 +126,9 @@ export const CalculatorPage: React.FC = () => {
 
   const formatROI = (multiplier: number): string => `${multiplier.toFixed(1)}x`;
 
-  // Dynamic severity tier content — ROI math is live, not hardcoded
+  // Dynamic severity tier content
   const getSeverityContent = () => {
-    const { severity, annualTax, recommendedTier, recommendedTierCost, actualROI, isCapped } = results;
+    const { severity, annualTax, recoverableAmount, recommendedTier, recommendedTierCost, actualROI, isCapped } = results;
 
     if (severity === 'Severe') {
       return {
@@ -147,7 +150,7 @@ export const CalculatorPage: React.FC = () => {
         tierRecommendation: recommendedTier === 'Scale'
           ? `The Scale tier ($8,500/month, ${formatCurrency(SCALE_ANNUAL)} annually) is sized for your situation. Scale makes LVRGWRKS a named operating partner with unlimited automation scope, not a project vendor.`
           : `The Build tier ($6,500/month, ${formatCurrency(BUILD_ANNUAL)} annually) fits your current coordination tax. Build embeds across departments and manages multiple automations as a unified system.`,
-        roiMath: `Against your ${formatCurrency(annualTax)} coordination tax, a ${recommendedTier} tier engagement (${formatCurrency(recommendedTierCost)} annually) delivers approximately ${formatROI(actualROI)} ROI in the first year, with compounding returns as the system matures.`,
+        roiMath: `Your total coordination tax is approximately ${formatCurrency(annualTax)} per year. Based on LVRGWRKS operational benchmarks, approximately ${formatCurrency(recoverableAmount)} of that is recoverable through cross-platform automation and process redesign. Against that recoverable amount, a ${recommendedTier} tier engagement (${formatCurrency(recommendedTierCost)} annually) delivers approximately ${formatROI(actualROI)} ROI in the first year, with compounding returns as the system matures.`,
       };
     }
 
@@ -159,7 +162,7 @@ export const CalculatorPage: React.FC = () => {
         tierRecommendation: recommendedTier === 'Build'
           ? `The Build tier ($6,500/month, ${formatCurrency(BUILD_ANNUAL)} annually) is sized for your situation. Build embeds LVRGWRKS across departments and manages multiple automations as a unified system.`
           : `The Ignite tier ($4,500/month, ${formatCurrency(IGNITE_ANNUAL)} annually) is the right entry point for your coordination tax. It targets your biggest bottleneck first and proves ROI every 30 days.`,
-        roiMath: `Against your ${formatCurrency(annualTax)} coordination tax, an ${recommendedTier} tier engagement (${formatCurrency(recommendedTierCost)} annually) delivers approximately ${formatROI(actualROI)} ROI in the first year. That math improves significantly in year two as the system compounds.`,
+        roiMath: `Your total coordination tax is approximately ${formatCurrency(annualTax)} per year. Based on LVRGWRKS operational benchmarks, approximately ${formatCurrency(recoverableAmount)} of that is recoverable through cross-platform automation and process redesign. Against that recoverable amount, an ${recommendedTier} tier engagement (${formatCurrency(recommendedTierCost)} annually) delivers approximately ${formatROI(actualROI)} ROI in the first year. That math improves significantly in year two as the system compounds.`,
       };
     }
 
@@ -170,7 +173,7 @@ export const CalculatorPage: React.FC = () => {
       body: 'Most operators at your stage are in this range. The question is not whether to act now. It is whether you want to get ahead of the curve before it compounds, or absorb the cost until it becomes structural. Most companies wait too long.',
       tierRecommendation: `The Ignite tier ($4,500/month, ${formatCurrency(IGNITE_ANNUAL)} annually) is the right entry point if you want to solve your biggest bottleneck before scaling pressure forces your hand.`,
       roiMath: actualROI >= 1
-        ? `Against your ${formatCurrency(annualTax)} coordination tax, an Ignite tier engagement delivers approximately ${formatROI(actualROI)} ROI in year one. The real value at this stage is preventing the problem from compounding before it becomes severe.`
+        ? `Your total coordination tax is approximately ${formatCurrency(annualTax)} per year, with approximately ${formatCurrency(recoverableAmount)} recoverable through automation. Against that recoverable amount, an Ignite tier engagement delivers approximately ${formatROI(actualROI)} ROI in year one. The real value at this stage is preventing the problem from compounding before it becomes severe.`
         : `At your current coordination tax, the direct ROI math on Ignite is modest — but the real value at this stage is getting ahead of the problem before it compounds into the Moderate or High severity ranges, where it becomes much more expensive to fix.`,
     };
   };
@@ -189,7 +192,7 @@ export const CalculatorPage: React.FC = () => {
     setEmailSubmitting(true);
 
     try {
-      const response = await fetch('https://formspree.io/f/xgvjrrod', {
+      const response = await fetch('https://formspree.io/f/xvzdzrlr', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -199,15 +202,15 @@ export const CalculatorPage: React.FC = () => {
           _subject: 'Coordination Tax Calculator — Personalized Breakdown Request',
           email,
           source: 'Coordination Tax Calculator',
-          company_size: companySize,
+          office_staff: officeStaff,
           industry,
           tools_used: selectedTools.join(', '),
           tools_count: results.toolsCount,
-          hours_per_week: hoursPerWeek,
           hourly_cost: hourlyCost,
+          weekly_coordination_hours: results.weeklyCoordinationHours.toFixed(1),
           weekly_coordination_tax: formatCurrency(results.weeklyTax),
           annual_coordination_tax: formatCurrency(results.annualTax),
-          headcount_equivalent: results.headcountEquivalent.toFixed(2),
+          recoverable_amount: formatCurrency(results.recoverableAmount),
           severity: results.severity,
           recommended_tier: results.recommendedTier,
           actual_roi: formatROI(results.actualROI),
@@ -253,28 +256,27 @@ export const CalculatorPage: React.FC = () => {
             <div className="bg-brand-surface p-8 md:p-12 rounded-xl border border-gray-100 mb-12">
               <span className="text-brand-gold font-bold tracking-widest text-[11px] uppercase mb-6 block">The Calculator</span>
               <h2 className="font-display font-bold text-3xl text-brand-navy mb-10 leading-tight">
-                Five inputs. Real numbers.
+                Four inputs. Real numbers.
               </h2>
 
-              {/* Input 1: Company Size */}
+              {/* Input 1: Number of Office Staff */}
               <div className="mb-10">
-                <label className="block text-sm font-bold text-brand-navy uppercase tracking-wider mb-3">
-                  01. Company Size
+                <label className="block text-sm font-bold text-brand-navy uppercase tracking-wider mb-2">
+                  01. How many people work in office roles at your company?
                 </label>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  {(['20-50', '51-100', '101-250'] as CompanySize[]).map((size) => (
-                    <button
-                      key={size}
-                      onClick={() => setCompanySize(size)}
-                      className={`px-4 py-3 rounded-lg font-bold text-sm transition-all border-2 ${
-                        companySize === size
-                          ? 'bg-brand-navy text-white border-brand-navy'
-                          : 'bg-white text-brand-slate border-gray-200 hover:border-brand-navy/30'
-                      }`}
-                    >
-                      {size} employees
-                    </button>
-                  ))}
+                <p className="text-brand-slate text-sm mb-4 leading-relaxed">
+                  Include operations, admin, project managers, finance, engineering, and leadership. Do not include field crews, external sales, or contractors. This is your office/support headcount.
+                </p>
+                <div className="flex items-center gap-3">
+                  <input
+                    type="number"
+                    min="5"
+                    max="500"
+                    value={officeStaff}
+                    onChange={(e) => setOfficeStaff(Math.max(5, Math.min(500, Number(e.target.value) || 25)))}
+                    className="flex-1 px-4 py-3 rounded-lg border-2 border-gray-200 bg-white text-brand-navy font-bold text-xl focus:border-brand-navy focus:outline-none transition-all"
+                  />
+                  <span className="text-brand-slate font-medium">office staff</span>
                 </div>
               </div>
 
@@ -302,7 +304,7 @@ export const CalculatorPage: React.FC = () => {
                   03. Which tools does your team use daily?
                 </label>
                 <p className="text-brand-slate text-sm mb-4 leading-relaxed">
-                  Select everything that applies. The more disconnected tools your team uses, the more coordination tax per hour of manual work.
+                  Select everything that applies. The more disconnected tools your team uses, the more coordination tax per hour of work.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {TOOL_OPTIONS.map((tool) => (
@@ -324,34 +326,10 @@ export const CalculatorPage: React.FC = () => {
                 </p>
               </div>
 
-              {/* Input 4: Hours */}
-              <div className="mb-10">
-                <label className="block text-sm font-bold text-brand-navy uppercase tracking-wider mb-2">
-                  04. How many hours per week does your team spend manually moving data, building reports, or chasing status updates across these tools?
-                </label>
-                <p className="text-brand-slate text-sm mb-4 leading-relaxed">
-                  Think about everything that is not the actual work: re-keying data between systems, copy-paste, status chasing, spreadsheet exports, email back-and-forth about where something stands. Research from Asana and McKinsey suggests coordination work consumes 40 to 60 percent of a typical knowledge worker's week. For a 10-person team, that is often 150 to 250 hours weekly. Estimate conservatively.
-                </p>
-                <input
-                  type="range"
-                  min="5"
-                  max="200"
-                  step="5"
-                  value={hoursPerWeek}
-                  onChange={(e) => setHoursPerWeek(Number(e.target.value))}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-brand-navy"
-                />
-                <div className="flex justify-between items-center mt-2">
-                  <span className="text-xs text-brand-slate">5 hrs</span>
-                  <span className="font-display font-bold text-2xl text-brand-navy">{hoursPerWeek} hrs/week</span>
-                  <span className="text-xs text-brand-slate">200 hrs</span>
-                </div>
-              </div>
-
-              {/* Input 5: Hourly Cost */}
+              {/* Input 4: Hourly Cost */}
               <div className="mb-4">
                 <label className="block text-sm font-bold text-brand-navy uppercase tracking-wider mb-2">
-                  05. Average fully-loaded hourly cost of the people doing that work
+                  04. Average fully-loaded hourly cost of your office staff
                 </label>
                 <p className="text-brand-slate text-sm mb-4 leading-relaxed">
                   Fully loaded means salary plus benefits plus overhead. For most Alberta mid-market operations roles, this is $65 to $95 per hour. Default is $75.
@@ -388,17 +366,17 @@ export const CalculatorPage: React.FC = () => {
                       <div className="text-brand-gold font-display font-bold text-3xl md:text-4xl mb-2">
                         {results.isCapped ? '$500K+' : formatCurrency(results.annualTax)}
                       </div>
-                      <p className="text-gray-400 text-sm leading-relaxed">per year in hidden labour cost</p>
+                      <p className="text-gray-400 text-sm leading-relaxed mb-3">per year in hidden labour cost</p>
+                      <p className="text-gray-500 text-xs italic">
+                        Based on {officeStaff} staff × 40 hrs/wk × 30% coordination overhead × {results.frictionMultiplier.toFixed(2)} tool friction × ${hourlyCost}/hr
+                      </p>
                     </div>
                     <div className="bg-white/5 border border-white/10 p-6 rounded-xl">
                       <div className="text-brand-gold font-display font-bold text-3xl md:text-4xl mb-2">
-                        {(hoursPerWeek * 50).toLocaleString()} hrs
+                        {formatCurrency(results.recoverableAmount)}
                       </div>
-                      <p className="text-gray-400 text-sm leading-relaxed mb-2">
-                        of your team's capacity burned on coordination work each year
-                      </p>
-                      <p className="text-gray-500 text-xs italic">
-                        The equivalent of {((hoursPerWeek * 50) / 2000).toFixed(1)} years of full-time work
+                      <p className="text-gray-400 text-sm leading-relaxed">
+                        recoverable through automation (conservative 50% of total)
                       </p>
                     </div>
                   </div>
@@ -493,10 +471,13 @@ export const CalculatorPage: React.FC = () => {
               McKinsey's Global Institute research estimates interaction workers spend roughly 28 percent of their week on email and another 20 percent searching for internal information. Asana's Anatomy of Work report puts coordination overhead at 60 percent of the average knowledge worker's day. Gartner has documented an 83 percent increase in the number of applications used per knowledge worker since 2019, with an average of 11 per employee and some teams using more than 26.
             </p>
             <p className="text-brand-slate text-lg leading-relaxed mb-6">
-              The friction multiplier in this calculator (8 percent added coordination overhead per tool beyond the first three) is an approximation based on those benchmarks and LVRGWRKS operational experience across manufacturing, industrial services, and capital programs. It is designed to be conservative. The real number, measured precisely in a Leverage Audit, is usually higher.
+              This calculator uses a conservative 30% baseline for coordination overhead across a typical office team mix (operations, admin, project management, finance, and engineering roles). This blended rate is well below the 40-60% reported by McKinsey and Asana for pure knowledge work, accounting for the fact that not all office roles carry equal coordination loads. The friction multiplier (8% per additional tool beyond three) is then applied to reflect tool sprawl complexity.
+            </p>
+            <p className="text-brand-slate text-lg leading-relaxed mb-6">
+              Research and LVRGWRKS client data show that 40-60% of coordination tax is recoverable through cross-platform automation and process redesign. We use 50% as a conservative baseline for ROI calculations. The tier recommendation and ROI math are calculated live against LVRGWRKS engagement pricing (Ignite $4,500/month, Build $6,500/month, Scale $8,500/month) and shown as actual multipliers, not ranges.
             </p>
             <p className="text-brand-slate text-lg leading-relaxed">
-              The tier recommendation and ROI math are calculated live against LVRGWRKS engagement pricing (Ignite $4,500/month, Build $6,500/month, Scale $8,500/month) and shown as actual multipliers, not ranges. FTE equivalents are calculated by dividing the annual coordination tax by the annual cost of one full-time employee (2,000 hours per year × hourly cost). If your calculation exceeds $500,000 annually, the coordination tax has moved beyond an efficiency problem and become a structural one, which is a different conversation entirely.
+              If your calculation exceeds $500,000 annually, the coordination tax has moved beyond an efficiency problem and become a structural one, which is a different conversation entirely.
             </p>
           </div>
         </div>
