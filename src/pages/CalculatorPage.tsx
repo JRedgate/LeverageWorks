@@ -71,8 +71,8 @@ export const CalculatorPage: React.FC = () => {
     
     const weeklyTax = weeklyCoordinationHours * hourlyCost;
     const rawAnnualTax = weeklyTax * 50;
-    const annualTax = Math.min(rawAnnualTax, 510000);
-    const isCapped = rawAnnualTax > 510000;
+    const annualTax = Math.min(rawAnnualTax, 2000000);
+    const isCapped = rawAnnualTax > 2000000;
 
     // Calculate recoverable amount (50% of total coordination tax)
     const recoverableAmount = annualTax * RECOVERABLE_RATE;
@@ -98,9 +98,9 @@ export const CalculatorPage: React.FC = () => {
     const actualROI = recoverableAmount / recommendedTierCost;
 
     let severity: 'Low' | 'Moderate' | 'High' | 'Severe' = 'Low';
-    if (recoverableAmount >= 400000 || isCapped) severity = 'Severe';
-    else if (recoverableAmount >= 200000) severity = 'High';
-    else if (recoverableAmount >= 100000) severity = 'Moderate';
+    if (recoverableAmount >= 800000 || isCapped) severity = 'Severe';
+    else if (recoverableAmount >= 400000) severity = 'High';
+    else if (recoverableAmount >= 200000) severity = 'Moderate';
 
     return {
       toolsCount,
@@ -135,7 +135,7 @@ export const CalculatorPage: React.FC = () => {
         label: 'Severe',
         headline: 'The coordination tax is no longer an efficiency problem. It is structural.',
         body: isCapped
-          ? 'Your calculated coordination tax exceeds $500,000 per year, and at that scale the problem is not something a calculator can size correctly. What you are experiencing is structural misalignment between how your business has scaled and how your systems are architected to support it. This is exactly the situation LVRGWRKS was built to fix.'
+          ? 'Your calculated coordination tax exceeds $2,000,000 per year, and at that scale the problem is not something a calculator can size correctly. What you are experiencing is structural misalignment between how your business has scaled and how your systems are architected to support it. This is exactly the situation LVRGWRKS was built to fix.'
           : 'At this scale, the coordination tax is not just expensive. It is actively constraining your ability to grow. You cannot fix this with another software subscription or another admin hire. It requires structural redesign of how the work flows across your operation.',
         tierRecommendation: 'Book the Leverage Audit directly. We will map your actual situation in 60 minutes and outline what structural remediation looks like for a business at your scale.',
         roiMath: 'At this severity, the ROI conversation is no longer about retainer math. It is about what this is costing you every month you wait.',
@@ -271,9 +271,9 @@ export const CalculatorPage: React.FC = () => {
                   <input
                     type="number"
                     min="5"
-                    max="500"
+                    max="50"
                     value={officeStaff}
-                    onChange={(e) => setOfficeStaff(Math.max(5, Math.min(500, Number(e.target.value) || 25)))}
+                    onChange={(e) => setOfficeStaff(Math.max(5, Math.min(50, Number(e.target.value) || 25)))}
                     className="flex-1 px-4 py-3 rounded-lg border-2 border-gray-200 bg-white text-brand-navy font-bold text-xl focus:border-brand-navy focus:outline-none transition-all"
                   />
                   <span className="text-brand-slate font-medium">office staff</span>
@@ -477,7 +477,7 @@ export const CalculatorPage: React.FC = () => {
               Research and LVRGWRKS client data show that 40-60% of coordination tax is recoverable through cross-platform automation and process redesign. We use 50% as a conservative baseline for ROI calculations. The tier recommendation and ROI math are calculated live against LVRGWRKS engagement pricing (Ignite $4,500/month, Build $6,500/month, Scale $8,500/month) and shown as actual multipliers, not ranges.
             </p>
             <p className="text-brand-slate text-lg leading-relaxed">
-              If your calculation exceeds $500,000 annually, the coordination tax has moved beyond an efficiency problem and become a structural one, which is a different conversation entirely.
+              If your calculation exceeds $2,000,000 annually, the coordination tax has moved beyond an efficiency problem and become a structural one, which is a different conversation entirely.
             </p>
           </div>
         </div>
