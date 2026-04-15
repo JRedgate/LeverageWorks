@@ -98,9 +98,9 @@ export const CalculatorPage: React.FC = () => {
     const actualROI = recoverableAmount / recommendedTierCost;
 
     let severity: 'Low' | 'Moderate' | 'High' | 'Severe' = 'Low';
-    if (annualTax >= 450000 || isCapped) severity = 'Severe';
-    else if (annualTax >= 250000) severity = 'High';
-    else if (annualTax >= 100000) severity = 'Moderate';
+    if (recoverableAmount >= 400000 || isCapped) severity = 'Severe';
+    else if (recoverableAmount >= 200000) severity = 'High';
+    else if (recoverableAmount >= 100000) severity = 'Moderate';
 
     return {
       toolsCount,
